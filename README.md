@@ -21,23 +21,23 @@ Welcome to the **E-commerce Shirt Website**, a modern and stylish platform desig
 ## 📦 Getting Started
 
 1️⃣ **Clone this repo**
-git clone https://github.com/Ferico5/e-commerce.git
-cd e-commerce
+1. git clone https://github.com/Ferico5/e-commerce.git
+2. cd e-commerce
 
 2️⃣ **Install dependencies**
-npm i
+1. npm i
 
 3️⃣ **Run the app**
-npm run dev
+1. npm run dev
 
 4️⃣ **Visit**
 http://localhost:5173
 
 
 ## 💡 Future Enhancements
-✅ Add user reviews
-✅ Implement order tracking
-✅ Add wishlists and favorites
+1. Add user reviews
+2. Implement order tracking
+3. Add wishlists and favorites
 
 
 ## ✨ Contributing
