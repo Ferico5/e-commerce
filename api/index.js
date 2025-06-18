@@ -1,4 +1,4 @@
-import dotenv from 'dotenv';
+const dotenv = require('dotenv');
 dotenv.config();
 const express = require('express');
 const mongoose = require('mongoose');
@@ -11,11 +11,10 @@ const app = express();
 const PORT = process.env.PORT;
 const mongoDBURL = process.env.MONGODB_URL;
 
+console.log("MongoDB URL:", process.env.MONGODB_URL);
+
 mongoose
-  .connect(mongoDBURL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(mongoDBURL)
   .then(() => console.log('Connection Successful'))
   .catch((err) => console.error('Connection Error: ', err));
 

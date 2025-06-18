@@ -1,16 +1,17 @@
 // import { useState } from 'react'
 import { createBrowserRouter, RouterProvider, Outlet, Navigate } from 'react-router-dom';
-import ProtectedRoute from '../components/ProtectedRoute';
+// import ProtectedRoute from '../components/ProtectedRoute';
 
 // import pages
-import ServerError from '../pages/ServerError';
-import PageNotFound from '../pages/PageNotFound';
+import Auth from '../pages/Auth'
+// import ServerError from '../pages/ServerError';
+// import PageNotFound from '../pages/PageNotFound';
 
 // import components
-import Header from '../components/Header';
+import Header from '../components/Header'
 
 // Import context
-import { AuthProvider } from '../auth/AuthContext';
+// import { AuthProvider } from '../auth/AuthContext';
 
 const Layout = () => {
   return (
@@ -26,34 +27,34 @@ const router = createBrowserRouter([
     path: '/',
     element: <Layout />,
     children: [
-      {
-        path: '/',
-        element: <Navigate to="/dashboard" replace />,
-      },
+      // {
+      //   path: '/',
+      //   element: <Navigate to="/dashboard" replace />,
+      // },
       {
         path: '/auth',
         element: <Auth />,
       },
-      {
-        path: '/dashboard',
-        element: (
-          <ProtectedRoute>
-            <Dashboard />
-          </ProtectedRoute>
-        ),
-      },
-      {
-        path: '/server-error',
-        element: (
-          <ProtectedRoute>
-            <ServerError />
-          </ProtectedRoute>
-        ),
-      },
-      {
-        path: '*',
-        element: <PageNotFound />,
-      },
+      // {
+      //   path: '/dashboard',
+      //   element: (
+      //     // <ProtectedRoute>
+      //       <Dashboard />
+      //     // </ProtectedRoute>
+      //   ),
+      // },
+      // {
+      //   path: '/server-error',
+      //   element: (
+      //     // <ProtectedRoute>
+      //       <ServerError />
+      //     // </ProtectedRoute>
+      //   ),
+      // },
+      // {
+      //   path: '*',
+      //   element: <PageNotFound />,
+      // },
     ],
   },
 ]);
@@ -61,9 +62,9 @@ const router = createBrowserRouter([
 const App = () => {
   return (
     <div>
-      <AuthProvider>
+      {/* <AuthProvider> */}
         <RouterProvider router={router} />
-      </AuthProvider>
+      {/* </AuthProvider> */}
     </div>
   );
 };

@@ -1,0 +1,5 @@
+@import 'tailwindcss';
+
+.content {
+    margin: 0 7.5em;
+}
