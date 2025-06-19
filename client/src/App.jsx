@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider, Outlet, Navigate } from 'react-rou
 // import ProtectedRoute from '../components/ProtectedRoute';
 
 // import pages
-import Auth from '../pages/Auth'
+import Login from '../pages/Login'
 // import ServerError from '../pages/ServerError';
 // import PageNotFound from '../pages/PageNotFound';
 
@@ -32,8 +32,8 @@ const router = createBrowserRouter([
       //   element: <Navigate to="/dashboard" replace />,
       // },
       {
-        path: '/auth',
-        element: <Auth />,
+        path: '/login',
+        element: <Login />,
       },
       // {
       //   path: '/dashboard',
