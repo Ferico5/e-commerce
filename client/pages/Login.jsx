@@ -20,7 +20,7 @@ const Login = () => {
           id="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="w-97 h-12 text-[18px] px-[8px] py-[16px] border-1"
+          className="w-97 h-12 text-[18px] px-[8px] py-[16px] border-1 font-outfit"
           placeholder="Name"
           required
           autoComplete="off"
@@ -35,7 +35,7 @@ const Login = () => {
           id="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-97 h-12 text-[18px] px-[8px] py-[16px] border-1"
+          className="w-97 h-12 text-[18px] px-[8px] py-[16px] border-1 font-outfit"
           placeholder="Email"
           required
           autoComplete="off"
@@ -49,14 +49,14 @@ const Login = () => {
           id="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-97 h-12 text-[18px] px-[8px] py-[16px] border-1"
+          className="w-97 h-12 text-[18px] px-[8px] py-[16px] border-1 font-outfit"
           placeholder="Password"
           required
           autoComplete="off"
         />
       </div>
 
-      <div className='flex justify-between w-97 text-sm mt-2 hover:cursor-pointer'>
+      <div className='flex justify-between w-97 text-sm mt-2 hover:cursor-pointer font-outfit'>
         <span>Forgot your password?</span>
         <span onClick={() => {
           setIsLogin(!isLogin)
