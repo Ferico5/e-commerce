@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useAuth } from '../auth/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const { login } = useAuth();
@@ -20,8 +21,8 @@ const Login = () => {
         if (response.data.msg === 'Login successful' && response.status === 200) {
           localStorage.setItem('token', response.data.token);
           navigate('/');
-        } else if (response.data.msg === 'Invalid email or password!') {
-          // TO DO
+        } else {
+          toast.error(response.data.msg);
         }
       } else {
         const response = await axios.post('http://localhost:8000/users', {
@@ -39,9 +40,10 @@ const Login = () => {
       }
     } catch (error) {
       if (error.response) {
-        return error.response.data.msg;
+        toast.error(error.response.data.msg);
       } else {
-        // TO DO : SERVER ERROR MESSAGE
+        console.error(error);
+        toast.error(error.response.data.msg);
       }
     }
   };
