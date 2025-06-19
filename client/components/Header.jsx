@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
-    <div className="content flex justify-between pt-[28px]">
+    <div className="content flex justify-between pt-[28px] pb-4.5 border-b border-[#ADADAD]">
       {/* Logo */}
       <div className="w-[166px] h-[47px]">
         <a href="/">
@@ -15,7 +15,7 @@ const Header = () => {
       </div>
 
       {/* Navbar */}
-      <div className='flex flex-row items-center font-medium text-[#323232] font-[Poppins]'>
+      <div className='flex flex-row items-center font-medium text-[#323232] font-poppins'>
         <nav>
           <ul className="flex gap-5">
             <li>
