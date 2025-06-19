@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
-    <div className="content flex justify-between pt-[28px] pb-4.5 border-b border-[#ADADAD]">
+    <div className="content flex justify-between pt-4 pb-4.5">
       {/* Logo */}
       <div className="w-[166px] h-[47px]">
         <a href="/">
@@ -43,7 +43,7 @@ const Header = () => {
       </div>
 
       {/* Button */}
-      <div className='flex items-center gap-6'>
+      <div className='flex items-center gap-6' >
         <a href="/collection">
           <img src={Search} className='w-[24px] h-[24px]' />
         </a>
