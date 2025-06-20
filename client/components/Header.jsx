@@ -50,6 +50,7 @@ const Header = () => {
             <img src={Profile} className="w-[24px] h-[24px]" />
           </a>
 
+          {/* show dropdown only after login */}
           {token && (
             <div className="absolute right-0 mt-3 w-40 bg-[#F1F5F9] rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
               <ul className="text-[#6B7280] font-semibold font-outfit">
