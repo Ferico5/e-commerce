@@ -77,7 +77,7 @@ const Login = () => {
               setIsLogin(!isLogin);
             }}
           >
-            Login Here
+            {!isLogin ? 'Login Here' : 'Create account'}
           </span>
         </div>
 
