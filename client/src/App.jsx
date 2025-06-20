@@ -4,14 +4,12 @@ import { createBrowserRouter, RouterProvider, Outlet, Navigate } from 'react-rou
 
 // import pages
 import Login from '../pages/Login'
+import Home from '../pages/Home';
 // import ServerError from '../pages/ServerError';
 // import PageNotFound from '../pages/PageNotFound';
 
 // import components
 import Header from '../components/Header'
-
-// import home pages
-import Home from '../pages/Home';
 
 // Import context
 import { AuthProvider } from '../auth/AuthContext';
@@ -20,7 +18,6 @@ const Layout = () => {
   return (
     <>
       <Header />
-      <Home />
       <Outlet />
     </>
   );
@@ -31,10 +28,10 @@ const router = createBrowserRouter([
     path: '/',
     element: <Layout />,
     children: [
-      // {
-      //   path: '/',
-      //   element: <Navigate to="/dashboard" replace />,
-      // },
+      {
+        path: '/',
+        element: <Home />
+      },
       {
         path: '/login',
         element: <Login />,
