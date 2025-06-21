@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 // import pages
 import Login from '../pages/Login';
+import About from '../pages/About';
 // import ServerError from '../pages/ServerError';
 // import PageNotFound from '../pages/PageNotFound';
 
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: <Login />,
+      },
+      {
+        path: '/about',
+        element: <About />,
       },
       // {
       //   path: '/dashboard',
