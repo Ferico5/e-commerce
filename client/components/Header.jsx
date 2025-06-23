@@ -2,12 +2,13 @@ import Logo from '../assets/frontend_assets/logo.png';
 import Search from '../assets/frontend_assets/search_icon.png';
 import Profile from '../assets/frontend_assets/profile_icon.png';
 import Cart from '../assets/frontend_assets/cart_icon.png';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
 
 const Header = () => {
   const { token, logout } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   return (
     <div className="content flex justify-between pt-4 pb-4.5">
@@ -22,17 +23,25 @@ const Header = () => {
       <div className="flex flex-row items-center font-medium text-[#323232] font-poppins">
         <nav>
           <ul className="flex gap-5">
-            <li>
-              <Link to="/">HOME</Link>
+            <li className="relative">
+              <Link to="/" className={`pb-1 ${location.pathname === '/' ? 'after:content-[""] after:absolute after:left-1/2 after:translate-x-[-50%] after:bottom-[-3px] after:w-1/2 after:h-[1px] after:bg-[#323232]' : ''}`}>
+                HOME
+              </Link>
             </li>
-            <li>
-              <Link to="/collection">COLLECTION</Link>
+            <li className="relative">
+              <Link to="/collection" className={`pb-1 ${location.pathname === '/collection' ? 'after:content-[""] after:absolute after:left-1/2 after:translate-x-[-50%] after:bottom-[-3px] after:w-1/2 after:h-[1px] after:bg-[#323232]' : ''}`}>
+                COLLECTION
+              </Link>
             </li>
-            <li>
-              <Link to="/about">ABOUT</Link>
+            <li className="relative">
+              <Link to="/about" className={`pb-1 ${location.pathname === '/about' ? 'after:content-[""] after:absolute after:left-1/2 after:translate-x-[-50%] after:bottom-[-3px] after:w-1/2 after:h-[1px] after:bg-[#323232]' : ''}`}>
+                ABOUT
+              </Link>
             </li>
-            <li>
-              <Link to="/contact">CONTACT</Link>
+            <li className="relative">
+              <Link to="/contact" className={`pb-1 ${location.pathname === '/contact' ? 'after:content-[""] after:absolute after:left-1/2 after:translate-x-[-50%] after:bottom-[-3px] after:w-1/2 after:h-[1px] after:bg-[#323232]' : ''}`}>
+                CONTACT
+              </Link>
             </li>
           </ul>
         </nav>
