@@ -11,16 +11,16 @@ const Header = () => {
   const location = useLocation();
 
   return (
-    <div className="content flex justify-between pt-4 pb-4.5">
+    <div className="content flex justify-between pt-5 pb-4.5">
       {/* Logo */}
-      <div className="w-[166px] h-[47px]">
+      <div className="w-[148px]">
         <a href="/">
           <img src={Logo} />
         </a>
       </div>
 
       {/* Navbar */}
-      <div className="flex flex-row items-center font-medium text-[#323232] font-poppins">
+      <div className="flex flex-row items-center text-sm font-medium text-[#323232] font-poppins">
         <nav>
           <ul className="flex gap-5">
             <li className="relative">
@@ -29,7 +29,10 @@ const Header = () => {
               </Link>
             </li>
             <li className="relative">
-              <Link to="/collection" className={`pb-1 ${location.pathname === '/collection' ? 'after:content-[""] after:absolute after:left-1/2 after:translate-x-[-50%] after:bottom-[-3px] after:w-1/2 after:h-[1px] after:bg-[#323232]' : ''}`}>
+              <Link
+                to="/collection"
+                className={`pb-1 ${location.pathname === '/collection' ? 'after:content-[""] after:absolute after:left-1/2 after:translate-x-[-50%] after:bottom-[-3px] after:w-1/2 after:h-[1px] after:bg-[#323232]' : ''}`}
+              >
                 COLLECTION
               </Link>
             </li>
@@ -43,6 +46,11 @@ const Header = () => {
                 CONTACT
               </Link>
             </li>
+            <li className="relative">
+              <Link to="/admin" className="border rounded-full border-[#E5E7EB] px-5 py-2 text-[.75em] font-semibold">
+                Admin Panel
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>
@@ -50,13 +58,13 @@ const Header = () => {
       {/* Button */}
       <div className="flex items-center gap-6">
         <a href="/collection">
-          <img src={Search} className="w-[24px] h-[24px]" />
+          <img src={Search} className="w-[20px]" />
         </a>
 
         {/* Login + Dropdown */}
         <div className="relative group">
           <a href="/login">
-            <img src={Profile} className="w-[24px] h-[24px]" />
+            <img src={Profile} className="w-[19px]" />
           </a>
 
           {/* show dropdown only after login */}
@@ -78,8 +86,9 @@ const Header = () => {
           )}
         </div>
 
-        <a href="/cart">
-          <img src={Cart} className="w-[22px] h-[24px]" />
+        <a href="/cart" className="relative inline-block">
+          <img src={Cart} className="w-[20px]" />
+          <span className="absolute -bottom-1 -right-1 bg-black text-white p-2 text-[9px] w-[14px] h-[14px] rounded-full flex items-center justify-center font-outfit">0</span>
         </a>
       </div>
     </div>
