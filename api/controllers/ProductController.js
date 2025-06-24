@@ -1,10 +1,6 @@
 const ProductModel = require('../models/ProductModel.js');
 const cloudinary = require('../config/cloudinary.js');
 
-// require('dotenv').config();
-
-const SECRET_KEY = process.env.JWT_SECRET || 'supersecretkey';
-
 const addProduct = async (req, res) => {
   try {
     const { name, description, price, category, subCategory, sizes, bestSeller } = req.body;
@@ -23,21 +19,19 @@ const addProduct = async (req, res) => {
       })
     );
 
-   const productData = {
-    name,
-    description,
-    category,
-    subCategory,
-    price: Number(price),
-    sizes: JSON.parse(sizes),
-    bestSeller: bestSeller === "true" ? true : false,
-    image: imagesUrl,
-   }
+    const productData = {
+      name,
+      description,
+      category,
+      subCategory,
+      price: Number(price),
+      sizes: JSON.parse(sizes),
+      bestSeller: bestSeller === 'true' ? true : false,
+      image: imagesUrl,
+    };
 
-   console.log(productData)
-
-   const product = new ProductModel(productData);
-   await product.save()
+    const product = new ProductModel(productData);
+    await product.save();
 
     res.status(201).json({ msg: 'Product added!' });
   } catch (error) {
@@ -48,6 +42,13 @@ const addProduct = async (req, res) => {
 
 const removeProduct = async (req, res) => {
   try {
+    const removeProduct = await ProductModel.findByIdAndDelete(req.params.id);
+
+    if (!removeProduct) {
+      return res.status(404).json({ msg: 'Product not found!' });
+    }
+
+    res.status(200).json({ msg: 'Product removed!' });
   } catch (error) {
     console.error(error.message);
     res.status(500).json({ msg: 'Server error' });
@@ -56,6 +57,8 @@ const removeProduct = async (req, res) => {
 
 const listProduct = async (req, res) => {
   try {
+    const listProduct = await ProductModel.find();
+    res.status(200).json({ msg: 'Successful getting list products', listProduct });
   } catch (error) {
     console.error(error.message);
     res.status(500).json({ msg: 'Server error' });
