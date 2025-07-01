@@ -3,7 +3,7 @@ import Logo from '../assets/frontend_assets/logo.png';
 
 const Footer = () => {
   return (
-    <div className="content pt-40">
+    <div className="content pt-30">
       {/* Top side content */}
       <div className="flex justify-between">
         {/* Left side content */}

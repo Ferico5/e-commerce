@@ -1,6 +1,7 @@
 import React from 'react';
 import AboutPic from '../assets/frontend_assets/about_img.png';
 import AboutBox from '../components/AboutBox';
+import SubscribeBox from '../components/SubscribeBox';
 
 const About = () => {
   return (
@@ -24,7 +25,7 @@ const About = () => {
             </div>
         </div>
         {/* Why Choose Us */}
-        <div className='mt-14 text-[#707070] text-xl'>
+        <div className='mt-14 mb-10 text-[#707070] text-xl'>
             <p>WHY <span className='text-[#171717] font-[470]'>CHOOSE US</span></p>
             <div className='flex mt-6.5'>
                 <AboutBox 
@@ -42,16 +43,7 @@ const About = () => {
             </div>
         </div>
 
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
+        <SubscribeBox />
     </div>
   )
 }
