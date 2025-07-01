@@ -67,6 +67,13 @@ const listProduct = async (req, res) => {
 
 const singleProduct = async (req, res) => {
   try {
+    const singleProduct = await ProductModel.findById(req.params.id);
+
+    if (!singleProduct) {
+      return res.status(404).json({ msg: 'Product not found!' });
+    }
+
+    res.status(200).json({ msg: 'Successful getting product', singleProduct });
   } catch (error) {
     console.error(error.message);
     res.status(500).json({ msg: 'Server error' });
