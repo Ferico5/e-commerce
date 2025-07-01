@@ -1,23 +1,30 @@
 // import { useState } from 'react'
-import { createBrowserRouter, RouterProvider, Outlet, Navigate } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Outlet,
+  Navigate,
+} from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // import ProtectedRoute from '../components/ProtectedRoute';
 
 // import pages
-import Login from '../pages/Login';
-import Home from '../pages/Home';
-import About from '../pages/About';
-import Collection from '../pages/Collection';
+import Login from "../pages/Login";
+import Home from "../pages/Home";
+import About from "../pages/About";
+import Contact from "../pages/Contact";
+import Collection from "../pages/Collection";
+
 // import ServerError from '../pages/ServerError';
 // import PageNotFound from '../pages/PageNotFound';
 
 // import components
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 // Import context
-import { AuthProvider } from '../auth/AuthContext';
+import { AuthProvider } from "../auth/AuthContext";
 
 const Layout = () => {
   return (
@@ -31,24 +38,28 @@ const Layout = () => {
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Layout />,
     children: [
       {
-        path: '/',
-        element: <Home />
+        path: "/",
+        element: <Home />,
       },
       {
-        path: '/login',
+        path: "/login",
         element: <Login />,
       },
       {
-        path: '/collection',
+        path: "/collection",
         element: <Collection />,
       },
       {
-        path: '/about',
+        path: "/about",
         element: <About />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
       },
       // {
       //   path: '/server-error',
@@ -71,7 +82,11 @@ const App = () => {
     <div>
       <AuthProvider>
         <RouterProvider router={router} />
-        <ToastContainer position="top-right" autoClose={6000} hideProgressBar={false} />
+        <ToastContainer
+          position="top-right"
+          autoClose={6000}
+          hideProgressBar={false}
+        />
       </AuthProvider>
     </div>
   );
