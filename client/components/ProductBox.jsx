@@ -8,7 +8,7 @@ const ProductBox = ({ image, name, price }) => {
         <img 
           src={image} 
           alt={name} 
-          className="w-full h-full object-cover" 
+          className="w-full h-full object-cover hover:scale-110 transition ease-in-out" 
         />
       </div>
 
