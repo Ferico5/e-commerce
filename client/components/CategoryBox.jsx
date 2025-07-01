@@ -7,7 +7,7 @@ const CategoryBox = ({ title, categories = [], className='' }) => {
 
       {categories.map((category, index) => (
         <label key={index} className="flex items-center gap-2 mb-1">
-          <input type="checkbox" className="accent-blue-500" />
+          <input type="checkbox" className="accent-blue-500 hover:cursor-pointer" />
           <span className='text-[#374151] text-sm'>{category}</span>
         </label>
       ))}

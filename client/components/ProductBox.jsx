@@ -13,12 +13,12 @@ const ProductBox = ({ image, name, price }) => {
       </div>
 
       {/* Product Name */}
-      <p className="mt-2 text-[#374151] break-words leading-tight">
+      <p className="mt-3 text-sm text-[#374151] break-words leading-tight">
         {name}
       </p>
 
       {/* Product Price */}
-      <p className="text-sm text-[#374151] font-medium">
+      <p className="mt-2 text-sm text-[#374151] font-medium">
         Rp. {price}
       </p>
     </div>
