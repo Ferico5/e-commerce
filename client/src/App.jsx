@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 // import pages
 import Login from '../pages/Login';
+import Home from '../pages/Home';
 import About from '../pages/About';
 import Collection from '../pages/Collection';
 // import ServerError from '../pages/ServerError';
@@ -33,10 +34,10 @@ const router = createBrowserRouter([
     path: '/',
     element: <Layout />,
     children: [
-      // {
-      //   path: '/',
-      //   element: <Navigate to="/dashboard" replace />,
-      // },
+      {
+        path: '/',
+        element: <Home />
+      },
       {
         path: '/login',
         element: <Login />,
