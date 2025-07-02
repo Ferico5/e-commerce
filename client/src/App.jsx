@@ -9,6 +9,7 @@ import Login from '../pages/Login';
 import Home from '../pages/Home';
 import About from '../pages/About';
 import Collection from '../pages/Collection';
+import Product from '../pages/Product';
 // import ServerError from '../pages/ServerError';
 // import PageNotFound from '../pages/PageNotFound';
 
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: '/collection',
         element: <Collection />,
+      },
+      {
+        path: '/product/:id',
+        element: <Product />,
       },
       {
         path: '/about',

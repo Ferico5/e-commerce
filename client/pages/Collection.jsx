@@ -78,7 +78,7 @@ const Collection = () => {
         {/* Product List */}
         <div className="grid grid-cols-4 gap-3">
           {getSortedProducts().map((product) => (
-            <ProductBox key={product._id} image={product.image[0]} name={product.name} price={product.price} />
+            <ProductBox key={product._id} id={product._id} image={product.image[0]} name={product.name} price={product.price} />
           ))}
         </div>
       </div>
