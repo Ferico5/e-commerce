@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import image1 from '../assets/frontend_assets/p_img2_1.png';
 import image2 from '../assets/frontend_assets/p_img2_2.png';
 import image3 from '../assets/frontend_assets/p_img2_3.png';
@@ -8,7 +10,25 @@ import star_dull from '../assets/frontend_assets/star_dull_icon.png';
 import ProductBox from '../components/ProductBox';
 
 const Product = () => {
+  const { id } = useParams();
+  const [product, setProduct] = useState(null);
+  const [mainImage, setMainImage] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/single/${id}`)
+      .then((res) => {
+        const productData = res.data.singleProduct;
+        setProduct(productData);
+        setMainImage(productData.image[0]);
+      })
+      .catch((err) => {
+        console.error('Failed to fetch product:', err);
+      });
+  }, [id]);
+
+  if (!product) return null;
 
   return (
     <div className="content flex-col border-t border-[#E5E7EB] pt-10 font-outfit">
@@ -16,20 +36,19 @@ const Product = () => {
         {/* Picture Product */}
         <div className="w-1/2 flex flex-row">
           <div className="flex flex-col gap-3">
-            <img src={image1} className="w-25 h-29 object-cover hover:cursor-pointer" />
-            <img src={image2} className="w-25 h-29 object-cover hover:cursor-pointer" />
-            <img src={image3} className="w-25 h-29 object-cover hover:cursor-pointer" />
-            <img src={image4} className="w-25 h-29 object-cover hover:cursor-pointer" />
+            {product.image.map((img, i) => (
+              <img key={i} src={img} onClick={() => setMainImage(img)} className="w-25 h-29 object-cover hover:cursor-pointer" />
+            ))}
           </div>
           <div className="ml-3">
-            <img src={image1} className="w-105 h-125 object-cover" />
+            <img src={mainImage} className="w-105 h-125 object-cover" />
           </div>
         </div>
 
         {/* Detail Product */}
         <div className="w-[40%] pt-3 pl-6">
           {/* Name Product */}
-          <p className="text-2xl font-medium">Men Round Neck Pure Cotton T-shirt</p>
+          <p className="text-2xl font-medium">{product.name}</p>
           {/* Star Product */}
           <div className="flex gap-1 py-2 items-center">
             <div className="flex gap-1 h-3">
@@ -42,9 +61,9 @@ const Product = () => {
             <p className="ml-2">(122)</p>
           </div>
           {/* Price Product */}
-          <p className="mt-2 mb-2 text-2xl font-medium">Rp. 80000</p>
+          <p className="mt-2 mb-2 text-2xl font-medium">Rp. {product.price}</p>
           {/* Desc Product */}
-          <p className="text-[#5C6872] mt-6">A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.</p>
+          <p className="text-[#5C6872] mt-6">{product.description}</p>
           {/* Size Product */}
           <p className="mt-9">Select Size</p>
           <div className="flex gap-2 mt-3">
@@ -96,11 +115,11 @@ const Product = () => {
       </div>
       <div className="grid grid-cols-5 gap-3 mt-3 mb-10">
         {/* <ProductBox image={product.image[0]} name={product.name} price={product.price} /> */}
-        <ProductBox image={image1} name='Men Round Neck Pure Cotton T-shirt' price='80000' />
-        <ProductBox image={image1} name='Men Round Neck Pure Cotton T-shirt' price='80000' />
-        <ProductBox image={image1} name='Men Round Neck Pure Cotton' price='80000' />
-        <ProductBox image={image1} name='Men Round Neck Pure Cotton T-shirt' price='80000' />
-        <ProductBox image={image1} name='Men Round Neck Pure Cotton T-shirt' price='80000' />
+        <ProductBox image={image1} name="Men Round Neck Pure Cotton T-shirt" price="80000" />
+        <ProductBox image={image1} name="Men Round Neck Pure Cotton T-shirt" price="80000" />
+        <ProductBox image={image1} name="Men Round Neck Pure Cotton" price="80000" />
+        <ProductBox image={image1} name="Men Round Neck Pure Cotton T-shirt" price="80000" />
+        <ProductBox image={image1} name="Men Round Neck Pure Cotton T-shirt" price="80000" />
       </div>
     </div>
   );
