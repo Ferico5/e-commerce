@@ -7,7 +7,7 @@ const Footer = () => {
       {/* Top side content */}
       <div className="flex justify-between">
         {/* Left side content */}
-        <div className="w-2/5 pr-17 text-[#595959] font-outfit">
+        <div className="w-2/5 pr-17 text-[#595959] text-sm font-outfit">
           <img src={Logo} className="w-[140px] mb-5" />
           <span>
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
@@ -16,7 +16,7 @@ const Footer = () => {
         </div>
 
         {/* Right side content */}
-        <div className="w-2/5 flex justify-between font-outfit">
+        <div className="w-2/5 flex justify-between text-sm font-outfit">
           {/* Company */}
           <div className="w-1/2">
             <span className="font-semibold text-xl">COMPANY</span>
@@ -40,7 +40,7 @@ const Footer = () => {
       </div>
       {/* Bottom side content */}
       <div>
-        <footer className="flex justify-center font-outfit border-t border-[#BDBDBD] mt-5 pt-4 mb-3">
+        <footer className="flex justify-center font-outfit border-t border-[#BDBDBD] mt-5 pt-4 mb-4 text-sm">
             Idea design by greatstack.dev
         </footer>
       </div>
