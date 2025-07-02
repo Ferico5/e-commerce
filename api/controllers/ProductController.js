@@ -80,4 +80,25 @@ const singleProduct = async (req, res) => {
   }
 };
 
-module.exports = { addProduct, removeProduct, listProduct, singleProduct };
+const relatedProduct = async (req, res) => {
+  try {
+    const category = req.query.category;
+    const excludeId = req.query.excludeId;
+
+    if (!category) {
+      return res.status(400).json({ msg: 'Category is required' });
+    }
+
+    const filter = { category };
+    if (excludeId) {
+      filter._id = { $ne: excludeId };
+    }
+
+    const products = await ProductModel.find(filter).limit(5);
+    res.status(200).json({ msg: 'Success', products });
+  } catch (error) {
+    res.status(500).json({ msg: 'Server error', error: error.message });
+  }
+};
+
+module.exports = { addProduct, removeProduct, listProduct, singleProduct, relatedProduct };
