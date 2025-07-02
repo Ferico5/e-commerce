@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import image1 from '../assets/frontend_assets/p_img2_1.png';
-import image2 from '../assets/frontend_assets/p_img2_2.png';
-import image3 from '../assets/frontend_assets/p_img2_3.png';
-import image4 from '../assets/frontend_assets/p_img2_4.png';
 import star from '../assets/frontend_assets/star_icon.png';
 import star_dull from '../assets/frontend_assets/star_dull_icon.png';
 import ProductBox from '../components/ProductBox';
@@ -14,6 +10,7 @@ const Product = () => {
   const [product, setProduct] = useState(null);
   const [mainImage, setMainImage] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
+  const [relatedProducts, setRelatedProducts] = useState([]);
 
   useEffect(() => {
     axios
@@ -22,11 +19,26 @@ const Product = () => {
         const productData = res.data.singleProduct;
         setProduct(productData);
         setMainImage(productData.image[0]);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       })
       .catch((err) => {
         console.error('Failed to fetch product:', err);
       });
   }, [id]);
+
+  useEffect(() => {
+    if (product?.category) {
+      axios
+        .get(`http://localhost:8000/products?category=${product.category}`)
+        .then((res) => {
+          const filtered = res.data.products.filter((p) => p._id !== product._id);
+          setRelatedProducts(filtered.slice(0, 5));
+        })
+        .catch((err) => {
+          console.error('Failed to fetch related products:', err);
+        });
+    }
+  }, [product]);
 
   if (!product) return null;
 
@@ -114,12 +126,9 @@ const Product = () => {
         </p>
       </div>
       <div className="grid grid-cols-5 gap-3 mt-3 mb-10">
-        {/* <ProductBox image={product.image[0]} name={product.name} price={product.price} /> */}
-        <ProductBox image={image1} name="Men Round Neck Pure Cotton T-shirt" price="80000" />
-        <ProductBox image={image1} name="Men Round Neck Pure Cotton T-shirt" price="80000" />
-        <ProductBox image={image1} name="Men Round Neck Pure Cotton" price="80000" />
-        <ProductBox image={image1} name="Men Round Neck Pure Cotton T-shirt" price="80000" />
-        <ProductBox image={image1} name="Men Round Neck Pure Cotton T-shirt" price="80000" />
+        {relatedProducts.map((item) => (
+          <ProductBox key={item._id} id={item._id} image={item.image[0]} name={item.name} price={item.price} />
+        ))}
       </div>
     </div>
   );
