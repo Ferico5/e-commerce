@@ -36,11 +36,17 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = (navigate) => {
+    const role = user.role;
+
     setToken(null);
     setUser(null);
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    navigate('/login')
+    if (role === 'admin') {
+      navigate('/admin');
+    } else {
+      navigate('/login');
+    }
   };
 
   return <AuthContext.Provider value={{ token, user, login, logout }}>{children}</AuthContext.Provider>;
