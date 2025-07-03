@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import CategoryBox from '../components/CategoryBox';
-import ProductBox from '../components/ProductBox';
+import CategoryBox from '../../components/CategoryBox';
+import ProductBox from '../../components/ProductBox';
 
 const Collection = () => {
   const [products, setProducts] = useState([]);

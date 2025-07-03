@@ -1,9 +1,9 @@
-import Logo from '../assets/frontend_assets/logo.png';
-import Search from '../assets/frontend_assets/search_icon.png';
-import Profile from '../assets/frontend_assets/profile_icon.png';
-import Cart from '../assets/frontend_assets/cart_icon.png';
+import Logo from '../../assets/frontend_assets/logo.png';
+import Search from '../../assets/frontend_assets/search_icon.png';
+import Profile from '../../assets/frontend_assets/profile_icon.png';
+import Cart from '../../assets/frontend_assets/cart_icon.png';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { useAuth } from '../auth/AuthContext';
+import { useAuth } from '../../auth/AuthContext';
 
 const Header = () => {
   const { token, logout } = useAuth();

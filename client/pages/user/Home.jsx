@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import SubscribeBox from '../components/SubscribeBox';
-import Hero from '../assets/frontend_assets/hero_img.png';
-import { products } from '../assets/frontend_assets/assets';
-import { assets } from '../assets/frontend_assets/assets';
+import SubscribeBox from '../../components/SubscribeBox';
+import Hero from '../../assets/frontend_assets/hero_img.png';
+import { products } from '../../assets/frontend_assets/assets';
+import { assets } from '../../assets/frontend_assets/assets';
 const Home = () => {
   const [lastCollectionList, setLastCollectionList] = useState([]);
   const [bestSellerList, setBestSellerList] = useState([]);
