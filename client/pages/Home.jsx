@@ -1,19 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import SubscribeBox from '../components/SubscribeBox';
-import Hero from '../assets/frontend_assets/hero_img.png';
-import { products } from '../assets/frontend_assets/assets';
-import { assets } from '../assets/frontend_assets/assets';
+import React, { useState, useEffect } from "react";
+import SubscribeBox from "../components/SubscribeBox";
+import Hero from "../assets/frontend_assets/hero_img.png";
+import { products } from "../assets/frontend_assets/assets";
+import { assets } from "../assets/frontend_assets/assets";
+import TitleBox from "../components/TitleBox";
 const Home = () => {
   const [lastCollectionList, setLastCollectionList] = useState([]);
   const [bestSellerList, setBestSellerList] = useState([]);
 
   useEffect(() => {
-    const getLastCollection = products.sort((a, b) => b.date - a.date).slice(0, 10);
+    const getLastCollection = products
+      .sort((a, b) => b.date - a.date)
+      .slice(0, 10);
     setLastCollectionList(getLastCollection);
   }, []);
 
   useEffect(() => {
-    const getBestSeller = products.filter((p) => p.bestseller === true).slice(0, 5);
+    const getBestSeller = products
+      .filter((p) => p.bestseller === true)
+      .slice(0, 5);
     setBestSellerList(getBestSeller);
   }, []);
 
@@ -23,7 +28,9 @@ const Home = () => {
         <div className="w-full flex flex-col items-center justify-center">
           <div>
             <p className="font-medium text-gray-800">OUR BESTSELLERS</p>
-            <p className="font-prata text-gray-700 text-[45px] leading-20">Latest Arrivals</p>
+            <p className="font-prata text-gray-700 text-[45px] leading-20">
+              Latest Arrivals
+            </p>
             <p className="font-[600] text-gray-800">SHOP NOW</p>
           </div>
         </div>
@@ -34,10 +41,14 @@ const Home = () => {
 
       <div>
         <div className="items-center flex justify-center my-10 flex-col leading-10">
-          <h1 className="text-[29px] font-[500] text-gray-700">
+          <TitleBox first="LATEST" second="COLLECTIONS" size="big" />
+          {/* <h1 className="text-[29px] font-[500] text-gray-700">
             <span className="text-gray-500">LATEST</span> COLLECTIONS
-          </h1>
-          <p className="text-[14px] ">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the.</p>
+          </h1> */}
+          <p className="text-[14px] ">
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the.
+          </p>
         </div>
         {/* <div className="w-full flex gap-4 grid grid-cols-5">
           {lastCollectionList.map((p, i) => (
@@ -54,10 +65,15 @@ const Home = () => {
 
       <div className="py-8">
         <div className="items-center flex justify-center my-10 flex-col leading-10">
-          <h1 className="text-[29px] font-[500] text-gray-700">
+          {/* <h1 className="text-[29px] font-[500] text-gray-700">
             <span className="text-gray-500">BEST</span> SELLERS
-          </h1>
-          <p className="text-[14px] ">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the.</p>
+          </h1> */}
+          <TitleBox first="BEST" second="SELLERS" size="big" />
+
+          <p className="text-[14px] ">
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the.
+          </p>
         </div>
         <div className="w-full flex gap-4">
           {/* {bestSellerList.map((p, i) => (
