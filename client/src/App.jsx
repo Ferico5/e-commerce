@@ -14,6 +14,7 @@ import Home from '../pages/user/Home';
 import About from '../pages/user/About';
 import Collection from '../pages/user/Collection';
 import Product from '../pages/user/Product';
+import AdminLogin from '../pages/admin/AdminLogin';
 import AdminAdd from '../pages/admin/AdminAdd';
 // import ServerError from '../pages/ServerError';
 // import PageNotFound from '../pages/PageNotFound';
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
     path: '/admin',
     element: <AdminLayout />,
     children: [
+      {
+        path: '',
+        element: <AdminLogin />
+      },
       {
         path: 'add',
         element: <AdminAdd />,
