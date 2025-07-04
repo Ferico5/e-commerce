@@ -2,7 +2,7 @@
 import { createBrowserRouter, RouterProvider, Outlet, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import ProtectedRoute from '../components/ProtectedRoute';
+import ProtectedRoute from '../components/ProtectedRoute';
 
 // import layout
 import Layout from '../layouts/Layout';
@@ -73,15 +73,27 @@ const router = createBrowserRouter([
     children: [
       {
         path: 'add',
-        element: <AdminAdd />,
+        element: (
+          <ProtectedRoute>
+            <AdminAdd />
+          </ProtectedRoute>
+        ),
       },
       {
         path: 'list',
-        element: <AdminList />,
+        element: (
+          <ProtectedRoute>
+            <AdminList />
+          </ProtectedRoute>
+        ),
       },
       {
         path: 'orders',
-        element: <AdminOrders />,
+        element: (
+          <ProtectedRoute>
+            <AdminOrders />
+          </ProtectedRoute>
+        ),
       },
     ],
   },
