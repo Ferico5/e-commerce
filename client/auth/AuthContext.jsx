@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     if (role === 'admin') {
-      navigate('/admin');
+      navigate('/admin/login');
     } else {
       navigate('/login');
     }
