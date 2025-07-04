@@ -16,6 +16,8 @@ import Collection from '../pages/user/Collection';
 import Product from '../pages/user/Product';
 import AdminLogin from '../pages/admin/AdminLogin';
 import AdminAdd from '../pages/admin/AdminAdd';
+import AdminList from '../pages/admin/AdminList';
+import AdminOrders from '../pages/admin/AdminOrders';
 // import ServerError from '../pages/ServerError';
 // import PageNotFound from '../pages/PageNotFound';
 
@@ -62,16 +64,24 @@ const router = createBrowserRouter([
     ],
   },
   {
+    path: '/admin/login',
+    element: <AdminLogin />,
+  },
+  {
     path: '/admin',
     element: <AdminLayout />,
     children: [
       {
-        path: '',
-        element: <AdminLogin />
-      },
-      {
         path: 'add',
         element: <AdminAdd />,
+      },
+      {
+        path: 'list',
+        element: <AdminList />,
+      },
+      {
+        path: 'orders',
+        element: <AdminOrders />,
       },
     ],
   },
