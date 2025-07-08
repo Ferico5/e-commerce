@@ -11,7 +11,7 @@ const AdminNavbar = () => {
   if (!token || !user || user.role !== 'admin') return null;
 
   return (
-    <div className="flex justify-end w-[50%] sm:w-[39%] md:w-[32%] lg:w-[24%] xl:w-[19%] h-screen border-r-2 border-[#E5E7EB]">
+    <div className="flex justify-end w-[50%] sm:w-[39%] md:w-[32%] lg:w-[24%] xl:w-[19%] h-screen border-r-2 border-[#E5E7EB] bg-[#F9FAFB]">
       <ul className="font-outfit w-[78%]">
         {/* Add */}
         <li>

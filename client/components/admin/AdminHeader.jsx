@@ -9,7 +9,7 @@ const Header = () => {
   if (!token || !user || user.role !== 'admin') return null;
 
   return (
-    <div className="flex justify-between items-center border-b border-[#E5E7EB]">
+    <div className="flex justify-between items-center border-b border-[#E5E7EB] bg-[#F9FAFB]">
       {/* Logo */}
       <div className="ml-13.5 pt-2 pb-2 w-31">
         <img src={Logo} />
