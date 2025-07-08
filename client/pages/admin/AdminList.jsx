@@ -1,7 +1,20 @@
-import React from 'react';
-import p_img2 from '../../assets/frontend_assets/p_img2.png';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const AdminList = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:8000/list')
+      .then((response) => {
+        setProducts(response.data.listProduct);
+      })
+      .catch((error) => {
+        console.error('Error fetching products:', error);
+      });
+  }, []);
+
   return (
     <div className="admin-content bg-[#F9FAFB] font-outfit">
       <div className="flex flex-col">
@@ -17,20 +30,17 @@ const AdminList = () => {
             </tr>
           </thead>
           <tbody>
-            <tr className='bg-[#F9FAFB]'>
-              <td className='border-l border-t border-b border-[#E5E7EB] my-2'><img src={p_img2} className='w-17 p-2' /></td>
-              <td className='border-t border-b border-[#E5E7EB] my-2 px-1'>Men Round Neck Pure Cotton T-shirt</td>
-              <td className='border-t border-b border-[#E5E7EB] px-1'>Men</td>
-              <td className='border-t border-b border-[#E5E7EB] px-1'>Rp. 80000</td>
-              <td className='border-r border-t border-b border-[#E5E7EB] text-center text-base hover:cursor-pointer'>X</td>
-            </tr>
-            <tr className='bg-[#F9FAFB]'>
-              <td className='border-l border-t border-b border-[#E5E7EB] my-2'><img src={p_img2} className='w-17 p-2' /></td>
-              <td className='border-t border-b border-[#E5E7EB] my-2 px-1'>Men Round Neck Pure Cotton T-shirt</td>
-              <td className='border-t border-b border-[#E5E7EB] px-1'>Men</td>
-              <td className='border-t border-b border-[#E5E7EB] px-1'>Rp. 80000</td>
-              <td className='border-r border-t border-b border-[#E5E7EB] text-center text-base hover:cursor-pointer'>X</td>
-            </tr>
+            {products.map((product, index) => (
+              <tr key={index} className="bg-[#F9FAFB]">
+                <td className="border-l border-t border-b border-[#E5E7EB]">
+                  <img src={product.image[0]} className="w-17 p-2" />
+                </td>
+                <td className="border-t border-b border-[#E5E7EB] px-1">{product.name}</td>
+                <td className="border-t border-b border-[#E5E7EB] px-1">{product.category}</td>
+                <td className="border-t border-b border-[#E5E7EB] px-1">Rp. {product.price}</td>
+                <td className="border-r border-t border-b border-[#E5E7EB] text-center text-base hover:cursor-pointer">X</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
