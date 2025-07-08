@@ -47,7 +47,7 @@ const Header = () => {
               </Link>
             </li>
             <li className="relative">
-              <Link to="/admin" className="border rounded-full border-[#E5E7EB] px-5 py-2 text-[.75em] font-semibold">
+              <Link to="/admin/login" className="border rounded-full border-[#E5E7EB] px-5 py-2 text-[.75em] font-semibold">
                 Admin Panel
               </Link>
             </li>

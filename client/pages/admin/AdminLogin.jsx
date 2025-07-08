@@ -17,7 +17,7 @@ const AdminLogin = () => {
     try {
       if (response.data.msg === 'Login successful' && response.status === 200) {
         // temporary url
-        navigate('/admin/add');
+        navigate('/admin');
       } else {
         toast.error(response.data.msg);
       }
