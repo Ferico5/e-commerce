@@ -9,10 +9,10 @@
 
 @import 'tailwindcss';
 
-@theme{
-    --font-poppins: Poppins, "sans-serif";
-    --font-prata: Prata, "serif";
-    --font-outfit: Outfit, "sans-serif";
+@theme {
+  --font-poppins: Poppins, 'sans-serif';
+  --font-prata: Prata, 'serif';
+  --font-outfit: Outfit, 'sans-serif';
 }
 
 * {
@@ -25,9 +25,9 @@
 }
 
 .content {
-    margin: 0 7.5em;
+  margin: 0 7.5em;
 }
 
 .admin-content {
-  margin: 1em 3.5em;
+  padding: 2.5em 3.5em 0;
 }
