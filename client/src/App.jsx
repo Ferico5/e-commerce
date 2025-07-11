@@ -14,6 +14,7 @@ import Home from '../pages/user/Home';
 import About from '../pages/user/About';
 import Collection from '../pages/user/Collection';
 import Product from '../pages/user/Product';
+import Contact from '../pages/user/Contact';
 import AdminLogin from '../pages/admin/AdminLogin';
 import AdminAdd from '../pages/admin/AdminAdd';
 import AdminList from '../pages/admin/AdminList';
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
         path: '/about',
         element: <About />,
       },
+      {
+        path: '/contact',
+        element: <Contact />,
+      },
       // {
       //   path: '/server-error',
       //   element: (
@@ -75,10 +80,21 @@ const router = createBrowserRouter([
       </ProtectedRoute>
     ),
     children: [
-      { path: ''},
-      { path: 'add', element: <AdminAdd /> },
-      { path: 'list', element: <AdminList /> },
-      { path: 'orders', element: <AdminOrders /> },
+      {
+        path: '',
+      },
+      {
+        path: 'add',
+        element: <AdminAdd />,
+      },
+      {
+        path: 'list',
+        element: <AdminList />,
+      },
+      {
+        path: 'orders',
+        element: <AdminOrders />,
+      },
     ],
   },
 ]);

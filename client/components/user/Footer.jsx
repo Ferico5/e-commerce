@@ -40,7 +40,7 @@ const Footer = () => {
       </div>
       {/* Bottom side content */}
       <div>
-        <footer className="flex justify-center font-outfit border-t border-[#BDBDBD] mt-5 pt-4 mb-4 text-sm">
+        <footer className="flex justify-center font-outfit border-t border-[#BDBDBD] mt-10 pt-4 mb-4 text-sm">
             Idea design by greatstack.dev
         </footer>
       </div>
