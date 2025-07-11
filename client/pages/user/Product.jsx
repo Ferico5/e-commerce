@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import star from '../assets/frontend_assets/star_icon.png';
-import star_dull from '../assets/frontend_assets/star_dull_icon.png';
-import ProductBox from '../components/ProductBox';
+import star from '../../assets/frontend_assets/star_icon.png';
+import star_dull from '../../assets/frontend_assets/star_dull_icon.png';
+import ProductBox from '../../components/ProductBox';
 
 const Product = () => {
   const { id } = useParams();

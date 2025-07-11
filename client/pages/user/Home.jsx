@@ -4,6 +4,7 @@ import Hero from "../assets/frontend_assets/hero_img.png";
 import { products } from "../assets/frontend_assets/assets";
 import { assets } from "../assets/frontend_assets/assets";
 import TitleBox from "../components/TitleBox";
+
 const Home = () => {
   const [lastCollectionList, setLastCollectionList] = useState([]);
   const [bestSellerList, setBestSellerList] = useState([]);
