@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import CategoryBox from "../components/CategoryBox";
-import ProductBox from "../components/ProductBox";
-import TitleBox from "../components/TitleBox";
+import CategoryBox from "../../components/CategoryBox";
+import ProductBox from "../../components/ProductBox";
+import TitleBox from "../../components/TitleBox";
 
 const Collection = () => {
   const [products, setProducts] = useState([]);
