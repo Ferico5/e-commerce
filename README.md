@@ -1,22 +1,22 @@
-# 🛍️ E-commerce Shirt Website
+# 🛍️ E-commerce Clothes Website
 
-Welcome to the **E-commerce Shirt Website**, a modern and stylish platform designed for users to browse, shop, and purchase shirts with ease. This project is built to deliver a smooth shopping experience, responsive design, and secure checkout flow.
+Welcome to the **E-commerce Clothes Website**, a modern and stylish platform designed for users to browse, shop, and purchase clothes with ease. This project is built to deliver a smooth shopping experience, responsive design, and secure checkout flow.
 
 ## 🚀 Features
 
 ✨ **User-friendly interface** — Minimalist design with focus on product visibility  
 ✨ **Responsive layout** — Perfectly fits desktop, tablet, and mobile devices  
-✨ **Product catalog** — Browse a collection of shirts with images, descriptions, and prices  
+✨ **Product catalog** — Browse a collection of clothes with images, descriptions, and prices  
 ✨ **Shopping cart** — Add, update, or remove items from your cart  
 ✨ **Secure checkout** — Designed for safe transactions (payment gateway integration ready)  
-✨ **Search & filter** — Easily find shirts by size, color, or price  
-✨ **Admin dashboard** — Manage products, orders, and customers  
+✨ **Search & filter** — Easily find shirts by size, category, or price  
+✨ **Admin dashboard** — Manage products, and orders 
 
 ## ⚙️ Tech Stack
 
 - **Frontend:** React.js / Vite / Tailwind CSS
 - **Backend:** Node.js / Express.js / MongoDB
-- **Others:** JWT for auth, Stripe for payments
+- **Others:** JWT for auth
 
 ## 📦 Getting Started
 
@@ -25,10 +25,19 @@ Welcome to the **E-commerce Shirt Website**, a modern and stylish platform desig
 2. cd e-commerce
 
 2️⃣ **Install dependencies**
-1. npm i
+Backend:
+1. open terminal
+2. cd api
+3. npm i
+
+Frontend:
+1. open terminal
+2. cd client
+3. npm i
 
 3️⃣ **Run the app**
-1. npm run dev
+1. open terminal and make sure you are inside the client folder, if not -> cd client
+2. npm run dev
 
 4️⃣ **Visit**
 http://localhost:5173
