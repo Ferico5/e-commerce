@@ -16,7 +16,7 @@ const AdminList = () => {
   }, []);
 
   return (
-    <div className="admin-content bg-[#F9FAFB] font-outfit">
+    <div className="font-outfit text-[#4B5563]">
       <div className="flex flex-col">
         <p>All Products List</p>
         <table className="w-full text-sm text-left border-separate border-spacing-y-2 mt-2">
