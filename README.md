@@ -24,22 +24,32 @@ Welcome to the **E-commerce Clothes Website**, a modern and stylish platform des
 1. git clone https://github.com/Ferico5/e-commerce.git
 2. cd e-commerce
 
-2️⃣ **Install dependencies**
-Backend:
+2️⃣ **Setup your .env file**
+1. Go to folder api
+2. create new file '.env'
+3. Copy this code:
+PORT='...'
+MONGODB_URL='...'
+
+CLOUDINARY_API_KEY='...'
+CLOUDINARY_SECRET_KEY='...'
+CLOUDINARY_NAME='...'
+
+NOTE: REPLACE '...' with your own!
+
+3️⃣ **Install dependencies and Run the app (Backend)**
 1. open terminal
 2. cd api
 3. npm i
+4. nodemon index
 
-Frontend:
+4️⃣ **Install dependencies and Run the app (Frontend)**
 1. open terminal
 2. cd client
 3. npm i
+4. npm run dev
 
-3️⃣ **Run the app**
-1. open terminal and make sure you are inside the client folder, if not -> cd client
-2. npm run dev
-
-4️⃣ **Visit**
+5️⃣ **Visit Website**
 http://localhost:5173
 
 
