@@ -6,9 +6,11 @@ const AdminLayout = () => {
   return (
     <>
       <AdminHeader />
-      <div className='flex'>
+      <div className="flex">
         <AdminNavbar />
-        <Outlet />
+        <div className='admin-content flex-1'>
+          <Outlet />
+        </div>
       </div>
     </>
   );
