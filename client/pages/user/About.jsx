@@ -2,15 +2,14 @@ import React from 'react';
 import AboutPic from '../../assets/frontend_assets/about_img.png';
 import AboutBox from '../../components/AboutBox';
 import SubscribeBox from '../../components/SubscribeBox';
+import TitleBox from '../../components/TitleBox';
 
 const About = () => {
   return (
     <div className="content border-t border-[#E5E7EB] pt-9 font-outfit">
       {/* Title */}
       <div className="flex justify-center text-2xl text-[#707070] mb-13">
-        <p>
-          ABOUT <span className="text-[#171717] font-[470]">US</span>
-        </p>
+        <TitleBox first="ABOUT" second="US" size="big" />
       </div>
       {/* Main Content */}
       <div className="flex">

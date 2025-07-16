@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import CategoryBox from '../../components/CategoryBox';
 import ProductBox from '../../components/ProductBox';
+import TitleBox from '../../components/TitleBox';
 
 const Collection = () => {
   const [products, setProducts] = useState([]);
@@ -63,9 +64,7 @@ const Collection = () => {
       {/* Products */}
       <div className="w-3/4">
         <div className="flex justify-between text-2xl text-[#707070] mb-5">
-          <p>
-            ALL <span className="text-[#171717] font-[470]">COLLECTIONS</span>
-          </p>
+          <TitleBox first="ALL" second="COLLECTIONS" size="big" />
 
           {/* Sort Dropdown */}
           <select value={sortOption} onChange={(e) => setSortOption(e.target.value)} className="border border-gray-300 text-sm px-3 py-2 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-black">

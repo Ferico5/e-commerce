@@ -1,16 +1,14 @@
 import React from 'react';
 import ContactPic from '../../assets/frontend_assets/contact_img.png';
-import AboutBox from '../../components/AboutBox';
 import SubscribeBox from '../../components/SubscribeBox';
+import TitleBox from '../../components/TitleBox';
 
 const Contact = () => {
   return (
     <div className="content border-t border-[#E5E7EB] pt-9 font-outfit">
       {/* Title */}
       <div className="flex justify-center text-2xl text-[#707070] mb-14">
-        <p>
-          CONTACT <span className="text-[#171717] font-[470]">US</span>
-        </p>
+        <TitleBox first="CONTACT" second="US" size="big" />
       </div>
       {/* Main Content */}
       <div className="flex justify-center mb-20">
