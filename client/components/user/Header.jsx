@@ -57,9 +57,7 @@ const Header = () => {
 
       {/* Button */}
       <div className="flex items-center gap-6">
-        <a href="/collection">
-          <img src={Search} className="w-[20px]" />
-        </a>
+        <img src={Search} className="w-[20px] cursor-pointer" onClick={() => navigate('/collection', { state: { showSearch: true } })} />
 
         {/* Login + Dropdown */}
         <div className="relative group">
