@@ -5,6 +5,7 @@ import ProductBox from '../../components/ProductBox';
 import TitleBox from '../../components/TitleBox';
 import { useLocation } from 'react-router-dom';
 import Search from '../../assets/frontend_assets/search_icon.png';
+import Close from '../../assets/frontend_assets/cross_icon.png';
 
 const Collection = () => {
   const [products, setProducts] = useState([]);
@@ -12,7 +13,7 @@ const Collection = () => {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedSubCategories, setSelectedSubCategories] = useState([]);
   const location = useLocation();
-  const showSearch = location.state?.showSearch || false;
+  const [showSearch, setShowSearch] = useState(location.state?.showSearch || false);
   const [searchTerm, setSearchTerm] = useState('');
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
 
@@ -36,6 +37,12 @@ const Collection = () => {
       clearTimeout(handler);
     };
   }, [searchTerm]);
+
+  useEffect(() => {
+    if (location.state?.showSearch) {
+      setShowSearch(true);
+    }
+  }, [location.state]);
 
   // Filter Category (Gender)
   const handleCategoryChange = (category) => {
@@ -73,9 +80,20 @@ const Collection = () => {
     <div className={`content border-t border-[#E5E7EB] flex flex-col justify-between font-outfit ${showSearch ? `` : `pt-9`}`}>
       {showSearch && (
         <div className="bg-[#F9FAFB] border-t border-b border-[#E5E7EB] mb-4 py-5 flex justify-center">
-          <div className="relative w-1/2">
-            <input type="text" placeholder="Search" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="w-full px-4 py-2 pr-10 text-sm border border-[#9CA3AF] rounded-full focus:outline-none" />
-            <img src={Search} className="w-4 absolute right-5 top-1/2 transform -translate-y-1/2 pointer-events-none" />
+          <div className="flex items-center gap-2 w-1/2">
+            <div className="relative flex-grow">
+              <input type="text" placeholder="Search" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="w-full px-4 py-2 pr-10 text-sm border border-[#9CA3AF] rounded-full focus:outline-none" />
+              <img src={Search} className="w-4 absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none" />
+            </div>
+
+            <img
+              src={Close}
+              className="w-3 ml-2 cursor-pointer"
+              onClick={() => {
+                setSearchTerm('');
+                setShowSearch(false);
+              }}
+            />
           </div>
         </div>
       )}
