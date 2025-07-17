@@ -14,6 +14,7 @@ import Home from '../pages/user/Home';
 import About from '../pages/user/About';
 import Collection from '../pages/user/Collection';
 import Product from '../pages/user/Product';
+import Cart from '../pages/user/Cart';
 import Contact from '../pages/user/Contact';
 import AdminLogin from '../pages/admin/AdminLogin';
 import AdminAdd from '../pages/admin/AdminAdd';
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: '/product/:id',
         element: <Product />,
+      },
+      {
+        path: '/cart',
+        element: <Cart />,
       },
       {
         path: '/about',
