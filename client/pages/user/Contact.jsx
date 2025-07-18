@@ -1,7 +1,7 @@
 import React from 'react';
 import ContactPic from '../../assets/frontend_assets/contact_img.png';
-import SubscribeBox from '../../components/SubscribeBox';
-import TitleBox from '../../components/TitleBox';
+import SubscribeBox from '../../components/user/SubscribeBox';
+import TitleBox from '../../components/user/TitleBox';
 
 const Contact = () => {
   return (

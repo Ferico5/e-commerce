@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import { useAuth } from '../auth/AuthContext';
+import { useAuth } from '../../auth/AuthContext';
 
 const isTokenExpired = (token) => {
   try {
@@ -11,14 +11,14 @@ const isTokenExpired = (token) => {
   }
 };
 
-const ProtectedRoute = ({ children }) => {
+const ProtectedRouteUser = ({ children }) => {
   const { user, token } = useAuth();
 
   if (!user || !token || isTokenExpired(token)) {
-    return <Navigate to="/admin/login" replace />;
+    return <Navigate to="/login" replace />;
   }
 
   return children;
 };
 
-export default ProtectedRoute;
+export default ProtectedRouteUser;

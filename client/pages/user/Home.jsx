@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import SubscribeBox from '../../components/SubscribeBox';
+import SubscribeBox from '../../components/user/SubscribeBox';
 import Hero from '../../assets/frontend_assets/hero_img.png';
 import { products } from '../../assets/frontend_assets/assets';
 import { assets } from '../../assets/frontend_assets/assets';
-import TitleBox from '../../components/TitleBox';
+import TitleBox from '../../components/user/TitleBox';
 
 const Home = () => {
   const [lastCollectionList, setLastCollectionList] = useState([]);

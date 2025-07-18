@@ -2,7 +2,8 @@
 import { createBrowserRouter, RouterProvider, Outlet, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import ProtectedRoute from '../components/ProtectedRoute';
+import ProtectedRoute from '../components/admin/ProtectedRoute';
+import ProtectedRouteUser from '../components/user/ProtectedRouteUser';
 
 // import layout
 import Layout from '../layouts/Layout';
@@ -49,7 +50,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/cart',
-        element: <Cart />,
+        element: (
+          <ProtectedRouteUser>
+            <Cart />
+          </ProtectedRouteUser>
+        ),
       },
       {
         path: '/about',
