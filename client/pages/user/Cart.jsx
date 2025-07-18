@@ -2,26 +2,25 @@ import React, { useEffect, useState, useRef } from 'react';
 import axios from '../../utils/axiosInstance.js';
 import TitleBox from '../../components/user/TitleBox.jsx';
 import bin_icon from '../../assets/frontend_assets/bin_icon.png';
+import { useCart } from '../../auth/CartContext.jsx';
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
   const [quantityMap, setQuantityMap] = useState({});
   const debounceTimeout = useRef({});
+  const { fetchCartCount } = useCart();
 
   const fetchCart = () => {
     axios
       .get('/get-cart')
       .then((response) => {
-        const cartObj = response.data.cartItems || {};
-        const cartArray = Object.entries(cartObj).map(([productId, item]) => ({
-          productId: productId.toString(),
-          ...item,
-        }));
+        const cartArray = response.data.cartItems || [];
         setCart(cartArray);
 
         const newQuantityMap = {};
         cartArray.forEach((item) => {
-          newQuantityMap[item._id] = item.quantity;
+          const key = `${item.productId}_${item.size}`;
+          newQuantityMap[key] = item.quantity;
         });
         setQuantityMap(newQuantityMap);
       })
@@ -34,27 +33,35 @@ const Cart = () => {
     fetchCart();
   }, []);
 
-  const handleQuantityChange = (productId, newQty) => {
+  const handleQuantityChange = (productId, size, newQty) => {
     if (newQty < 1) return;
+
+    const key = `${productId}_${size}`;
 
     setQuantityMap((prev) => ({
       ...prev,
-      [productId]: newQty,
+      [key]: newQty,
     }));
 
-    clearTimeout(debounceTimeout.current[productId]);
-    debounceTimeout.current[productId] = setTimeout(() => {
+    clearTimeout(debounceTimeout.current[key]);
+    debounceTimeout.current[key] = setTimeout(() => {
       axios
-        .put(`/cart/${productId}`, { quantity: newQty })
-        .then(() => fetchCart())
+        .put(`/cart/${productId}`, { quantity: newQty, size })
+        .then(() => {
+          fetchCart();
+          fetchCartCount();
+        })
         .catch((err) => console.error('Error updating cart:', err));
     }, 600);
   };
 
-  const handleDelete = (productId) => {
+  const handleDelete = (productId, size) => {
     axios
-      .delete(`/cart/${productId}`)
-      .then(() => fetchCart())
+      .delete(`/cart/${productId}?size=${size}`)
+      .then(() => {
+        fetchCart();
+        fetchCartCount();
+      })
       .catch((err) => console.error('Error deleting cart item:', err));
   };
 
@@ -81,16 +88,16 @@ const Cart = () => {
               <input
                 type="number"
                 className="w-1/4 border py-1 px-2 border-[#E5E7EB] focus:outline-none"
-                value={quantityMap[item.productId] || 1}
+                value={quantityMap[`${item.productId}_${item.size}`] || 1}
                 min={1}
                 onChange={(e) => {
                   const newQty = parseInt(e.target.value);
-                  handleQuantityChange(item.productId, newQty);
+                  handleQuantityChange(item.productId, item.size, newQty);
                 }}
               />
             </div>
             <div className="w-2/7 flex items-center justify-center">
-              <img src={bin_icon} className="w-5 hover:cursor-pointer" onClick={() => handleDelete(item.productId)} />
+              <img src={bin_icon} className="w-5 hover:cursor-pointer" onClick={() => handleDelete(item.productId, item.size)} />
             </div>
           </div>
         ))

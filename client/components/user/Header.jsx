@@ -4,9 +4,11 @@ import Profile from '../../assets/frontend_assets/profile_icon.png';
 import Cart from '../../assets/frontend_assets/cart_icon.png';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../auth/AuthContext';
+import { useCart } from '../../auth/CartContext';
 
 const Header = () => {
   const { token, logout } = useAuth();
+  const { cartCount, resetCart } = useCart();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -75,7 +77,13 @@ const Header = () => {
                   </Link>
                 </li>
                 <li>
-                  <button className="block w-full text-left px-4 py-2 hover:text-[#000] hover:cursor-pointer" onClick={() => logout(navigate)}>
+                  <button
+                    className="block w-full text-left px-4 py-2 hover:text-[#000] hover:cursor-pointer"
+                    onClick={() => {
+                      resetCart();
+                      logout(navigate);
+                    }}
+                  >
                     Logout
                   </button>
                 </li>
@@ -86,7 +94,7 @@ const Header = () => {
 
         <a href="/cart" className="relative inline-block">
           <img src={Cart} className="w-[20px]" />
-          <span className="absolute -bottom-1 -right-1 bg-black text-white p-2 text-[9px] w-[14px] h-[14px] rounded-full flex items-center justify-center font-outfit">0</span>
+          <span className="absolute -bottom-1 -right-1 bg-black text-white p-2 text-[9px] w-[14px] h-[14px] rounded-full flex items-center justify-center font-outfit">{cartCount}</span>
         </a>
       </div>
     </div>

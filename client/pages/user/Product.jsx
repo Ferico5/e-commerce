@@ -4,6 +4,8 @@ import axios from 'axios';
 import star from '../../assets/frontend_assets/star_icon.png';
 import star_dull from '../../assets/frontend_assets/star_dull_icon.png';
 import ProductBox from '../../components/user/ProductBox';
+import { toast } from 'react-toastify';
+import { useCart } from '../../auth/CartContext';
 
 const Product = () => {
   const { id } = useParams();
@@ -11,6 +13,7 @@ const Product = () => {
   const [mainImage, setMainImage] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
   const [relatedProducts, setRelatedProducts] = useState([]);
+  const { setCartCount, fetchCartCount } = useCart();
 
   useEffect(() => {
     axios
@@ -39,6 +42,35 @@ const Product = () => {
         });
     }
   }, [product]);
+
+  const handleAddToCart = async () => {
+    if (!selectedSize) {
+      toast.error('Please select a size first!');
+      return;
+    }
+
+    try {
+      const token = localStorage.getItem('token');
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      const body = {
+        productId: product._id,
+        quantity: 1,
+        size: selectedSize,
+      };
+
+      await axios.post('http://localhost:8000/add-cart', body, config);
+      await fetchCartCount();
+      toast.success('Item added to cart!');
+    } catch (error) {
+      console.error('Failed to add to cart:', error);
+      toast.error('Failed to add to cart!');
+    }
+  };
 
   if (!product) return null;
 
@@ -90,7 +122,9 @@ const Product = () => {
             ))}
           </div>
           {/* Add to Cart Button */}
-          <button className="mt-8 px-8 py-3 border text-sm bg-black text-white hover:cursor-pointer">ADD TO CART</button>
+          <button className="mt-8 px-8 py-3 border text-sm bg-black text-white hover:cursor-pointer" onClick={handleAddToCart}>
+            ADD TO CART
+          </button>
 
           {/* Additional Info */}
           <div className="mt-8 pt-5 border-t border-[#E5E7EB] text-[#5C6872] text-sm text-sm/5.5">

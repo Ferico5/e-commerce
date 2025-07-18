@@ -26,6 +26,7 @@ import AdminOrders from '../pages/admin/AdminOrders';
 
 // Import context
 import { AuthProvider } from '../auth/AuthContext';
+import { CartProvider } from '../auth/CartContext';
 
 const router = createBrowserRouter([
   {
@@ -113,8 +114,10 @@ const App = () => {
   return (
     <div>
       <AuthProvider>
-        <RouterProvider router={router} />
-        <ToastContainer position="top-right" autoClose={6000} hideProgressBar={false} />
+        <CartProvider>
+          <RouterProvider router={router} />
+          <ToastContainer position="top-right" autoClose={6000} hideProgressBar={false} />
+        </CartProvider>
       </AuthProvider>
     </div>
   );
