@@ -6,9 +6,29 @@ import { useCart } from '../../auth/CartContext.jsx';
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
+  const [subtotal, setSubtotal] = useState(0);
+  const [shippingFee, setShippingFee] = useState(0);
+  const [total, setTotal] = useState(0);
   const [quantityMap, setQuantityMap] = useState({});
   const debounceTimeout = useRef({});
   const { fetchCartCount } = useCart();
+
+  const calculateTotals = (cartItems, qtyMap) => {
+    let sub = 0;
+
+    cartItems.forEach((item) => {
+      const key = `${item.productId}_${item.size}`;
+      const quantity = qtyMap[key] || item.quantity || 1;
+      sub += item.price * quantity;
+    });
+
+    const shipping = Math.ceil(sub * 0.1);
+    const total = sub + shipping;
+
+    setSubtotal(sub);
+    setShippingFee(shipping);
+    setTotal(total);
+  };
 
   const fetchCart = () => {
     axios
@@ -23,6 +43,7 @@ const Cart = () => {
           newQuantityMap[key] = item.quantity;
         });
         setQuantityMap(newQuantityMap);
+        calculateTotals(cartArray, newQuantityMap);
       })
       .catch((error) => {
         console.error('Error fetching cart:', error);
@@ -32,6 +53,12 @@ const Cart = () => {
   useEffect(() => {
     fetchCart();
   }, []);
+
+  useEffect(() => {
+    if (cart.length > 0) {
+      calculateTotals(cart, quantityMap);
+    }
+  }, [quantityMap]);
 
   const handleQuantityChange = (productId, size, newQty) => {
     if (newQty < 1) return;
@@ -102,6 +129,25 @@ const Cart = () => {
           </div>
         ))
       )}
+
+      <div className="flex flex-col items-end mt-20 font-outfit text-sm">
+        <div className="w-3/7 flex">
+          <TitleBox first="CART" second="TOTALS" size="big" />
+        </div>
+        <div className="w-3/7 flex justify-between pb-2 mt-3 border-b border-[#E5E7EB]">
+          <p>Subtotal</p>
+          <p>Rp {subtotal.toLocaleString('id-ID')}</p>
+        </div>
+        <div className="w-3/7 flex justify-between pb-2 mt-3 border-b border-[#E5E7EB]">
+          <p>Shipping Fee</p>
+          <p>Rp {shippingFee.toLocaleString('id-ID')}</p>
+        </div>
+        <div className="w-3/7 flex justify-between pb-2 mt-3 font-bold">
+          <p>Total</p>
+          <p>Rp {total.toLocaleString('id-ID')}</p>
+        </div>
+        <button className="bg-black text-white px-6 py-3 mt-5 hover:cursor-pointer">PROCEED TO CHECKOUT</button>
+      </div>
     </div>
   );
 };
