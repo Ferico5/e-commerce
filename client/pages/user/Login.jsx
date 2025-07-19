@@ -39,7 +39,7 @@ const Login = () => {
           setName('');
           setEmail('');
           setPassword('');
-          navigate('/');
+          setIsLogin(true);
         }
       }
     } catch (error) {
