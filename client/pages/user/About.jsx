@@ -1,8 +1,8 @@
 import React from 'react';
 import AboutPic from '../../assets/frontend_assets/about_img.png';
-import AboutBox from '../../components/AboutBox';
-import SubscribeBox from '../../components/SubscribeBox';
-import TitleBox from '../../components/TitleBox';
+import AboutBox from '../../components/user/AboutBox';
+import SubscribeBox from '../../components/user/SubscribeBox';
+import TitleBox from '../../components/user/TitleBox';
 
 const About = () => {
   return (

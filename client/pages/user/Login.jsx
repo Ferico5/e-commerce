@@ -3,9 +3,11 @@ import axios from 'axios';
 import { useAuth } from '../../auth/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useCart } from '../../auth/CartContext';
 
 const Login = () => {
   const { login } = useAuth();
+  const { fetchCartCount, resetCart } = useCart();
   const [isLogin, setIsLogin] = useState(true);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -20,6 +22,8 @@ const Login = () => {
 
         if (response.data.msg === 'Login successful' && response.status === 200) {
           localStorage.setItem('token', response.data.token);
+          resetCart();
+          fetchCartCount();
           navigate('/');
         } else {
           toast.error(response.data.msg);
@@ -35,7 +39,7 @@ const Login = () => {
           setName('');
           setEmail('');
           setPassword('');
-          navigate('/');
+          setIsLogin(true);
         }
       }
     } catch (error) {

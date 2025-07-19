@@ -2,7 +2,8 @@
 import { createBrowserRouter, RouterProvider, Outlet, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import ProtectedRoute from '../components/ProtectedRoute';
+import ProtectedRoute from '../components/admin/ProtectedRoute';
+import ProtectedRouteUser from '../components/user/ProtectedRouteUser';
 
 // import layout
 import Layout from '../layouts/Layout';
@@ -14,6 +15,7 @@ import Home from '../pages/user/Home';
 import About from '../pages/user/About';
 import Collection from '../pages/user/Collection';
 import Product from '../pages/user/Product';
+import Cart from '../pages/user/Cart';
 import Contact from '../pages/user/Contact';
 import AdminLogin from '../pages/admin/AdminLogin';
 import AdminAdd from '../pages/admin/AdminAdd';
@@ -24,6 +26,7 @@ import AdminOrders from '../pages/admin/AdminOrders';
 
 // Import context
 import { AuthProvider } from '../auth/AuthContext';
+import { CartProvider } from '../auth/CartContext';
 
 const router = createBrowserRouter([
   {
@@ -45,6 +48,14 @@ const router = createBrowserRouter([
       {
         path: '/product/:id',
         element: <Product />,
+      },
+      {
+        path: '/cart',
+        element: (
+          <ProtectedRouteUser>
+            <Cart />
+          </ProtectedRouteUser>
+        ),
       },
       {
         path: '/about',
@@ -103,8 +114,10 @@ const App = () => {
   return (
     <div>
       <AuthProvider>
-        <RouterProvider router={router} />
-        <ToastContainer position="top-right" autoClose={6000} hideProgressBar={false} />
+        <CartProvider>
+          <RouterProvider router={router} />
+          <ToastContainer position="top-right" autoClose={6000} hideProgressBar={false} />
+        </CartProvider>
       </AuthProvider>
     </div>
   );

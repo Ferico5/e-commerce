@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import CategoryBox from '../../components/CategoryBox';
-import ProductBox from '../../components/ProductBox';
-import TitleBox from '../../components/TitleBox';
+import CategoryBox from '../../components/user/CategoryBox';
+import ProductBox from '../../components/user/ProductBox';
+import TitleBox from '../../components/user/TitleBox';
 import { useLocation } from 'react-router-dom';
 import Search from '../../assets/frontend_assets/search_icon.png';
 import Close from '../../assets/frontend_assets/cross_icon.png';

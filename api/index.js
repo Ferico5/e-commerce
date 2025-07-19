@@ -7,6 +7,7 @@ const cors = require('cors');
 // import Route
 const userRoutes = require('./routes/UserRoute.js');
 const productRoutes = require('./routes/ProductRoute.js');
+const cartRoutes = require('./routes/CartRoute.js');
 
 const app = express();
 const PORT = process.env.PORT;
@@ -23,6 +24,7 @@ app.use(express.json());
 app.use(cors());
 app.use(userRoutes);
 app.use(productRoutes);
+app.use(cartRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running`);
