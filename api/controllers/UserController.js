@@ -40,7 +40,7 @@ const loginUser = async (req, res) => {
       return res.status(400).json({ msg: 'Invalid email or password!' });
     }
 
-    const token = jwt.sign({ id: user._id, role: user.role }, SECRET_KEY, { expiresIn: '1h' });
+    const token = jwt.sign({ id: user._id, role: user.role }, SECRET_KEY, { expiresIn: '24h' }); // change expiresIn 1h later
 
     res.status(200).json({ msg: 'Login successful', token, user });
   } catch (error) {
