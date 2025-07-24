@@ -16,6 +16,7 @@ import About from '../pages/user/About';
 import Collection from '../pages/user/Collection';
 import Product from '../pages/user/Product';
 import Cart from '../pages/user/Cart';
+import PlaceOrder from '../pages/user/PlaceOrder';
 import Contact from '../pages/user/Contact';
 import AdminLogin from '../pages/admin/AdminLogin';
 import AdminAdd from '../pages/admin/AdminAdd';
@@ -54,6 +55,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRouteUser>
             <Cart />
+          </ProtectedRouteUser>
+        ),
+      },
+      {
+        path: '/place-order',
+        element: (
+          <ProtectedRouteUser>
+            <PlaceOrder />
           </ProtectedRouteUser>
         ),
       },
