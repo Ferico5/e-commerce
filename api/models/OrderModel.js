@@ -12,6 +12,14 @@ const orderSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  shipping_fee: {
+    type: Number,
+    required: true,
+  },
+  total_fee: {
+    type: Number,
+    required: true,
+  },
   status: {
     type: String,
     required: true,
@@ -24,7 +32,7 @@ const orderSchema = new mongoose.Schema({
   payment: {
     type: Boolean,
     required: true,
-    default: 'false',
+    default: false,
   },
   street: {
     type: String,

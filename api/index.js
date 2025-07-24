@@ -8,6 +8,7 @@ const cors = require('cors');
 const userRoutes = require('./routes/UserRoute.js');
 const productRoutes = require('./routes/ProductRoute.js');
 const cartRoutes = require('./routes/CartRoute.js');
+const orderRoutes = require('./routes/OrderRoute.js');
 
 const app = express();
 const PORT = process.env.PORT;
@@ -25,6 +26,7 @@ app.use(cors());
 app.use(userRoutes);
 app.use(productRoutes);
 app.use(cartRoutes);
+app.use(orderRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running`);
