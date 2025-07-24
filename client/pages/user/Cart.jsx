@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import axios from '../../utils/axiosInstance.js';
+import { useNavigate } from 'react-router-dom';
 import TitleBox from '../../components/user/TitleBox.jsx';
 import bin_icon from '../../assets/frontend_assets/bin_icon.png';
 import { useCart } from '../../auth/CartContext.jsx';
@@ -12,6 +13,7 @@ const Cart = () => {
   const [quantityMap, setQuantityMap] = useState({});
   const debounceTimeout = useRef({});
   const { fetchCartCount } = useCart();
+  const navigate = useNavigate();
 
   const calculateTotals = (cartItems, qtyMap) => {
     let sub = 0;
@@ -146,7 +148,9 @@ const Cart = () => {
           <p>Total</p>
           <p>Rp {total.toLocaleString('id-ID')}</p>
         </div>
-        <button className="bg-black text-white px-6 py-3 mt-5 hover:cursor-pointer">PROCEED TO CHECKOUT</button>
+        <button onClick={() => navigate('/place-order')} className="bg-black text-white px-6 py-3 mt-5 hover:cursor-pointer">
+          PROCEED TO CHECKOUT
+        </button>
       </div>
     </div>
   );
