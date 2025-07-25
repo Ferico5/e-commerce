@@ -79,9 +79,6 @@ const createOrder = async (req, res) => {
         },
       ],
       enabled_payments: ['bank_transfer'],
-      bank_transfer: {
-        bank: selectedBank,
-      },
     };
 
     // Generate snap token
@@ -127,7 +124,7 @@ const midtransNotification = async (req, res) => {
   try {
     const notification = req.body;
 
-    const { order_id, transaction_status } = notification;
+    const { order_id, transaction_status, payment_type, va_numbers } = notification;
 
     if (!order_id.startsWith('ORDER-')) {
       console.warn('Order ID dari Midtrans tidak valid:', order_id);
@@ -137,20 +134,26 @@ const midtransNotification = async (req, res) => {
     const orderId = order_id.replace('ORDER-', '');
 
     if (transaction_status === 'settlement') {
+      const bankUsed = va_numbers && va_numbers.length > 0 ? va_numbers[0].bank : null;
+
+      const updateData = {
+        status: 'Paid',
+        payment: true,
+      };
+
+      if (bankUsed) {
+        updateData.paymentMethod = bankUsed;
+      }
+
       try {
-        await OrderModel.findByIdAndUpdate(orderId, {
-          status: 'Paid',
-          payment: true,
-        });
+        await OrderModel.findByIdAndUpdate(orderId, updateData);
         console.log('Order updated:', orderId);
       } catch (err) {
-        console.error('Gagal update order:', err);
+        console.error('Failed to update order:', err);
       }
     }
 
     return res.status(200).json({ message: 'OK' });
-
-    res.status(200).json({ message: 'OK' });
   } catch (error) {
     console.error('Midtrans Webhook Error:', error);
     res.status(500).json({ message: 'Internal server error' });
