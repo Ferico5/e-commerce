@@ -79,6 +79,9 @@ const createOrder = async (req, res) => {
         },
       ],
       enabled_payments: ['bank_transfer'],
+      callbacks: {
+        finish: `http://localhost:5173/orders/${savedOrder._id}`,
+      },
     };
 
     // Generate snap token
@@ -124,7 +127,7 @@ const midtransNotification = async (req, res) => {
   try {
     const notification = req.body;
 
-    const { order_id, transaction_status, payment_type, va_numbers } = notification;
+    const { order_id, transaction_status, va_numbers } = notification;
 
     if (!order_id.startsWith('ORDER-')) {
       console.warn('Order ID dari Midtrans tidak valid:', order_id);
@@ -134,6 +137,9 @@ const midtransNotification = async (req, res) => {
     const orderId = order_id.replace('ORDER-', '');
 
     if (transaction_status === 'settlement') {
+      const order = await OrderModel.findById(orderId);
+      if (!order) return res.status(404).json({ message: 'Order not found' });
+
       const bankUsed = va_numbers && va_numbers.length > 0 ? va_numbers[0].bank : null;
 
       const updateData = {
@@ -147,7 +153,7 @@ const midtransNotification = async (req, res) => {
 
       try {
         await OrderModel.findByIdAndUpdate(orderId, updateData);
-        console.log('Order updated:', orderId);
+        await UserModel.findByIdAndUpdate(order.userId, { $set: { cartData: [] } });
       } catch (err) {
         console.error('Failed to update order:', err);
       }
