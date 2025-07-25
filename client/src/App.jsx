@@ -17,6 +17,8 @@ import Collection from '../pages/user/Collection';
 import Product from '../pages/user/Product';
 import Cart from '../pages/user/Cart';
 import PlaceOrder from '../pages/user/PlaceOrder';
+import Orders from '../pages/user/Orders';
+import OrderDetail from '../pages/user/OrderDetail';
 import Contact from '../pages/user/Contact';
 import AdminLogin from '../pages/admin/AdminLogin';
 import AdminAdd from '../pages/admin/AdminAdd';
@@ -63,6 +65,22 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRouteUser>
             <PlaceOrder />
+          </ProtectedRouteUser>
+        ),
+      },
+      {
+        path: '/orders',
+        element: (
+          <ProtectedRouteUser>
+            <Orders />
+          </ProtectedRouteUser>
+        ),
+      },
+      {
+        path: '/orders/:id',
+        element: (
+          <ProtectedRouteUser>
+            <OrderDetail />
           </ProtectedRouteUser>
         ),
       },
