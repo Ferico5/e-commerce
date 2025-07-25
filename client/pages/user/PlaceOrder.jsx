@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import { useAuth } from '../../auth/AuthContext.jsx';
+// import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import TitleBox from '../../components/user/TitleBox.jsx';
 import axios from '../../utils/axiosInstance.js';
-import bca_logo from '../../assets/frontend_assets/bca.png';
-import bri_logo from '../../assets/frontend_assets/bri.png';
-import bni_logo from '../../assets/frontend_assets/bni.png';
-import mandiri_logo from '../../assets/frontend_assets/mandiri.png';
-import permata_logo from '../../assets/frontend_assets/permata.png';
+// import bca_logo from '../../assets/frontend_assets/bca.png';
+// import bri_logo from '../../assets/frontend_assets/bri.png';
+// import bni_logo from '../../assets/frontend_assets/bni.png';
+// import mandiri_logo from '../../assets/frontend_assets/mandiri.png';
+// import permata_logo from '../../assets/frontend_assets/permata.png';
 
 const PlaceOrder = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const { user } = useAuth();
+
+  const [name, setName] = useState(user.name);
+  const [email, setEmail] = useState(user.email);
   const [street, setStreet] = useState('');
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
@@ -21,17 +26,22 @@ const PlaceOrder = () => {
   const [shippingFee, setShippingFee] = useState(0);
   const [total, setTotal] = useState(0);
 
-  const [selectedBank, setSelectedBank] = useState('');
+  const [cartItems, setCartItems] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  const bankOptions = ['BCA', 'BRI', 'BNI', 'Mandiri', 'Permata'];
+  // const navigate = useNavigate();
 
-  const bankLogos = {
-    BCA: bca_logo,
-    BRI: bri_logo,
-    BNI: bni_logo,
-    Mandiri: mandiri_logo,
-    Permata: permata_logo,
-  };
+  // const [selectedBank, setSelectedBank] = useState('');
+
+  // const bankOptions = ['BCA', 'BRI', 'BNI', 'Mandiri', 'Permata'];
+
+  // const bankLogos = {
+  //   BCA: bca_logo,
+  //   BRI: bri_logo,
+  //   BNI: bni_logo,
+  //   Mandiri: mandiri_logo,
+  //   Permata: permata_logo,
+  // };
 
   useEffect(() => {
     axios
@@ -51,11 +61,47 @@ const PlaceOrder = () => {
         setSubtotal(sub);
         setShippingFee(shipping);
         setTotal(total);
+        setCartItems(cartItems);
       })
       .catch((error) => {
         console.error('Error fetching cart for totals:', error);
       });
   }, []);
+
+  const handlePlaceOrder = async () => {
+    if (loading) return;
+    setLoading(true);
+    try {
+      if (!name || !email || !street || !city || !state || !zipcode || !country || !phone) {
+        toast.error('Please fill in all delivery information.');
+        return;
+      }
+
+      const response = await axios.post('/create-order', {
+        userId: user._id,
+        items: cartItems,
+        paymentMethod: 'bca',
+        street,
+        city,
+        state,
+        zipcode,
+        country,
+        phone,
+      });
+
+      if (response.data.success) {
+        const redirectUrl = response.data.redirect_url;
+        window.location.href = redirectUrl;
+      } else {
+        toast.error('Failed to place order: ' + response.data.message);
+      }
+    } catch (err) {
+      console.error('Failed to place order:', err);
+      toast.error('Failed to place order.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="content flex pt-17">
@@ -68,13 +114,14 @@ const PlaceOrder = () => {
             id="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full h-10 px-3 rounded-md border-1 border-[#D1D5DB] mb-4 mt-[-15px] focus:outline-none"
+            className="w-full h-10 px-3 rounded-md border-1 border-[#D1D5DB] mb-4 mt-[-15px] focus:outline-none hover:cursor-not-allowed"
             placeholder="Full name"
             required
             autoComplete="off"
+            disabled
           />
           {/* Email */}
-          <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full h-10 px-3 rounded-md border-1 border-[#D1D5DB] mb-4 focus:outline-none" placeholder="Email" required autoComplete="off" />
+          <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full h-10 px-3 rounded-md border-1 border-[#D1D5DB] mb-4 focus:outline-none hover:cursor-not-allowed" placeholder="Email" required autoComplete="off" disabled />
           {/* Street */}
           <input
             type="text"
@@ -138,27 +185,29 @@ const PlaceOrder = () => {
         </div>
 
         {/* Payment Method BCA, BRI, dan lain-lain */}
-        <div className="w-full flex flex-col items-start mt-8">
+        {/* <div className="w-full flex flex-col items-start mt-8">
           <TitleBox first="PAYMENT" second="METHOD" size="small" />
           <div className="grid grid-cols-3 gap-3 w-full mt-[-20px]">
             {bankOptions.map((bank) => (
               <label key={bank} className={`flex items-center border rounded-md px-4 py-3 cursor-pointer transition-colors w-full ${selectedBank === bank ? 'border-green-600 bg-green-50' : 'border-[#D1D5DB]'}`}>
                 <div className={`w-4 h-4 mr-3 rounded-full border-2 flex items-center justify-center transition-all ${selectedBank === bank ? 'border-green-600' : 'border-[#D1D5DB]'}`}>
                   {selectedBank === bank && <div className="w-2 h-2 bg-green-600 rounded-full" />}
-                </div>
+                </div> */}
 
-                {/* Nama Bank */}
-                <span className="text-sm font-medium">{bank}</span>
-                {/* Logo */}
-                <img src={bankLogos[bank]} className={`object-contain ml-4 ${bank === 'Permata' ? 'w-7' : 'w-13'}`} />
+        {/* Nama Bank */}
+        {/* <span className="text-sm font-medium">{bank}</span> */}
+        {/* Logo */}
+        {/* <img src={bankLogos[bank]} className={`object-contain ml-4 ${bank === 'Permata' ? 'w-7' : 'w-13'}`} /> */}
 
-                <input type="radio" value={bank} checked={selectedBank === bank} onChange={() => setSelectedBank(bank)} className="hidden" />
-              </label>
-            ))}
-          </div>
-        </div>
+        {/* <input type="radio" value={bank} checked={selectedBank === bank} onChange={() => setSelectedBank(bank)} className="hidden" /> */}
+        {/* </label> */}
+        {/* ))} */}
+        {/* </div> */}
+        {/* </div> */}
 
-        <button className="w-2/5 bg-black text-white px-6 py-3 mt-8 hover:cursor-pointer">PLACE ORDER</button>
+        <button onClick={handlePlaceOrder} disabled={loading} className="w-2/5 bg-black text-white px-6 py-3 mt-8 hover:cursor-pointer">
+          {loading ? 'Processing...' : 'PLACE ORDER'}
+        </button>
       </div>
     </div>
   );
