@@ -3,7 +3,6 @@ import { useAuth } from '../../auth/AuthContext.jsx';
 import { Link } from 'react-router-dom';
 import TitleBox from '../../components/user/TitleBox.jsx';
 import axios from '../../utils/axiosInstance.js';
-import image from '../../assets/frontend_assets/p_img2_1.png';
 
 const Orders = () => {
   const { user, token } = useAuth();
