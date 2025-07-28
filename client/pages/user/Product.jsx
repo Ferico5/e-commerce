@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import star from '../../assets/frontend_assets/star_icon.png';
 import star_dull from '../../assets/frontend_assets/star_dull_icon.png';
 import ProductBox from '../../components/user/ProductBox';
 import { toast } from 'react-toastify';
 import { useCart } from '../../auth/CartContext';
+import { useAuth } from '../../auth/AuthContext.jsx';
 
 const Product = () => {
+  const { token, user } = useAuth();
+  const navigate = useNavigate();
+
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [mainImage, setMainImage] = useState('');
@@ -44,6 +48,11 @@ const Product = () => {
   }, [product]);
 
   const handleAddToCart = async () => {
+    if (!token || !user) {
+      navigate('/login');
+      return;
+    }
+
     if (!selectedSize) {
       toast.error('Please select a size first!');
       return;
