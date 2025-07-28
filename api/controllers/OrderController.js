@@ -80,7 +80,7 @@ const createOrder = async (req, res) => {
       ],
       enabled_payments: ['bank_transfer'],
       callbacks: {
-        finish: `http://localhost:5173/orders/${savedOrder._id}`,
+        finish: `http://localhost:5173/orders`,
       },
     };
 
@@ -117,6 +117,22 @@ const userOrders = async (req, res) => {
     const { userId } = req.params;
     const orders = await OrderModel.find({ userId });
     res.status(200).json({ success: true, orders });
+  } catch (error) {
+    console.error('Failed to fetch data: ', error);
+    res.status(500).json({ success: false, message: 'Failed to fetch data' });
+  }
+};
+
+const getOrderById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const order = await OrderModel.findById(id);
+
+    if (!order) {
+      return res.status(404).json({ success: false, message: 'Order not found!' });
+    }
+
+    res.status(200).json({ success: true, order });
   } catch (error) {
     console.error('Failed to fetch data: ', error);
     res.status(500).json({ success: false, message: 'Failed to fetch data' });
@@ -166,4 +182,4 @@ const midtransNotification = async (req, res) => {
   }
 };
 
-module.exports = { createOrder, allOrders, userOrders, midtransNotification };
+module.exports = { createOrder, allOrders, userOrders, getOrderById, midtransNotification };
