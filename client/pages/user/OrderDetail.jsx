@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../auth/AuthContext.jsx';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import TitleBox from '../../components/user/TitleBox.jsx';
 import axios from '../../utils/axiosInstance';
 
@@ -8,6 +8,7 @@ const OrderDetail = () => {
   const { id } = useParams();
   const { token } = useAuth();
   const [detail, setDetail] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchOrder = async () => {
@@ -18,10 +19,11 @@ const OrderDetail = () => {
         setDetail(res.data.order);
       } catch (error) {
         console.error('Failed to fetch order:', error);
+        navigate('/', { replace: true });
       }
     };
     fetchOrder();
-  }, [id, token]);
+  }, [id, token, navigate]);
 
   if (!detail) {
     return <div className="content pt-12">Loading...</div>;
