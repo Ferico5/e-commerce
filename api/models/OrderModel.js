@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 const orderSchema = new mongoose.Schema({
   userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
+  userName: {
     type: String,
     required: true,
   },
@@ -24,6 +29,7 @@ const orderSchema = new mongoose.Schema({
     type: String,
     required: true,
     default: 'Order Placed',
+    enum: ['Order Placed', 'Packing', 'Out for Delivery', 'Delivered'],
   },
   paymentMethod: {
     type: String,
