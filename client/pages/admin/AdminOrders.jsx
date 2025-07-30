@@ -38,7 +38,7 @@ const AdminOrders = () => {
           });
 
           return (
-            <div key={order._id} className="flex justify-between items-start border border-[#E5E7EB] px-4 py-5">
+            <div key={order._id} className="flex justify-between items-start border border-[#E5E7EB] px-4 py-5 mb-2">
               <img src={parcel_icon} className="w-13" />
               <div className="w-2/6">
                 {order.items.map((item, index) => (
