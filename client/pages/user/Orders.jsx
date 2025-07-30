@@ -37,13 +37,20 @@ const Orders = () => {
         orders.map((order) => (
           <div key={order._id} className="flex w-full justify-between border-b border-t border-[#E5E7EB] py-5">
             <div className="flex">
-              <img src={order.items[0].image[0]} className="w-22" />
+              <div className="relative w-[88px] h-[88px] mr-3">
+                <img src={order.items[0].image[0]} className="w-22 object-cover rounded border border-gray-200 z-10 relative" />
+                {order.items.length > 1 && <img src={order.items[1].image[0]} className="w-22 object-cover rounded border border-gray-200 absolute top-2 left-2 z-0 opacity-80" />}
+              </div>
               <div className="ml-5">
-                <p className="font-medium mb-1">{order.items[0].name}</p>
+                <div className="flex items-center gap-2 mb-1">
+                  <p className="font-medium">{order.items[0].name}</p>
+                  {order.items.length > 1 && <span className="bg-gray-200 text-xs px-2 py-1 rounded-full">+{order.items.length - 1}</span>}
+                </div>
+
                 <div className="flex gap-4 mb-1">
-                  <p>Rp. {order.items[0].price}</p>
-                  <p>Quantity: {order.items[0].quantity}</p>
-                  <p>Size: {order.items[0].size}</p>
+                  <p>Rp. {order.total_fee.toLocaleString()}</p>
+                  {order.items.length > 1 ? <p>Items: {order.items.length}</p> : <p>Quantity: {order.items[0].quantity}</p>}
+                  {order.items.length > 1 ? null : <p>Size: {order.items[0].size}</p>}
                 </div>
                 <p className="text-sm mb-1">
                   Date: <span className="text-[#A2A9B4]">{new Date(order.date).toDateString()}</span>
