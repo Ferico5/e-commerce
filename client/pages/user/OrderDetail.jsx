@@ -37,24 +37,28 @@ const OrderDetail = () => {
 
       <div className="mt-8 bg-white p-6 mt-[-2%] rounded-xl shadow-md border border-[#E5E7EB]">
         {/* Product */}
-        <div className="flex gap-6 items-start mb-6">
-          <img src={item.image[0]} className="w-40 object-cover rounded-lg" />
-          <div>
-            <p className="text-2xl font-medium mb-2">{item.name}</p>
-            <p className="text-gray-800 font-medium mb-3">Rp {item.price.toLocaleString()}</p>
-            <p className="mb-1">
-              <span className="text-[#A2A9B4]">Size: </span>
-              {item.size}
-            </p>
-            <p className="mb-1">
-              <span className="text-[#A2A9B4]">Qty: </span>
-              {item.quantity}
-            </p>
-            <p className="mb-1">
-              <span className="text-[#A2A9B4]">Category: </span>
-              {item.category} / {item.subCategory}
-            </p>
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          {detail.items.map((item, index) => (
+            <div key={index} className="flex gap-6 items-start py-4">
+              <img src={item.image[0]} className="w-40 object-cover rounded-lg" />
+              <div>
+                <p className="text-xl font-medium mb-2">{item.name}</p>
+                <p className="text-gray-800 font-medium mb-3">Rp {item.price.toLocaleString()}</p>
+                <p className="mb-1">
+                  <span className="text-[#A2A9B4]">Size: </span>
+                  {item.size}
+                </p>
+                <p className="mb-1">
+                  <span className="text-[#A2A9B4]">Qty: </span>
+                  {item.quantity}
+                </p>
+                <p className="mb-1">
+                  <span className="text-[#A2A9B4]">Category: </span>
+                  {item.category} / {item.subCategory}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* Order Summary */}
