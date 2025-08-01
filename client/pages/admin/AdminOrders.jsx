@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../auth/AuthContext.jsx';
+import { toast } from 'react-toastify';
 import parcel_icon from '../../assets/admin_assets/parcel_icon.svg';
 import axios from '../../utils/axiosInstance.js';
 
@@ -22,8 +23,25 @@ const AdminOrders = () => {
     };
 
     fetchUsersOrders();
-  }),
-    [token];
+  }, [token]);
+
+  const handleUpdateStatus = async (e, orderId) => {
+    const newStatus = e.target.value;
+    try {
+      await axios.put(
+        `/orders/${orderId}`,
+        { status: newStatus },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      setOrders((prev) => prev.map((o) => (o._id === orderId ? { ...o, status: newStatus } : o)));
+    } catch (error) {
+      console.error('Error updating status:', error);
+      toast.error('Failed to update status');
+    }
+  };
 
   return (
     <div className="font-outfit text-[#4B5563]">
@@ -49,13 +67,17 @@ const AdminOrders = () => {
 
                 <p className="my-2">{order.userName}</p>
                 <p>{order.street},</p>
-                <p>{order.city}, {order.state}, {order.country}, {order.zipcode}</p>
+                <p>
+                  {order.city}, {order.state}, {order.country}, {order.zipcode}
+                </p>
                 <p>{order.phone}</p>
               </div>
 
               <div className="w-1/6">
                 <p className="mb-2">Items: {totalItems}</p>
-                <p>Method: <span className='uppercase'>{order.paymentMethod}</span></p>
+                <p>
+                  Method: <span className="uppercase">{order.paymentMethod}</span>
+                </p>
                 <p>Payment: {order.payment ? 'Paid' : 'Pending'}</p>
                 <p>Date: {formattedDate}</p>
               </div>
@@ -64,7 +86,7 @@ const AdminOrders = () => {
                 <p>Rp {order.total_fee.toLocaleString('id-ID')}</p>
               </div>
 
-              <select className="w-1/6 border border-[#E5E7EB] hover:cursor-pointer px-3 py-1" defaultValue={order.status}>
+              <select className="w-1/6 border border-[#E5E7EB] hover:cursor-pointer px-3 py-1" value={order.status} onChange={(e) => handleUpdateStatus(e, order._id)}>
                 <option value="Order Placed">Order Placed</option>
                 <option value="Packing">Packing</option>
                 <option value="Out for Delivery">Out for Delivery</option>
