@@ -141,6 +141,26 @@ const getOrderById = async (req, res) => {
   }
 };
 
+const updateOrderStatus = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    const order = await OrderModel.findById(id);
+    if (!order) {
+      return res.status(404).json({ message: 'Order not found' });
+    }
+
+    order.status = status;
+    await order.save();
+
+    res.status(200).json({ message: 'Order status updated', order });
+  } catch (error) {
+    console.error('Error updating status:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
 const midtransNotification = async (req, res) => {
   try {
     const notification = req.body;
@@ -184,4 +204,4 @@ const midtransNotification = async (req, res) => {
   }
 };
 
-module.exports = { createOrder, allOrders, userOrders, getOrderById, midtransNotification };
+module.exports = { createOrder, allOrders, userOrders, getOrderById, updateOrderStatus, midtransNotification };
