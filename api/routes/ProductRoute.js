@@ -1,6 +1,7 @@
 const express = require('express');
 const { addProduct, removeProduct, listProduct, singleProduct, relatedProduct } = require('../controllers/ProductController.js');
 const upload = require('../middleware/multer.js');
+const auth = require('../auth/authMiddleware.js');
 
 const router = express.Router();
 
@@ -14,7 +15,7 @@ router.post(
   ]),
   addProduct
 );
-router.post('/remove/:id', removeProduct);
+router.delete('/products/:id', auth, removeProduct);
 router.get('/single/:id', singleProduct);
 router.get('/list', listProduct);
 router.get('/products', relatedProduct);
