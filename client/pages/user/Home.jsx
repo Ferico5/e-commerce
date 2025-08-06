@@ -1,26 +1,56 @@
 import React, { useState, useEffect } from 'react';
 import SubscribeBox from '../../components/user/SubscribeBox';
+import ProductBox from '../../components/user/ProductBox';
 import Hero from '../../assets/frontend_assets/hero_img.png';
-import { products } from '../../assets/frontend_assets/assets';
 import { assets } from '../../assets/frontend_assets/assets';
 import TitleBox from '../../components/user/TitleBox';
+import axios from '../../utils/axiosInstance.js';
 
 const Home = () => {
   const [lastCollectionList, setLastCollectionList] = useState([]);
   const [bestSellerList, setBestSellerList] = useState([]);
 
   useEffect(() => {
-    const getLastCollection = products.sort((a, b) => b.date - a.date).slice(0, 10);
-    setLastCollectionList(getLastCollection);
+    const fetchLatestProducts = async () => {
+      try {
+        const res = await axios.get('/list');
+        const data = res.data;
+
+        if (data.listProduct) {
+          const sorted = [...data.listProduct].sort((a, b) => new Date(b.date) - new Date(a.date));
+          setLastCollectionList(sorted.slice(0, 10));
+        }
+      } catch (err) {
+        console.error('Error fetching products:', err);
+      }
+    };
+
+    fetchLatestProducts();
   }, []);
 
   useEffect(() => {
-    const getBestSeller = products.filter((p) => p.bestseller === true).slice(0, 5);
-    setBestSellerList(getBestSeller);
+    const fetchBestSellers = async () => {
+      try {
+        const res = await axios.get('/list');
+        const data = res.data;
+
+        if (data.listProduct) {
+          const bestSellers = data.listProduct
+            .filter((item) => item.bestSeller === true)
+            .sort((a, b) => new Date(b.date) - new Date(a.date))
+            .slice(0, 5);
+          setBestSellerList(bestSellers);
+        }
+      } catch (err) {
+        console.error('Error fetching best sellers:', err);
+      }
+    };
+
+    fetchBestSellers();
   }, []);
 
   return (
-    <div className="content">
+    <div className="content font-outfit">
       <div className="border-1 flex items-center justify-center">
         <div className="w-full flex flex-col items-center justify-center">
           <div>
@@ -35,29 +65,28 @@ const Home = () => {
       </div>
 
       <div>
-        <div className="items-center flex justify-center my-10 flex-col leading-10">
+        <div className="items-center flex justify-center my-13 flex-col leading-10">
           <TitleBox first="LATEST" second="COLLECTIONS" size="big" />
-
-          <p className="text-[14px] ">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the.</p>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the.</p>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mt-6">
+            {lastCollectionList.map((product) => (
+              <ProductBox key={product._id} id={product._id} image={product.image[0]} name={product.name} price={product.price} />
+            ))}
+          </div>
         </div>
       </div>
 
       <div className="py-8">
         <div className="items-center flex justify-center my-10 flex-col leading-10">
           <TitleBox first="BEST" second="SELLERS" size="big" />
-
-          <p className="text-[14px] ">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the.</p>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the.</p>
         </div>
         <div className="w-full flex gap-4">
-          {/* {bestSellerList.map((p, i) => (
-            <div key={i}>
-              <div className="overflow-hidden">
-                <img src={p.image[0]} alt={p.name} className="hover:scale-110 transition ease-in-out" />
-              </div>
-              <p className="text-[12px] pt-3 pb-1 ">{p.name}</p>
-              <p className="text-[12px] font-[500]">${p.price}</p>
-            </div>
-          ))} */}
+          <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mt-6">
+            {bestSellerList.map((product) => (
+              <ProductBox key={product._id} id={product._id} image={product.image[0]} name={product.name} price={product.price} />
+            ))}
+          </div>
         </div>
       </div>
 
