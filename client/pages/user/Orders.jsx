@@ -36,7 +36,7 @@ const Orders = () => {
       ) : (
         orders.map((order) => (
           <div key={order._id} className="flex w-full justify-between border-b border-t border-[#E5E7EB] py-5">
-            <div className="flex">
+            <div className="w-full flex mr-10">
               <div className="relative w-[88px] h-[88px] mr-3">
                 <img src={order.items[0].image[0]} className="w-22 object-cover rounded border border-gray-200 z-10 relative" />
                 {order.items.length > 1 && <img src={order.items[1].image[0]} className="w-22 object-cover rounded border border-gray-200 absolute top-2 left-2 z-0 opacity-80" />}
@@ -60,11 +60,11 @@ const Orders = () => {
                 </p>
               </div>
             </div>
-            <div className="w-1/4 flex items-center justify-center">
+            <div className="w-3/5 flex items-center">
               <div className="w-2 h-2 rounded-full mr-3 bg-green-500"></div>
               <p>{order.status}</p>
             </div>
-            <div className="w-1/4 flex items-center justify-end">
+            <div className="w-3/5 flex items-center justify-end">
               <Link to={`/orders/${order._id}`} className="border border-[#E5E7EB] px-4 py-2 text-sm hover:cursor-pointer">
                 Detail Order
               </Link>
