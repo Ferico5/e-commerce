@@ -155,7 +155,7 @@ const AdminAdd = () => {
       </div>
 
       {/* Submit Button */}
-      <button type="submit" className="bg-black text-white px-8 py-2 text-sm hover:cursor-pointer">
+      <button type="submit" className="bg-black text-white px-8 py-2 text-sm hover:cursor-pointer mb-3">
         ADD
       </button>
     </form>

@@ -28,9 +28,16 @@ const createOrder = async (req, res) => {
       return res.status(400).json({ success: false, message: 'Bank tidak didukung' });
     }
 
+    const user = await UserModel.findById(userId);
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'User not found' });
+    }
+    const userName = user.name;
+
     // Save to database
     const newOrder = new OrderModel({
       userId,
+      userName,
       items,
       amount,
       shipping_fee,
@@ -47,11 +54,6 @@ const createOrder = async (req, res) => {
     });
 
     const savedOrder = await newOrder.save();
-
-    const user = await UserModel.findById(userId);
-    if (!user) {
-      return res.status(404).json({ success: false, message: 'User not found' });
-    }
 
     // Siapkan parameter buat Midtrans
     const parameter = {
@@ -139,6 +141,26 @@ const getOrderById = async (req, res) => {
   }
 };
 
+const updateOrderStatus = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    const order = await OrderModel.findById(id);
+    if (!order) {
+      return res.status(404).json({ message: 'Order not found' });
+    }
+
+    order.status = status;
+    await order.save();
+
+    res.status(200).json({ message: 'Order status updated', order });
+  } catch (error) {
+    console.error('Error updating status:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
 const midtransNotification = async (req, res) => {
   try {
     const notification = req.body;
@@ -159,7 +181,7 @@ const midtransNotification = async (req, res) => {
       const bankUsed = va_numbers && va_numbers.length > 0 ? va_numbers[0].bank : null;
 
       const updateData = {
-        status: 'Paid',
+        status: 'Packing',
         payment: true,
       };
 
@@ -182,4 +204,4 @@ const midtransNotification = async (req, res) => {
   }
 };
 
-module.exports = { createOrder, allOrders, userOrders, getOrderById, midtransNotification };
+module.exports = { createOrder, allOrders, userOrders, getOrderById, updateOrderStatus, midtransNotification };
