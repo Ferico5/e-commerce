@@ -120,15 +120,27 @@ const Product = () => {
           {/* Size Product */}
           <p className="mt-9">Select Size</p>
           <div className="flex gap-2 mt-3">
-            {['S', 'M', 'L', 'XL', 'XXL'].map((size) => (
-              <button
-                key={size}
-                onClick={() => setSelectedSize(size)}
-                className={`px-4 py-2 border font-medium transition ${selectedSize === size ? 'bg-black text-white border-black hover:cursor-pointer' : 'bg-white text-black border-gray-300 hover:border-black hover:cursor-pointer'}`}
-              >
-                {size}
-              </button>
-            ))}
+            {['S', 'M', 'L', 'XL', 'XXL'].map((size) => {
+              const isAvailable = product.sizes.includes(size);
+              const isSelected = selectedSize === size;
+
+              return (
+                <button
+                  key={size}
+                  onClick={() => isAvailable && setSelectedSize(size)}
+                  disabled={!isAvailable}
+                  className={`px-4 py-2 border font-medium transition rounded-sm ${
+                    isAvailable
+                      ? isSelected
+                        ? 'bg-black text-white border-black hover:cursor-pointer'
+                        : 'bg-white text-black border-gray-300 hover:border-black hover:cursor-pointer'
+                      : 'bg-gray-200 text-gray-400 border-gray-300 cursor-not-allowed'
+                  }`}
+                >
+                  {size}
+                </button>
+              );
+            })}
           </div>
           {/* Add to Cart Button */}
           <button className="mt-8 px-8 py-3 border text-sm bg-black text-white hover:cursor-pointer" onClick={handleAddToCart}>
