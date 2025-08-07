@@ -11,7 +11,7 @@ const AdminOrders = () => {
   useEffect(() => {
     const fetchUsersOrders = async () => {
       try {
-        const res = await axios.get(`orders`, {
+        const res = await axios.get(`/orders`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

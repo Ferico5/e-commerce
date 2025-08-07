@@ -13,7 +13,7 @@ const AdminList = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('list');
+      const response = await axios.get('/list');
       setProducts(response.data.listProduct);
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -28,7 +28,7 @@ const AdminList = () => {
 
   const confirmDelete = async () => {
     try {
-      await axios.delete(`products/${productToDelete}`);
+      await axios.delete(`/products/${productToDelete}`);
       setShowModal(false);
       setProductToDelete(null);
       fetchProducts();

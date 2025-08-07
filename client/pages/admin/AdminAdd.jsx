@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
+import axios from '../../utils/axiosInstance';
 import { toast } from 'react-toastify';
 import upload_area from '../../assets/admin_assets/upload_area.png';
 import { useNavigate } from 'react-router-dom';
@@ -68,7 +68,7 @@ const AdminAdd = () => {
     });
 
     try {
-      const response = await axios.post('http://localhost:8000/add', formData, {
+      const response = await axios.post('/add', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
 

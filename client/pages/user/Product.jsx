@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import axios from 'axios';
+import axios from '../../utils/axiosInstance.js';
 import star from '../../assets/frontend_assets/star_icon.png';
 import star_dull from '../../assets/frontend_assets/star_dull_icon.png';
 import ProductBox from '../../components/user/ProductBox';
@@ -21,7 +21,7 @@ const Product = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/single/${id}`)
+      .get(`/single/${id}`)
       .then((res) => {
         const productData = res.data.singleProduct;
         setProduct(productData);
@@ -36,7 +36,7 @@ const Product = () => {
   useEffect(() => {
     if (product?.category) {
       axios
-        .get(`http://localhost:8000/products?category=${product.category}`)
+        .get(`/products?category=${product.category}`)
         .then((res) => {
           const filtered = res.data.products.filter((p) => p._id !== product._id);
           setRelatedProducts(filtered.slice(0, 5));
@@ -72,7 +72,7 @@ const Product = () => {
         size: selectedSize,
       };
 
-      await axios.post('http://localhost:8000/add-cart', body, config);
+      await axios.post('/add-cart', body, config);
       await fetchCartCount();
       toast.success('Item added to cart!');
     } catch (error) {

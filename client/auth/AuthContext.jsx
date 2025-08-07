@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { createContext, useContext, useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../utils/axiosInstance';
 
 const AuthContext = createContext();
 
@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const response = await axios.post('http://localhost:8000/auth', { email, password });
+      const response = await axios.post('/auth', { email, password });
 
       if (response.data.token) {
         setToken(response.data.token);

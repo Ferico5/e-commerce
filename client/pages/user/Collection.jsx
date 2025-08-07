@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../../utils/axiosInstance';
 import CategoryBox from '../../components/user/CategoryBox';
 import ProductBox from '../../components/user/ProductBox';
 import TitleBox from '../../components/user/TitleBox';
@@ -19,7 +19,7 @@ const Collection = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:8000/list')
+      .get('/list')
       .then((response) => {
         setProducts(response.data.listProduct);
       })

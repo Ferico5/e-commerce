@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import axios from 'axios';
+import axios from '../../utils/axiosInstance';
 import { useAuth } from '../../auth/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -29,7 +29,7 @@ const Login = () => {
           toast.error(response.data.msg);
         }
       } else {
-        const response = await axios.post('http://localhost:8000/users', {
+        const response = await axios.post('/users', {
           name,
           email,
           password,
