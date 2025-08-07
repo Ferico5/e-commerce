@@ -3,6 +3,7 @@ import axios from '../../utils/axiosInstance';
 import { toast } from 'react-toastify';
 import upload_area from '../../assets/admin_assets/upload_area.png';
 import { useNavigate } from 'react-router-dom';
+import LoadingSpinner from '../../components/LoadingSpinner';
 
 const AdminAdd = () => {
   const [images, setImages] = useState([null, null, null, null]);
@@ -15,6 +16,7 @@ const AdminAdd = () => {
   const [sizes, setSizes] = useState([]);
   const [bestseller, setBestseller] = useState(false);
   const fileInputRefs = useRef([]);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -50,10 +52,12 @@ const AdminAdd = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!productName || !description || !price || sizes.length === 0) {
+    if (!images[0] || !productName || !description || !price || sizes.length === 0) {
       toast.error('All fields are required!');
       return;
     }
+
+    setIsLoading(true);
 
     const formData = new FormData();
     formData.append('name', productName);
@@ -91,6 +95,8 @@ const AdminAdd = () => {
         console.error(error);
         toast.error('Something went wrong!');
       }
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -155,8 +161,14 @@ const AdminAdd = () => {
       </div>
 
       {/* Submit Button */}
-      <button type="submit" className="bg-black text-white px-8 py-2 text-sm hover:cursor-pointer mb-3">
-        ADD
+      <button type="submit" disabled={isLoading} className="bg-black text-white px-8 py-2 text-sm hover:cursor-pointer mb-3">
+        {isLoading ? (
+          <>
+            <LoadingSpinner size="18px" color="white" />
+          </>
+        ) : (
+          'ADD'
+        )}
       </button>
     </form>
   );
