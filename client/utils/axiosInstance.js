@@ -4,6 +4,10 @@ const instance = axios.create({
   baseURL: 'http://localhost:8000',
 });
 
+// const instance = axios.create({
+//   baseURL: 'https://tr46rk4w-8000.asse.devtunnels.ms',
+// });
+
 // Interceptor buat otomatis tambahin Authorization token
 instance.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
