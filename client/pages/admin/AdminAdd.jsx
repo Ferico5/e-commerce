@@ -161,11 +161,11 @@ const AdminAdd = () => {
       </div>
 
       {/* Submit Button */}
-      <button type="submit" disabled={isLoading} className="bg-black text-white px-8 py-2 text-sm hover:cursor-pointer mb-3">
+      <button type="submit" disabled={isLoading} className="bg-black text-white px-8 py-2 text-sm hover:cursor-pointer mb-3 relative h-10 flex items-center justify-center">
         {isLoading ? (
-          <>
-            <LoadingSpinner size="18px" color="white" />
-          </>
+          <div className="absolute">
+            <LoadingSpinner size={24} color="white" />
+          </div>
         ) : (
           'ADD'
         )}
