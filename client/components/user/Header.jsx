@@ -55,7 +55,7 @@ const Header = () => {
             </li>
             <li className="relative">
               <Link to="/admin/login" className="border rounded-full border-[#E5E7EB] px-5 py-2 text-[.75em] font-semibold">
-                Admin Panel
+                Admin <span className='hidden lg:inline'>Panel</span>
               </Link>
             </li>
           </ul>
@@ -63,7 +63,7 @@ const Header = () => {
       </div>
 
       {/* Button */}
-      <div className="flex items-center gap-6">
+      <div className="flex items-center gap-6 sm:gap-4">
         <img src={Search} className="w-[20px] cursor-pointer" onClick={() => navigate('/collection', { state: { showSearch: true } })} />
 
         {/* Login + Dropdown */}
