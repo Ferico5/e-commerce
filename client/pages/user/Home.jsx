@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import SubscribeBox from '../../components/user/SubscribeBox';
 import ProductBox from '../../components/user/ProductBox';
+import TitleBox from '../../components/user/TitleBox';
+import ResponsiveContainer from '../../components/ResponsiveContainer.jsx';
 import Hero from '../../assets/frontend_assets/hero_img.png';
 import { assets } from '../../assets/frontend_assets/assets';
-import TitleBox from '../../components/user/TitleBox';
 import axios from '../../utils/axiosInstance.js';
 
 const Home = () => {
@@ -50,12 +51,12 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="content font-outfit">
-      <div className="border-1 flex items-center justify-center">
+    <ResponsiveContainer className="pt-9">
+      <div className="border-1 flex flex-col sm:flex-row items-center justify-center">
         <div className="w-full flex flex-col items-center justify-center">
-          <div>
+          <div className='py-7 sm:py-0'>
             <p className="font-medium text-gray-800">OUR BESTSELLERS</p>
-            <p className="font-prata text-gray-700 text-[45px] leading-20">Latest Arrivals</p>
+            <p className="font-prata text-gray-700 text-[25px] md:leading-20 ">Latest Arrivals</p>
             <p className="font-[600] text-gray-800">SHOP NOW</p>
           </div>
         </div>
@@ -65,10 +66,10 @@ const Home = () => {
       </div>
 
       <div>
-        <div className="items-center flex justify-center my-13 flex-col leading-10">
+        <div className="items-center flex justify-center my-13 flex-col md:leading-10">
           <TitleBox first="LATEST" second="COLLECTIONS" size="big" />
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the.</p>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mt-6">
+          <p className='text-sm sm:text-base text-center'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the.</p>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-6 justify-items-center">
             {lastCollectionList.map((product) => (
               <ProductBox key={product._id} id={product._id} image={product.image[0]} name={product.name} price={product.price} />
             ))}
@@ -77,20 +78,18 @@ const Home = () => {
       </div>
 
       <div className="py-8">
-        <div className="items-center flex justify-center my-10 flex-col leading-10">
+        <div className="items-center flex justify-center my-10 flex-col md:leading-10">
           <TitleBox first="BEST" second="SELLERS" size="big" />
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the.</p>
+          <p className='text-sm sm:text-base text-center'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the.</p>
         </div>
-        <div className="w-full flex gap-4">
-          <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mt-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-6 justify-items-center">
             {bestSellerList.map((product) => (
               <ProductBox key={product._id} id={product._id} image={product.image[0]} name={product.name} price={product.price} />
             ))}
-          </div>
         </div>
       </div>
 
-      <div className="flex pt-10 pb-10 gap-10 place-content-evenly">
+      <div className="flex flex-col sm:flex-row pt-10 pb-10 gap-10 place-content-evenly">
         <div className="w-full flex flex-col items-center justify-center">
           <img src={assets.exchange_icon} alt="" className="w-10 m-4" />
           <p className="font-[600] text-gray-700">Easy Exchange Policy</p>
@@ -109,7 +108,7 @@ const Home = () => {
       </div>
 
       <SubscribeBox />
-    </div>
+    </ResponsiveContainer>
   );
 };
 
