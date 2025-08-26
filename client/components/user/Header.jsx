@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Logo from '../../assets/frontend_assets/logo.png';
 import Search from '../../assets/frontend_assets/search_icon.png';
 import Profile from '../../assets/frontend_assets/profile_icon.png';
@@ -5,6 +6,8 @@ import Cart from '../../assets/frontend_assets/cart_icon.png';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../auth/AuthContext';
 import { useCart } from '../../auth/CartContext';
+import ResponsiveContainer from '../ResponsiveContainer';
+import { Menu, X } from 'lucide-react';
 
 const Header = () => {
   const { token, logout } = useAuth();
@@ -12,17 +15,19 @@ const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const [open, setOpen] = useState(false);
+
   return (
-    <div className="content flex justify-between pt-5 pb-4.5">
+    <ResponsiveContainer className="flex justify-between pt-5 pb-4.5">
       {/* Logo */}
-      <div className="w-[148px]">
+      <div className="w-[120px] xl:w-[148px]">
         <a href="/">
           <img src={Logo} />
         </a>
       </div>
 
       {/* Navbar */}
-      <div className="flex flex-row items-center text-sm font-medium text-[#323232] font-poppins">
+      <div className="hidden sm:flex flex-row items-center text-sm font-medium text-[#323232] font-poppins">
         <nav>
           <ul className="flex gap-5">
             <li className="relative">
@@ -96,8 +101,70 @@ const Header = () => {
           <img src={Cart} className="w-[20px]" />
           <span className="absolute -bottom-1 -right-1 bg-black text-white p-2 text-[9px] w-[14px] h-[14px] rounded-full flex items-center justify-center font-outfit">{cartCount}</span>
         </a>
+
+        {/* Hamburger (mobile only) */}
+        <button className="sm:hidden block" onClick={() => setOpen(true)}>
+          <Menu size={24} />
+        </button>
       </div>
-    </div>
+
+      {/* Mobile Menu */}
+      <div
+        className={`fixed top-0 right-0 h-full w-full bg-white shadow-lg z-30 transform transition-transform duration-300 sm:hidden 
+  ${open ? 'translate-x-0' : 'translate-x-full'}`}
+      >
+        {/* Header Back Button */}
+        <div className="pl-4 py-2 border-b border-gray-200 w-full">
+          <button onClick={() => setOpen(false)} className="text-sm font-medium text-gray-600">
+            <div className="flex items-center">
+              <span className="pr-3 text-2xl text-gray-400">&lt;</span> Back
+            </div>
+          </button>
+        </div>
+
+        {/* Menu Links */}
+        <div className="flex flex-col items-start text-sm">
+          <Link to="/" className={`border-b border-t border-gray-200 w-full py-1 px-2 ${location.pathname === '/' ? 'bg-black text-white' : ''}`} onClick={() => setOpen(false)}>
+            HOME
+          </Link>
+          <Link to="/collection" className={`border-b border-t border-gray-200 w-full py-1 px-2 ${location.pathname === '/collection' ? 'bg-black text-white' : ''}`} onClick={() => setOpen(false)}>
+            COLLECTION
+          </Link>
+          <Link to="/about" className={`border-b border-t border-gray-200 w-full py-1 px-2 ${location.pathname === '/about' ? 'bg-black text-white' : ''}`} onClick={() => setOpen(false)}>
+            ABOUT
+          </Link>
+          <Link to="/contact" className={`border-b border-t border-gray-200 w-full py-1 px-2 ${location.pathname === '/contact' ? 'bg-black text-white' : ''}`} onClick={() => setOpen(false)}>
+            CONTACT
+          </Link>
+          <Link to="/admin/login" className="border-b border-t border-gray-200 w-full py-1 px-2" onClick={() => setOpen(false)}>
+            Admin Panel
+          </Link>
+
+          {/* Login + Logout di mobile */}
+          {token ? (
+            <>
+              <Link to="/orders" className={`border-b border-t border-gray-200 w-full py-1 px-2 ${location.pathname === '/orders' ? 'bg-black text-white' : ''}`} onClick={() => setOpen(false)}>
+                Orders
+              </Link>
+              <button
+                onClick={() => {
+                  resetCart();
+                  logout(navigate);
+                  setOpen(false);
+                }}
+                className={`border-b border-t border-gray-200 w-full py-1 px-2 ${location.pathname === '/contact' ? 'bg-black text-white' : ''}`}
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <Link to="/login" onClick={() => setOpen(false)}>
+              Login
+            </Link>
+          )}
+        </div>
+      </div>
+    </ResponsiveContainer>
   );
 };
 
