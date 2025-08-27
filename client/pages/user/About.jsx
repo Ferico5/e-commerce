@@ -3,25 +3,26 @@ import AboutPic from '../../assets/frontend_assets/about_img.png';
 import AboutBox from '../../components/user/AboutBox';
 import SubscribeBox from '../../components/user/SubscribeBox';
 import TitleBox from '../../components/user/TitleBox';
+import ResponsiveContainer from '../../components/ResponsiveContainer.jsx';
 
 const About = () => {
   return (
-    <div className="content border-t border-[#E5E7EB] pt-9 font-outfit">
+    <ResponsiveContainer className='border-t border-[#E5E7EB] pt-9'>
       {/* Title */}
       <div className="flex justify-center text-2xl text-[#707070] mb-13">
         <TitleBox first="ABOUT" second="US" size="big" />
       </div>
       {/* Main Content */}
-      <div className="flex">
-        <img src={AboutPic} className="w-md" />
+      <div className="flex flex-col md:flex-row">
+        <img src={AboutPic} className="w-full md:w-md md:h-md object-cover" />
 
         {/* Paragraph */}
-        <div className="flex flex-col justify-around py-6 ml-15 text-[#5C6872]">
-          <p>
+        <div className="flex flex-col justify-around py-13 sm:py-0 lg:py-6 md:ml-6 lg:ml-10 text-[#5C6872] bg-red-600">
+          <p className='mb-3 lg:mb-0'>
             Forever was born out of a passion for innovation and a desire to revolutionize the way people shop online. Our journey began with a simple idea: to provide a platform where customers can easily discover, explore, and purchase a
             wide range of products from the comfort of their homes.
           </p>
-          <p>
+          <p className='mb-3 lg:mb-0'>
             Since our inception, we've worked tirelessly to curate a diverse selection of high-quality products that cater to every taste and preference. From fashion and beauty to electronics and home essentials, we offer an extensive
             collection sourced from trusted brands and suppliers.
           </p>
@@ -44,7 +45,7 @@ const About = () => {
       </div>
 
       <SubscribeBox />
-    </div>
+    </ResponsiveContainer>
   );
 };
 
