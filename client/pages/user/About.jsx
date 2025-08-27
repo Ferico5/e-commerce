@@ -17,7 +17,7 @@ const About = () => {
         <img src={AboutPic} className="w-full md:w-md md:h-md object-cover" />
 
         {/* Paragraph */}
-        <div className="flex flex-col justify-around py-13 sm:py-0 lg:py-6 md:ml-6 lg:ml-10 text-[#5C6872] bg-red-600">
+        <div className="flex flex-col justify-around py-13 sm:py-0 lg:py-6 md:ml-6 lg:ml-10 text-[#5C6872]">
           <p className='mb-3 lg:mb-0'>
             Forever was born out of a passion for innovation and a desire to revolutionize the way people shop online. Our journey began with a simple idea: to provide a platform where customers can easily discover, explore, and purchase a
             wide range of products from the comfort of their homes.
