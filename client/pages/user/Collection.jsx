@@ -124,7 +124,7 @@ const Collection = () => {
             <TitleBox first="ALL" second="COLLECTIONS" size="big" />
 
             {/* Sort Dropdown */}
-            <select value={sortOption} onChange={(e) => setSortOption(e.target.value)} className="border border-gray-300 text-sm px-3 py-2 rounded shadow-sm focus:outline-none hover:cursor-pointer">
+            <select value={sortOption} onChange={(e) => setSortOption(e.target.value)} className="border border-gray-300 text-sm px-1 md:px-3 md:pr-3 py-2 rounded shadow-sm focus:outline-none hover:cursor-pointer">
               <option value="Relevent">Sort by: Relevent</option>
               <option value="LowToHigh">Sort by: Low to High</option>
               <option value="HighToLow">Sort by: High to Low</option>
