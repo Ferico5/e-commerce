@@ -3,6 +3,7 @@ import { useAuth } from '../../auth/AuthContext.jsx';
 // import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import TitleBox from '../../components/user/TitleBox.jsx';
+import ResponsiveContainer from '../../components/ResponsiveContainer.jsx';
 import axios from '../../utils/axiosInstance.js';
 // import bca_logo from '../../assets/frontend_assets/bca.png';
 // import bri_logo from '../../assets/frontend_assets/bri.png';
@@ -104,8 +105,8 @@ const PlaceOrder = () => {
   };
 
   return (
-    <div className="content flex pt-17">
-      <div className="flex flex-col items-start w-4/9 font-outfit pr-5">
+    <ResponsiveContainer className="flex flex-col md:flex-row pt-17">
+      <div className="flex flex-col items-start md:w-4/9 font-outfit pr-5">
         <TitleBox first="DELIVERY" second="INFORMATION" />
         <div className="w-full">
           {/* Name */}
@@ -121,7 +122,17 @@ const PlaceOrder = () => {
             disabled
           />
           {/* Email */}
-          <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full h-10 px-3 rounded-md border-1 border-[#D1D5DB] mb-4 focus:outline-none hover:cursor-not-allowed" placeholder="Email" required autoComplete="off" disabled />
+          <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full h-10 px-3 rounded-md border-1 border-[#D1D5DB] mb-4 focus:outline-none hover:cursor-not-allowed"
+            placeholder="Email"
+            required
+            autoComplete="off"
+            disabled
+          />
           {/* Street */}
           <input
             type="text"
@@ -167,7 +178,8 @@ const PlaceOrder = () => {
           <input type="number" id="phone" value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full h-10 px-3 rounded-md border-1 border-[#D1D5DB] mb-4 focus:outline-none" placeholder="Phone" required autoComplete="off" />
         </div>
       </div>
-      <div className="w-5/9 flex flex-col items-end mt-5 font-outfit text-sm pl-15">
+      {/* Cart */}
+      <div className="md:w-5/9 flex flex-col items-end mt-5 font-outfit text-sm md:pl-15">
         <div className="w-full flex">
           <TitleBox first="CART" second="TOTALS" size="big" />
         </div>
@@ -205,11 +217,11 @@ const PlaceOrder = () => {
         {/* </div> */}
         {/* </div> */}
 
-        <button onClick={handlePlaceOrder} disabled={loading} className="w-2/5 bg-black text-white px-6 py-3 mt-8 hover:cursor-pointer">
+        <button onClick={handlePlaceOrder} disabled={loading} className="md:w-2/5 bg-black text-white px-6 py-3 mt-8 hover:cursor-pointer">
           {loading ? 'Processing...' : 'PLACE ORDER'}
         </button>
       </div>
-    </div>
+    </ResponsiveContainer>
   );
 };
 
