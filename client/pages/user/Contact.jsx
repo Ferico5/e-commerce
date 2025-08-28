@@ -2,17 +2,18 @@ import React from 'react';
 import ContactPic from '../../assets/frontend_assets/contact_img.png';
 import SubscribeBox from '../../components/user/SubscribeBox';
 import TitleBox from '../../components/user/TitleBox';
+import ResponsiveContainer from '../../components/ResponsiveContainer.jsx';
 
 const Contact = () => {
   return (
-    <div className="content border-t border-[#E5E7EB] pt-9 font-outfit">
+    <ResponsiveContainer className="border-t border-[#E5E7EB] pt-9">
       {/* Title */}
-      <div className="flex justify-center text-2xl text-[#707070] mb-14">
+      <div className="flex justify-center text-2xl text-[#707070] mb-13">
         <TitleBox first="CONTACT" second="US" size="big" />
       </div>
       {/* Main Content */}
-      <div className="flex justify-center mb-20">
-        <img src={ContactPic} className="w-[480px]" />
+      <div className="flex flex-col md:flex-row justify-center mb-20">
+        <img src={ContactPic} className="w-full md:w-md md:h-md object-cover" />
 
         {/* Paragraph */}
         <div className="flex flex-col justify-center gap-6 py-6 ml-10 text-[#5C6872] ">
@@ -33,7 +34,7 @@ const Contact = () => {
         </div>
       </div>
       <SubscribeBox />
-    </div>
+    </ResponsiveContainer>
   );
 };
 
