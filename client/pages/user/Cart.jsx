@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
-import axios from '../../utils/axiosInstance.js';
 import { useNavigate } from 'react-router-dom';
 import TitleBox from '../../components/user/TitleBox.jsx';
+import ResponsiveContainer from '../../components/ResponsiveContainer.jsx';
 import bin_icon from '../../assets/frontend_assets/bin_icon.png';
 import { useCart } from '../../auth/CartContext.jsx';
+import axios from '../../utils/axiosInstance.js';
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
@@ -95,7 +96,7 @@ const Cart = () => {
   };
 
   return (
-    <div className="content flex flex-col pt-9">
+    <ResponsiveContainer className="flex flex-col pt-9">
       <div className="flex mb-4">
         <TitleBox first="YOUR" second="CART" size="big" />
       </div>
@@ -105,15 +106,15 @@ const Cart = () => {
       ) : (
         cart.map((item) => (
           <div key={item._id} className="flex border-b border-t border-[#E5E7EB] py-4 font-outfit">
-            <img src={item.image[0]} className="w-20 h-25 object-cover" />
-            <div className="flex flex-col ml-5 w-3/7">
-              <p className="font-semibold text-lg">{item.name}</p>
-              <div className="flex items-center gap-5 mt-1">
+            <img src={item.image[0]} className="w-30 h-30 sm:w-20 sm:h-25 object-cover" />
+            <div className="flex flex-col ml-5 w-6/7 sm:w-3/7">
+              <p className="font-semibold sm:text-lg">{item.name}</p>
+              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-5 mt-1">
                 <p>Rp {item.price}</p>
-                <p className="border border-[#E5E7EB] px-3 py-1 bg-[#F8FAFC]">{item.size}</p>
+                <p className="border border-[#E5E7EB] px-3 py-1 bg-[#F8FAFC] w-fit">{item.size}</p>
               </div>
             </div>
-            <div className="w-2/7 flex items-center justify-center">
+            <div className="w-full sm:w-2/7 flex items-center justify-center">
               <input
                 type="number"
                 className="w-1/4 border py-1 px-2 border-[#E5E7EB] focus:outline-none"
@@ -133,18 +134,18 @@ const Cart = () => {
       )}
 
       <div className="flex flex-col items-end mt-20 font-outfit text-sm">
-        <div className="w-3/7 flex">
+        <div className="w-full sm:w-3/7 flex">
           <TitleBox first="CART" second="TOTALS" size="big" />
         </div>
-        <div className="w-3/7 flex justify-between pb-2 mt-3 border-b border-[#E5E7EB]">
+        <div className="w-full sm:w-3/7 flex justify-between pb-2 mt-3 border-b border-[#E5E7EB]">
           <p>Subtotal</p>
           <p>Rp {subtotal.toLocaleString('id-ID')}</p>
         </div>
-        <div className="w-3/7 flex justify-between pb-2 mt-3 border-b border-[#E5E7EB]">
+        <div className="w-full sm:w-3/7 flex justify-between pb-2 mt-3 border-b border-[#E5E7EB]">
           <p>Shipping Fee</p>
           <p>Rp {shippingFee.toLocaleString('id-ID')}</p>
         </div>
-        <div className="w-3/7 flex justify-between pb-2 mt-3 font-bold">
+        <div className="w-full sm:w-3/7 flex justify-between pb-2 mt-3 font-bold">
           <p>Total</p>
           <p>Rp {total.toLocaleString('id-ID')}</p>
         </div>
@@ -152,7 +153,7 @@ const Cart = () => {
           PROCEED TO CHECKOUT
         </button>
       </div>
-    </div>
+    </ResponsiveContainer>
   );
 };
 
