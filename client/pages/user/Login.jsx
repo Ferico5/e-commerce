@@ -4,6 +4,7 @@ import { useAuth } from '../../auth/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useCart } from '../../auth/CartContext';
+import ResponsiveContainer from '../../components/ResponsiveContainer.jsx';
 
 const Login = () => {
   const { login } = useAuth();
@@ -53,7 +54,7 @@ const Login = () => {
   };
 
   return (
-    <div className="content flex flex-col items-center pt-20 text-[33px]">
+    <ResponsiveContainer className="flex flex-col items-center pt-20 text-[33px]">
       <span className="font-prata mb-2">{!isLogin ? 'Sign Up' : 'Login'}</span>
 
       <form onSubmit={handleLogin}>
@@ -90,7 +91,7 @@ const Login = () => {
           <button className="w-34 py-[8px] bg-[#000] text-[#FFF] text-lg font-outfit hover:cursor-pointer">{!isLogin ? 'Sign Up' : 'Sign In'}</button>
         </div>
       </form>
-    </div>
+    </ResponsiveContainer>
   );
 };
 
