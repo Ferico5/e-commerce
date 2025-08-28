@@ -17,7 +17,7 @@ const Footer = () => {
         </div>
 
         {/* Right side content */}
-        <div className="w-full sm:w-2/5 flex flex-col sm:flex-row justify-between text-sm font-outfit">
+        <div className="w-full sm:w-3/5 md:w-2/5 flex flex-col sm:flex-row justify-between text-sm font-outfit">
           {/* Company */}
           <div className="w-1/2 pt-7 sm:pt-0">
             <span className="font-semibold text-xl">COMPANY</span>
