@@ -55,7 +55,7 @@ const Header = () => {
             </li>
             <li className="relative">
               <Link to="/admin/login" className="border rounded-full border-[#E5E7EB] px-5 py-2 text-[.75em] font-semibold">
-                Admin <span className='hidden md:inline'>Panel</span>
+                Admin <span className="hidden md:inline">Panel</span>
               </Link>
             </li>
           </ul>
@@ -152,13 +152,13 @@ const Header = () => {
                   logout(navigate);
                   setOpen(false);
                 }}
-                className={`border-b border-t border-gray-200 w-full py-1 px-2 ${location.pathname === '/contact' ? 'bg-black text-white' : ''}`}
+                className={`border-b border-t border-gray-200 w-full py-1 px-2`}
               >
                 Logout
               </button>
             </>
           ) : (
-            <Link to="/login" onClick={() => setOpen(false)}>
+            <Link to="/login" onClick={() => setOpen(false)} className={`border-b border-t border-gray-200 w-full py-1 px-2`}>
               Login
             </Link>
           )}
