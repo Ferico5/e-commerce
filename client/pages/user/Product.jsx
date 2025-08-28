@@ -4,6 +4,7 @@ import axios from '../../utils/axiosInstance.js';
 import star from '../../assets/frontend_assets/star_icon.png';
 import star_dull from '../../assets/frontend_assets/star_dull_icon.png';
 import ProductBox from '../../components/user/ProductBox';
+import ResponsiveContainer from '../../components/ResponsiveContainer.jsx';
 import { toast } from 'react-toastify';
 import { useCart } from '../../auth/CartContext';
 import { useAuth } from '../../auth/AuthContext.jsx';
@@ -84,22 +85,22 @@ const Product = () => {
   if (!product) return null;
 
   return (
-    <div className="content flex-col border-t border-[#E5E7EB] pt-10 font-outfit">
-      <div className="flex">
+    <ResponsiveContainer className="flex-col border-t border-[#E5E7EB] pt-10">
+      <div className="flex flex-col md:flex-row">
         {/* Picture Product */}
-        <div className="w-1/2 flex flex-row">
-          <div className="flex flex-col gap-3">
+        <div className="w-full md:w-1/2 flex flex-col-reverse md:flex-row">
+          <div className="flex flex-row md:flex-col gap-3 justify-between md:justify-start">
             {product.image.map((img, i) => (
-              <img key={i} src={img} onClick={() => setMainImage(img)} className="w-25 h-29 object-cover hover:cursor-pointer" />
+              <img key={i} src={img} onClick={() => setMainImage(img)} className="w-2/9 md:w-25 md:h-29 mt-2 md:mt-0 object-cover hover:cursor-pointer" />
             ))}
           </div>
-          <div className="ml-3">
-            <img src={mainImage} className="w-105 h-125 object-cover" />
+          <div className="md:ml-3">
+            <img src={mainImage} className="w-full md:w-105 md:h-125 object-cover" />
           </div>
         </div>
 
         {/* Detail Product */}
-        <div className="w-[40%] pt-3 pl-6">
+        <div className="md:w-[40%] pt-3 md:pl-6">
           {/* Name Product */}
           <p className="text-2xl font-medium">{product.name}</p>
           {/* Star Product */}
@@ -162,7 +163,7 @@ const Product = () => {
           <p className="border border-[#E5E7EB] px-5 py-3 font-bold">Description</p>
           <p className="border border-[#E5E7EB] px-5 py-3">Reviews (122)</p>
         </div>
-        <div className="flex flex-col justify-around h-40 border border-[#E5E7EB] px-5 py-3 text-[#5C6872]">
+        <div className="flex flex-col justify-around border border-[#E5E7EB] px-5 py-3 md:py-7 text-[#5C6872]">
           <p>
             An e-commerce website is an online platform that facilitates the buying and selling of products or services over the internet. It serves as a virtual marketplace where businesses and individuals can showcase their products,
             interact with customers, and conduct transactions without the need for a physical presence. E-commerce websites have gained immense popularity due to their convenience, accessibility, and the global reach they offer.
@@ -180,12 +181,12 @@ const Product = () => {
           RELATED <span className="text-[#171717] font-[470]">PRODUCTS</span>
         </p>
       </div>
-      <div className="grid grid-cols-5 gap-3 mt-3 mb-10">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 mt-3 mb-10">
         {relatedProducts.map((item) => (
           <ProductBox key={item._id} id={item._id} image={item.image[0]} name={item.name} price={item.price} />
         ))}
       </div>
-    </div>
+    </ResponsiveContainer>
   );
 };
 
