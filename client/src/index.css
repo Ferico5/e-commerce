@@ -24,11 +24,23 @@
   display: none;
 }
 
-.content {
-  margin: 0 7.5em;
+.content-mobile {
+  margin: 0 0.7em;
+}
+
+.content-tablet {
+  margin: 0 2em;
+}
+
+.content-laptop {
+  margin: 0 4em;
+}
+
+.content-desktop {
+  margin: 0 7em;
 }
 
 .admin-content {
   padding: 2.5em 3.5em 0;
-  background-color: #F9FAFB;
+  background-color: #f9fafb;
 }
