@@ -7,7 +7,7 @@ const TitleBox = ({ first, second, size }) => {
   if (size === "big") {
     return (
       <div
-        className={`${baseClasses} font-medium text-sm sm:text-2xl md:text-3xl`}
+        className={`${baseClasses} font-medium text-lg sm:text-2xl md:text-3xl`}
       >
         <p>
           {first} <span className={spanClasses}>{second}</span>
