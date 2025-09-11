@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../auth/AuthContext.jsx';
 import { useParams, useNavigate } from 'react-router-dom';
 import TitleBox from '../../components/user/TitleBox.jsx';
+import ResponsiveContainer from '../../components/ResponsiveContainer.jsx';
 import axios from '../../utils/axiosInstance';
 
 const OrderDetail = () => {
@@ -26,13 +27,13 @@ const OrderDetail = () => {
   }, [id, token, navigate]);
 
   if (!detail) {
-    return <div className="content pt-12">Loading...</div>;
+    return <div className="content-mobile sm:content-tablet pt-12">Loading...</div>;
   }
 
   const item = detail.items[0];
 
   return (
-    <div className="content pt-12 border-t border-[#E5E7EB] font-outfit">
+    <ResponsiveContainer className="pt-12 border-t border-[#E5E7EB]">
       <TitleBox first="ORDER" second="DETAIL" />
 
       <div className="mt-8 bg-white p-6 mt-[-2%] rounded-xl shadow-md border border-[#E5E7EB]">
@@ -95,7 +96,7 @@ const OrderDetail = () => {
           </div>
         </div>
       </div>
-    </div>
+    </ResponsiveContainer>
   );
 };
 

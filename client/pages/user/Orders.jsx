@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../auth/AuthContext.jsx';
 import { Link } from 'react-router-dom';
 import TitleBox from '../../components/user/TitleBox.jsx';
+import ResponsiveContainer from '../../components/ResponsiveContainer.jsx';
 import axios from '../../utils/axiosInstance.js';
 
 const Orders = () => {
@@ -28,7 +29,7 @@ const Orders = () => {
   }, [user, token]);
 
   return (
-    <div className="content flex flex-col items-start pt-12 border-t border-[#E5E7EB] font-outfit">
+    <ResponsiveContainer className="flex flex-col items-start pt-12 border-t border-[#E5E7EB]">
       <TitleBox first="MY" second="ORDERS" />
       {/* Product */}
       {orders.length === 0 ? (
@@ -72,7 +73,7 @@ const Orders = () => {
           </div>
         ))
       )}
-    </div>
+    </ResponsiveContainer>
   );
 };
 
