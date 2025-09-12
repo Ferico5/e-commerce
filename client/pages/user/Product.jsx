@@ -4,7 +4,7 @@ import axios from '../../utils/axiosInstance.js';
 import star from '../../assets/frontend_assets/star_icon.png';
 import star_dull from '../../assets/frontend_assets/star_dull_icon.png';
 import ProductBox from '../../components/user/ProductBox';
-import ResponsiveContainer from '../../components/ResponsiveContainer.jsx';
+import ResponsiveContainer from '../../components/user/ResponsiveContainer.jsx';
 import { toast } from 'react-toastify';
 import { useCart } from '../../auth/CartContext';
 import { useAuth } from '../../auth/AuthContext.jsx';

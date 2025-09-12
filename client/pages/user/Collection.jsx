@@ -3,7 +3,7 @@ import axios from '../../utils/axiosInstance';
 import CategoryBox from '../../components/user/CategoryBox';
 import ProductBox from '../../components/user/ProductBox';
 import TitleBox from '../../components/user/TitleBox';
-import ResponsiveContainer from '../../components/ResponsiveContainer.jsx';
+import ResponsiveContainer from '../../components/user/ResponsiveContainer.jsx';
 import { useLocation } from 'react-router-dom';
 import Search from '../../assets/frontend_assets/search_icon.png';
 import Close from '../../assets/frontend_assets/cross_icon.png';

@@ -3,7 +3,7 @@ import { useAuth } from '../../auth/AuthContext.jsx';
 // import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import TitleBox from '../../components/user/TitleBox.jsx';
-import ResponsiveContainer from '../../components/ResponsiveContainer.jsx';
+import ResponsiveContainer from '../../components/user/ResponsiveContainer.jsx';
 import axios from '../../utils/axiosInstance.js';
 // import bca_logo from '../../assets/frontend_assets/bca.png';
 // import bri_logo from '../../assets/frontend_assets/bri.png';

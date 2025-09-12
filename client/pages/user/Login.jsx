@@ -4,7 +4,7 @@ import { useAuth } from '../../auth/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useCart } from '../../auth/CartContext';
-import ResponsiveContainer from '../../components/ResponsiveContainer.jsx';
+import ResponsiveContainer from '../../components/user/ResponsiveContainer.jsx';
 
 const Login = () => {
   const { login } = useAuth();

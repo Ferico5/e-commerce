@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../auth/AuthContext.jsx';
 import { Link } from 'react-router-dom';
 import TitleBox from '../../components/user/TitleBox.jsx';
-import ResponsiveContainer from '../../components/ResponsiveContainer.jsx';
+import ResponsiveContainer from '../../components/user/ResponsiveContainer.jsx';
 import axios from '../../utils/axiosInstance.js';
 
 const Orders = () => {

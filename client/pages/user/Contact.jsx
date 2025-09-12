@@ -2,7 +2,7 @@ import React from 'react';
 import ContactPic from '../../assets/frontend_assets/contact_img.png';
 import SubscribeBox from '../../components/user/SubscribeBox';
 import TitleBox from '../../components/user/TitleBox';
-import ResponsiveContainer from '../../components/ResponsiveContainer.jsx';
+import ResponsiveContainer from '../../components/user/ResponsiveContainer.jsx';
 
 const Contact = () => {
   return (
