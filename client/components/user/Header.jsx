@@ -6,7 +6,7 @@ import Cart from '../../assets/frontend_assets/cart_icon.png';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../auth/AuthContext';
 import { useCart } from '../../auth/CartContext';
-import ResponsiveContainer from '../ResponsiveContainer';
+import ResponsiveContainer from './ResponsiveContainer';
 import { Menu, X } from 'lucide-react';
 
 const Header = () => {
