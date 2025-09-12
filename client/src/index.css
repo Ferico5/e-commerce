@@ -41,6 +41,15 @@
 }
 
 .admin-content {
-  padding: 2.5em 3.5em 0;
+  padding: .5em 3.5em 0;
   background-color: #f9fafb;
+}
+
+.admin-content-mobile {
+  padding: 2em 0 0 0;
+  margin: -1.5em 0 0 -2em;
+}
+
+.admin-content-tablet {
+  padding: .5em 0 0;
 }
