@@ -12,7 +12,7 @@ const Header = () => {
     <div className="flex justify-between items-center border-b border-[#E5E7EB] bg-[#F9FAFB]">
       {/* Logo */}
       <div className="ml-13.5 pt-2 pb-2 w-31">
-        <img src={Logo} />
+        <img src={Logo} alt='Logo' />
       </div>
 
       {/* Button */}

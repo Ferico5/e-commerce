@@ -91,11 +91,11 @@ const Product = () => {
         <div className="w-full md:w-1/2 flex flex-col-reverse md:flex-row">
           <div className="flex flex-row md:flex-col gap-3 justify-between md:justify-start">
             {product.image.map((img, i) => (
-              <img key={i} src={img} onClick={() => setMainImage(img)} className="w-2/9 md:w-25 md:h-29 mt-2 md:mt-0 object-cover hover:cursor-pointer" />
+              <img key={i} src={img} alt='Product Image' onClick={() => setMainImage(img)} className="w-2/9 md:w-25 md:h-29 mt-2 md:mt-0 object-cover hover:cursor-pointer" />
             ))}
           </div>
           <div className="md:ml-3">
-            <img src={mainImage} className="w-full md:w-105 md:h-125 object-cover" />
+            <img src={mainImage} alt='Main Product Image' className="w-full md:w-105 md:h-125 object-cover" />
           </div>
         </div>
 
@@ -106,11 +106,11 @@ const Product = () => {
           {/* Star Product */}
           <div className="flex gap-1 py-2 items-center">
             <div className="flex gap-1 h-3">
-              <img src={star} className="w-3" />
-              <img src={star} className="w-3" />
-              <img src={star} className="w-3" />
-              <img src={star} className="w-3" />
-              <img src={star_dull} className="w-3" />
+              <img src={star} alt='star icon' className="w-3" />
+              <img src={star} alt='star icon' className="w-3" />
+              <img src={star} alt='star icon' className="w-3" />
+              <img src={star} alt='star icon' className="w-3" />
+              <img src={star_dull} alt='star_dull icon'  className="w-3" />
             </div>
             <p className="ml-2">(122)</p>
           </div>

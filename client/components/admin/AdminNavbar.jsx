@@ -19,7 +19,7 @@ const AdminNavbar = () => {
             to="add"
             className={`flex gap-3 md:pl-3 py-2 mt-6 border-b border-t border-l rounded-l-md text-[0.938rem] justify-center md:justify-start ${location.pathname === '/admin/add' ? 'bg-[#FFEBF5] border-[#C586A5]' : 'border-[#E5E7EB]'}`}
           >
-            <img src={add_icon} className="w-5 h-5" />
+            <img src={add_icon} alt='add_icon' className="w-5 h-5" />
             <p className="hidden md:inline">Add Items</p>
           </Link>
         </li>
@@ -30,7 +30,7 @@ const AdminNavbar = () => {
             to="list"
             className={`flex gap-3 md:pl-3 py-2 mt-6 border-b border-t border-l rounded-l-md text-[0.938rem] justify-center md:justify-start ${location.pathname === '/admin/list' ? 'bg-[#FFEBF5] border-[#C586A5]' : 'border-[#E5E7EB]'}`}
           >
-            <img src={order_icon} className="w-5 h-5" />
+            <img src={order_icon} alt='order_icon' className="w-5 h-5" />
             <p className="hidden md:inline">List Items</p>
           </Link>
         </li>
@@ -41,7 +41,7 @@ const AdminNavbar = () => {
             to="orders"
             className={`flex gap-3 md:pl-3 py-2 mt-6 border-b border-t border-l rounded-l-md text-[0.938rem] justify-center md:justify-start ${location.pathname === '/admin/orders' ? 'bg-[#FFEBF5] border-[#C586A5]' : 'border-[#E5E7EB]'}`}
           >
-            <img src={order_icon} className="w-5 h-5" />
+            <img src={order_icon} alt='order_icon' className="w-5 h-5" />
             <p className="hidden md:inline">Orders</p>
           </Link>
         </li>

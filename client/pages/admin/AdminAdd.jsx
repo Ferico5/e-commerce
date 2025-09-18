@@ -108,7 +108,7 @@ const AdminAdd = () => {
         <div className="flex gap-3 mb-5">
           {[0, 1, 2, 3].map((i) => (
             <div key={i} className="w-15 h-15 sm:w-20 sm:h-20 border border-dashed border-gray-300 flex items-center justify-center text-xs text-gray-400 hover:cursor-pointer" onClick={() => handleDivClick(i)}>
-              {imagePreviews[i] ? <img src={imagePreviews[i]} className="object-cover w-full h-full" /> : <img src={upload_area} />}
+              {imagePreviews[i] ? <img src={imagePreviews[i]} className="object-cover w-full h-full" /> : <img src={upload_area} alt='upload_icon' />}
               <input type="file" accept="image/*" className="hidden" ref={(el) => (fileInputRefs.current[i] = el)} onChange={(e) => handleImageChange(e, i)} />
             </div>
           ))}

@@ -106,7 +106,7 @@ const Cart = () => {
       ) : (
         cart.map((item) => (
           <div key={item._id} className="flex border-b border-t border-[#E5E7EB] py-4 font-outfit">
-            <img src={item.image[0]} className="w-30 h-30 sm:w-20 sm:h-25 object-cover" />
+            <img src={item.image[0]} alt='Item' className="w-30 h-30 sm:w-20 sm:h-25 object-cover" />
             <div className="flex flex-col ml-5 w-6/7 sm:w-3/7">
               <p className="font-semibold sm:text-lg">{item.name}</p>
               <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-5 mt-1">
@@ -127,7 +127,7 @@ const Cart = () => {
               />
             </div>
             <div className="w-2/7 flex items-center justify-center">
-              <img src={bin_icon} className="w-5 hover:cursor-pointer" onClick={() => handleDelete(item.productId, item.size)} />
+              <img src={bin_icon} alt='Bin Icon' className="w-5 hover:cursor-pointer" onClick={() => handleDelete(item.productId, item.size)} />
             </div>
           </div>
         ))

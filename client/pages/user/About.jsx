@@ -14,7 +14,7 @@ const About = () => {
       </div>
       {/* Main Content */}
       <div className="flex flex-col md:flex-row">
-        <img src={AboutPic} className="w-full md:w-md md:h-md object-cover" />
+        <img src={AboutPic} alt='About' className="w-full md:w-md md:h-md object-cover" />
 
         {/* Paragraph */}
         <div className="flex flex-col justify-around py-13 sm:py-0 lg:py-6 md:ml-6 lg:ml-10 text-[#5C6872]">

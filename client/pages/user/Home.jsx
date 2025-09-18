@@ -91,17 +91,17 @@ const Home = () => {
 
       <div className="flex flex-col sm:flex-row pt-10 pb-10 gap-10 place-content-evenly">
         <div className="w-full flex flex-col items-center justify-center">
-          <img src={assets.exchange_icon} alt="" className="w-10 m-4" />
+          <img src={assets.exchange_icon} alt="Exchange Icon" className="w-10 m-4" />
           <p className="font-[600] text-gray-700">Easy Exchange Policy</p>
           <p className="text-gray-500">We offer hassle free exchange policy</p>
         </div>
         <div className="w-full flex flex-col items-center justify-center">
-          <img src={assets.quality_icon} alt="" className="w-10 m-4" />
+          <img src={assets.quality_icon} alt="Quality Icon" className="w-10 m-4" />
           <p className="font-[600] text-gray-700">7 Days Return Policy</p>
           <p className="text-gray-500">We provide 7 days free return policy</p>
         </div>
         <div className="w-full flex flex-col items-center justify-center">
-          <img src={assets.support_img} alt="" className="w-10 m-4" />
+          <img src={assets.support_img} alt="Support Image" className="w-10 m-4" />
           <p className="font-[600] text-gray-700">Best customer support</p>
           <p className="text-gray-500">Wwe provide 24/7 customer support</p>
         </div>

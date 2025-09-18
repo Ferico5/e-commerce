@@ -196,27 +196,6 @@ const PlaceOrder = () => {
           <p>Rp {total.toLocaleString('id-ID')}</p>
         </div>
 
-        {/* Payment Method BCA, BRI, dan lain-lain */}
-        {/* <div className="w-full flex flex-col items-start mt-8">
-          <TitleBox first="PAYMENT" second="METHOD" size="small" />
-          <div className="grid grid-cols-3 gap-3 w-full mt-[-20px]">
-            {bankOptions.map((bank) => (
-              <label key={bank} className={`flex items-center border rounded-md px-4 py-3 cursor-pointer transition-colors w-full ${selectedBank === bank ? 'border-green-600 bg-green-50' : 'border-[#D1D5DB]'}`}>
-                <div className={`w-4 h-4 mr-3 rounded-full border-2 flex items-center justify-center transition-all ${selectedBank === bank ? 'border-green-600' : 'border-[#D1D5DB]'}`}>
-                  {selectedBank === bank && <div className="w-2 h-2 bg-green-600 rounded-full" />}
-                </div> */}
-
-        {/* Nama Bank */}
-        {/* <span className="text-sm font-medium">{bank}</span> */}
-        {/* Logo */}
-        {/* <img src={bankLogos[bank]} className={`object-contain ml-4 ${bank === 'Permata' ? 'w-7' : 'w-13'}`} /> */}
-
-        {/* <input type="radio" value={bank} checked={selectedBank === bank} onChange={() => setSelectedBank(bank)} className="hidden" /> */}
-        {/* </label> */}
-        {/* ))} */}
-        {/* </div> */}
-        {/* </div> */}
-
         <button onClick={handlePlaceOrder} disabled={loading} className="md:w-2/5 bg-black text-white px-6 py-3 mt-8 hover:cursor-pointer">
           {loading ? 'Processing...' : 'PLACE ORDER'}
         </button>

@@ -58,7 +58,7 @@ const AdminList = () => {
               {products.map((product, index) => (
                 <tr key={index} className="bg-[#F9FAFB]">
                   <td className="border-l border-t border-b border-[#E5E7EB]">
-                    <img src={product.image[0]} className="w-17 p-2" />
+                    <img src={product.image[0]} alt='Product Image' className="w-17 p-2" />
                   </td>
                   <td className="border-t border-b border-[#E5E7EB] px-1">{product.name}</td>
                   <td className="border-t border-b border-[#E5E7EB] px-1 text-center xl:text-start">{product.category}</td>
