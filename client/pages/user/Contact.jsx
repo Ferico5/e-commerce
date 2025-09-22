@@ -1,4 +1,3 @@
-import React from 'react';
 import ContactPic from '../../assets/frontend_assets/contact_img.png';
 import SubscribeBox from '../../components/user/SubscribeBox';
 import TitleBox from '../../components/user/TitleBox';
@@ -13,7 +12,7 @@ const Contact = () => {
       </div>
       {/* Main Content */}
       <div className="flex flex-col md:flex-row justify-center mb-20">
-        <img src={ContactPic} alt='Contact' className="w-full md:w-md md:h-md object-cover" />
+        <img src={ContactPic} alt="Contact" loading="lazy" className="w-full md:w-md md:h-md object-cover" />
 
         {/* Paragraph */}
         <div className="flex flex-col justify-center gap-6 py-6 ml-10 text-[#5C6872] ">

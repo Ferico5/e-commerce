@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '../../auth/AuthContext.jsx';
 import { Link } from 'react-router-dom';
 import TitleBox from '../../components/user/TitleBox.jsx';
@@ -39,8 +39,8 @@ const Orders = () => {
           <div key={order._id} className="flex w-full justify-between border-b border-t border-[#E5E7EB] py-5">
             <div className="w-full flex mr-10">
               <div className="relative w-[88px] h-[88px] mr-3">
-                <img src={order.items[0].image[0]} alt='Product Image' className="w-22 object-cover rounded border border-gray-200 z-10 relative" />
-                {order.items.length > 1 && <img src={order.items[1].image[0]} alt='Product Image' className="w-22 object-cover rounded border border-gray-200 absolute top-2 left-2 z-0 opacity-80" />}
+                <img src={order.items[0].image[0]} alt='Product Image' loading='lazy' className="w-22 object-cover rounded border border-gray-200 z-10 relative" />
+                {order.items.length > 1 && <img src={order.items[1].image[0]} alt='Product Image' loading='lazy' className="w-22 object-cover rounded border border-gray-200 absolute top-2 left-2 z-0 opacity-80" />}
               </div>
               <div className="ml-5">
                 <div className="flex items-center gap-2 mb-1">

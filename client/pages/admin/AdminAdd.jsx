@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from '../../utils/axiosInstance';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
@@ -108,7 +108,7 @@ const AdminAdd = () => {
         <div className="flex gap-3 mb-5">
           {[0, 1, 2, 3].map((i) => (
             <div key={i} className="w-15 h-15 sm:w-20 sm:h-20 border border-dashed border-gray-300 flex items-center justify-center text-xs text-gray-400 hover:cursor-pointer" onClick={() => handleDivClick(i)}>
-              {imagePreviews[i] ? <img src={imagePreviews[i]} className="object-cover w-full h-full" /> : <img src={upload_area} alt='upload_icon' />}
+              {imagePreviews[i] ? <img src={imagePreviews[i]} className="object-cover w-full h-full" /> : <img src={upload_area} alt="upload_icon" loading="lazy" />}
               <input type="file" accept="image/*" className="hidden" ref={(el) => (fileInputRefs.current[i] = el)} onChange={(e) => handleImageChange(e, i)} />
             </div>
           ))}
@@ -120,7 +120,13 @@ const AdminAdd = () => {
 
         {/* Product Description */}
         <label className="block font-medium">Product description</label>
-        <textarea rows={3} placeholder="Write content here" value={description} onChange={(e) => setDescription(e.target.value)} className="w-full sm:w-[80%] md:w-full border border-gray-300 rounded-md px-3 py-2 mb-4 mt-1 focus:outline-none" />
+        <textarea
+          rows={3}
+          placeholder="Write content here"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          className="w-full sm:w-[80%] md:w-full border border-gray-300 rounded-md px-3 py-2 mb-4 mt-1 focus:outline-none"
+        />
 
         {/* Category, Subcategory, Price */}
         <div className="flex flex-col sm:flex-row gap-4 mb-4">

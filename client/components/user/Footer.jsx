@@ -1,4 +1,3 @@
-import React from 'react';
 import Logo from '../../assets/frontend_assets/logo.png';
 import ResponsiveContainer from './ResponsiveContainer';
 
@@ -9,7 +8,7 @@ const Footer = () => {
       <div className="flex flex-col sm:flex-row justify-between">
         {/* Left side content */}
         <div className="w-full sm:w-2/5 pr-3 sm:pr-17 text-[#595959] text-sm font-outfit">
-          <img src={Logo} alt='Logo' className="w-[140px] mb-5" />
+          <img src={Logo} alt="Logo" loading="lazy" className="w-[140px] mb-5" />
           <span>
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
             type specimen book.

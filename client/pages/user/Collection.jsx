@@ -78,6 +78,12 @@ const Collection = () => {
     return filtered;
   };
 
+  // optimize cloudinary img
+  const optimizeCloudinaryUrl = (url) => {
+    if (!url) return '';
+    return url.replace('/upload/', '/upload/f_auto,q_auto/');
+  };
+
   return (
     <ResponsiveContainer className={`border-t border-[#E5E7EB] flex flex-col justify-between ${showSearch ? `` : `pt-9`}`}>
       {showSearch && (
@@ -85,11 +91,13 @@ const Collection = () => {
           <div className="flex items-center gap-2 sm:w-1/2">
             <div className="relative flex-grow">
               <input type="text" placeholder="Search" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="w-full px-4 py-2 pr-10 text-sm border border-[#9CA3AF] rounded-full focus:outline-none" />
-              <img src={Search} alt='Search Icon' className="w-4 absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none" />
+              <img src={Search} alt="Search Icon" loading="lazy" className="w-4 absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none" />
             </div>
 
             <img
-              src={Close} alt='Close Icon'
+              src={Close}
+              alt="Close Icon"
+              loading="lazy"
               className="w-3 ml-2 cursor-pointer"
               onClick={() => {
                 setSearchTerm('');
@@ -134,7 +142,7 @@ const Collection = () => {
           {/* Product List */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
             {getSortedProducts().map((product) => (
-              <ProductBox key={product._id} id={product._id} image={product.image[0]} name={product.name} price={product.price} />
+              <ProductBox key={product._id} id={product._id} image={optimizeCloudinaryUrl(product.image[0])} name={product.name} price={product.price} />
             ))}
           </div>
         </div>

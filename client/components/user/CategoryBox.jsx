@@ -1,5 +1,3 @@
-import React from 'react';
-
 const CategoryBox = ({ title, categories = [], selected, onChange, className = '' }) => {
   return (
     <div className={`flex flex-col border border-[#E5E7EB] py-3 pl-4 ${className}`}>

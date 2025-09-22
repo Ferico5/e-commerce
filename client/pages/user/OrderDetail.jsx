@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '../../auth/AuthContext.jsx';
 import { useParams, useNavigate } from 'react-router-dom';
 import TitleBox from '../../components/user/TitleBox.jsx';
@@ -41,7 +41,7 @@ const OrderDetail = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           {detail.items.map((item, index) => (
             <div key={index} className="flex gap-6 items-start py-4">
-              <img src={item.image[0]} alt='Product Image' className="w-40 object-cover rounded-lg" />
+              <img src={item.image[0]} alt="Product Image" loading="lazy" className="w-40 object-cover rounded-lg" />
               <div>
                 <p className="text-xl font-medium mb-2">{item.name}</p>
                 <p className="text-gray-800 font-medium mb-3">Rp {item.price.toLocaleString()}</p>

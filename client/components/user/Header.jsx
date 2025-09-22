@@ -22,7 +22,7 @@ const Header = () => {
       {/* Logo */}
       <div className="w-[120px] xl:w-[148px]">
         <a href="/">
-          <img src={Logo} alt='Logo' />
+          <img src={Logo} alt='Logo' loading='lazy' />
         </a>
       </div>
 
@@ -64,12 +64,12 @@ const Header = () => {
 
       {/* Button */}
       <div className="flex items-center gap-6 sm:gap-4">
-        <img src={Search} alt='Search Icon' className="w-[20px] cursor-pointer" onClick={() => navigate('/collection', { state: { showSearch: true } })} />
+        <img src={Search} alt='Search Icon' loading='lazy' className="w-[20px] cursor-pointer" onClick={() => navigate('/collection', { state: { showSearch: true } })} />
 
         {/* Login + Dropdown */}
         <div className="relative group">
           <a href="/login">
-            <img src={Profile} alt='Profile Icon' className="w-[19px]" />
+            <img src={Profile} alt='Profile Icon' loading='lazy' className="w-[19px]" />
           </a>
 
           {/* show dropdown only after login */}
@@ -98,7 +98,7 @@ const Header = () => {
         </div>
 
         <a href="/cart" className="relative inline-block">
-          <img src={Cart} alt='Cart Icon' className="w-[20px]" />
+          <img src={Cart} alt='Cart Icon' loading='lazy' className="w-[20px]" />
           <span className="absolute -bottom-1 -right-1 bg-black text-white p-2 text-[9px] w-[14px] h-[14px] rounded-full flex items-center justify-center font-outfit">{cartCount}</span>
         </a>
 

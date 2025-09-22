@@ -1,5 +1,3 @@
-import React from 'react';
-
 const SubscribeBox = () => {
   return (
     <div className="w-full flex flex-col items-center justify-center p-10 font-outfit">

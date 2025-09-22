@@ -1,4 +1,3 @@
-import React from 'react';
 import { Triangle } from 'react-loader-spinner';
 
 const LoadingSpinner = ({ size = 40, color = 'white' }) => {
