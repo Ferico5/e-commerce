@@ -82,7 +82,7 @@ const createOrder = async (req, res) => {
       ],
       enabled_payments: ['bank_transfer'],
       callbacks: {
-        finish: `http://localhost:5173/orders`,
+        finish: `https://foreverclothes.vercel.app/orders`,
       },
     };
 
