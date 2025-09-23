@@ -30,11 +30,13 @@ Welcome to the **E-commerce Clothes Website**, a modern and stylish platform des
 2. create new file '.env'
 3. Copy this code:
 <pre> 
-  env PORT='...' 
+  PORT='...' 
   MONGODB_URL='...' 
   CLOUDINARY_API_KEY='...' 
   CLOUDINARY_SECRET_KEY='...' 
   CLOUDINARY_NAME='...' 
+  CLIENT_URL='...' #change this with url deployed URL website, if you haven't deploy it just use http://localhost:5173
+  NODE_ENV=production
 </pre>
 
 NOTE: REPLACE '...' with your own!
