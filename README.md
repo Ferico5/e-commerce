@@ -16,7 +16,8 @@ Welcome to the **E-commerce Clothes Website**, a modern and stylish platform des
 
 - **Frontend:** React.js / Vite / Tailwind CSS
 - **Backend:** Node.js / Express.js / MongoDB
-- **Others:** JWT for auth
+- **Authentication & Security:** JWT for authentication / Helmet for security headers
+- **Integrations:** Cloudinary / Midtrans 
 
 ## 📦 Getting Started
 
@@ -28,12 +29,13 @@ Welcome to the **E-commerce Clothes Website**, a modern and stylish platform des
 1. Go to folder api
 2. create new file '.env'
 3. Copy this code:
-PORT='...'
-MONGODB_URL='...'
-
-CLOUDINARY_API_KEY='...'
-CLOUDINARY_SECRET_KEY='...'
-CLOUDINARY_NAME='...'
+<pre> 
+  env PORT='...' 
+  MONGODB_URL='...' 
+  CLOUDINARY_API_KEY='...' 
+  CLOUDINARY_SECRET_KEY='...' 
+  CLOUDINARY_NAME='...' 
+</pre>
 
 NOTE: REPLACE '...' with your own!
 
@@ -49,14 +51,19 @@ NOTE: REPLACE '...' with your own!
 3. npm i
 4. npm run dev
 
-5️⃣ **Visit Website**
+5️⃣ **Visit Website Development**
+
 http://localhost:5173
+
+
+**We have deployed the website, you can check it at https://foreverclothes.vercel.app/**
 
 
 ## 💡 Future Enhancements
 1. Add user reviews
 2. Implement order tracking
 3. Add wishlists and favorites
+4. Add stock
 
 
 ## ✨ Contributing
