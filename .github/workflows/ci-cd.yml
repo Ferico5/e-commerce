@@ -75,30 +75,6 @@ jobs:
           path: client/dist
           retention-days: 7
 
-  deploy:
-    name: Deploy ke Vercel (Production)
-    needs: [backend-test, frontend-build]
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout kode
-        uses: actions/checkout@v4
-
-      - name: Deploy Client ke Vercel
-        uses: amondnet/vercel-action@v25
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_CLIENT }}
-          working-directory: ./client
-          vercel-args: "--prod"
-
-      - name: Deploy API ke Vercel
-        uses: amondnet/vercel-action@v25
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_API }}
-          working-directory: ./api
-          vercel-args: "--prod"
+# Catatan: deployment ke Vercel sudah ditangani otomatis oleh integrasi
+# native Vercel-GitHub (terlihat sebagai check terpisah "Vercel – <project>"
+# di setiap commit), jadi tidak perlu job deploy tambahan di sini.
