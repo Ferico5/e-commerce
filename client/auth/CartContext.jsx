@@ -1,5 +1,5 @@
-import { createContext, useContext, useState, useEffect } from 'react';
-import axios from '../utils/axiosInstance';
+import { createContext, useContext, useState, useEffect } from "react";
+import axios from "../utils/axiosInstance";
 
 const CartContext = createContext();
 
@@ -8,17 +8,18 @@ export const CartProvider = ({ children }) => {
 
   const fetchCartCount = async () => {
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
       if (!token) return;
 
-      const res = await axios.get('/get-cart', {
+      const res = await axios.get("/get-cart", {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      const count = res.data.cartItems?.reduce((acc, item) => acc + item.quantity, 0) || 0;
+      const count =
+        res.data.cartItems?.reduce((acc, item) => acc + item.quantity, 0) || 0;
       setCartCount(count);
     } catch (error) {
-      console.error('Failed to fetch cart count:', error);
+      console.error("Failed to fetch cart count:", error);
     }
   };
 
@@ -30,7 +31,13 @@ export const CartProvider = ({ children }) => {
     fetchCartCount();
   }, []);
 
-  return <CartContext.Provider value={{ cartCount, setCartCount, fetchCartCount, resetCart }}>{children}</CartContext.Provider>;
+  return (
+    <CartContext.Provider
+      value={{ cartCount, setCartCount, fetchCartCount, resetCart }}
+    >
+      {children}
+    </CartContext.Provider>
+  );
 };
 
 export const useCart = () => useContext(CartContext);

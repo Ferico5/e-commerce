@@ -1,9 +1,16 @@
-import { Triangle } from 'react-loader-spinner';
+import { Triangle } from "react-loader-spinner";
 
-const LoadingSpinner = ({ size = 40, color = 'white' }) => {
+const LoadingSpinner = ({ size = 40, color = "white" }) => {
   return (
     <div className="flex justify-center items-center">
-      <Triangle height={size} width={size} color={color} ariaLabel="triangle-loading" wrapperStyle={{}} wrapperClass="" />
+      <Triangle
+        height={size}
+        width={size}
+        color={color}
+        ariaLabel="triangle-loading"
+        wrapperStyle={{}}
+        wrapperClass=""
+      />
     </div>
   );
 };

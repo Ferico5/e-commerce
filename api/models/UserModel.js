@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
   cartData: {
     type: [
       {
-        productId: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
+        productId: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
         quantity: Number,
         size: String,
       },
@@ -25,10 +25,10 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ['user', 'admin'],
+    enum: ["user", "admin"],
     required: true,
-    default: 'user',
+    default: "user",
   },
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model("User", userSchema);

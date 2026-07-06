@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { toast } from 'react-toastify';
-import axios from '../../utils/axiosInstance.js';
-import ResponsiveContainerAdmin from '../../components/admin/ResponsiveContainerAdmin';
+import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
+import axios from "../../utils/axiosInstance.js";
+import ResponsiveContainerAdmin from "../../components/admin/ResponsiveContainerAdmin";
 
 const AdminList = () => {
   const [products, setProducts] = useState([]);
@@ -14,11 +14,11 @@ const AdminList = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('/list');
+      const response = await axios.get("/list");
       setProducts(response.data.listProduct);
     } catch (error) {
-      console.error('Error fetching products:', error);
-      toast.error('Error fetching product, please refresh the browser!');
+      console.error("Error fetching products:", error);
+      toast.error("Error fetching product, please refresh the browser!");
     }
   };
 
@@ -34,8 +34,8 @@ const AdminList = () => {
       setProductToDelete(null);
       fetchProducts();
     } catch (error) {
-      console.error('Error deleting product:', error);
-      toast.error('Error to delete product');
+      console.error("Error deleting product:", error);
+      toast.error("Error to delete product");
     }
   };
 
@@ -58,12 +58,26 @@ const AdminList = () => {
               {products.map((product, index) => (
                 <tr key={index} className="bg-[#F9FAFB]">
                   <td className="border-l border-t border-b border-[#E5E7EB]">
-                    <img src={product.image[0]} alt="Product Image" loading="lazy" className="w-17 p-2" />
+                    <img
+                      src={product.image[0]}
+                      alt="Product Image"
+                      loading="lazy"
+                      className="w-17 p-2"
+                    />
                   </td>
-                  <td className="border-t border-b border-[#E5E7EB] px-1">{product.name}</td>
-                  <td className="border-t border-b border-[#E5E7EB] px-1 text-center xl:text-start">{product.category}</td>
-                  <td className="border-t border-b border-[#E5E7EB] px-1">Rp. {product.price}</td>
-                  <td className="border-r border-t border-b border-[#E5E7EB] text-center text-base hover:cursor-pointer" onClick={() => handleDeleteClick(product._id)}>
+                  <td className="border-t border-b border-[#E5E7EB] px-1">
+                    {product.name}
+                  </td>
+                  <td className="border-t border-b border-[#E5E7EB] px-1 text-center xl:text-start">
+                    {product.category}
+                  </td>
+                  <td className="border-t border-b border-[#E5E7EB] px-1">
+                    Rp. {product.price}
+                  </td>
+                  <td
+                    className="border-r border-t border-b border-[#E5E7EB] text-center text-base hover:cursor-pointer"
+                    onClick={() => handleDeleteClick(product._id)}
+                  >
                     X
                   </td>
                 </tr>
@@ -76,12 +90,20 @@ const AdminList = () => {
             <div className="fixed inset-0 flex items-center justify-center bg-gray-500/75 z-50">
               <div className="bg-white p-6 rounded-xl shadow-xl w-[300px] text-center">
                 <p className="text-lg font-semibold mb-4">Are you sure?</p>
-                <p className="text-sm text-gray-600 mb-6">This action will permanently delete the product.</p>
+                <p className="text-sm text-gray-600 mb-6">
+                  This action will permanently delete the product.
+                </p>
                 <div className="flex justify-center gap-4">
-                  <button onClick={confirmDelete} className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 hover:cursor-pointer">
+                  <button
+                    onClick={confirmDelete}
+                    className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 hover:cursor-pointer"
+                  >
                     Delete
                   </button>
-                  <button onClick={() => setShowModal(false)} className="border border-gray-400 text-gray-600 px-4 py-2 rounded hover:bg-gray-100 hover:cursor-pointer">
+                  <button
+                    onClick={() => setShowModal(false)}
+                    className="border border-gray-400 text-gray-600 px-4 py-2 rounded hover:bg-gray-100 hover:cursor-pointer"
+                  >
                     Cancel
                   </button>
                 </div>

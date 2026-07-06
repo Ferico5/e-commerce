@@ -1,7 +1,7 @@
-import axios from 'axios';
+import axios from "axios";
 
 const instance = axios.create({
-  baseURL: 'https://foreverclothesapi.vercel.app',
+  baseURL: "https://foreverclothesapi.vercel.app",
 });
 
 // const instance = axios.create({
@@ -10,12 +10,12 @@ const instance = axios.create({
 
 // Interceptor buat otomatis tambahin Authorization token
 instance.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
 
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
-  
+
   return config;
 });
 

@@ -1,5 +1,5 @@
-const UserModel = require('../models/UserModel.js');
-const ProductModel = require('../models/ProductModel.js');
+const UserModel = require("../models/UserModel.js");
+const ProductModel = require("../models/ProductModel.js");
 
 const addCart = async (req, res) => {
   const { productId, quantity, size } = req.body;
@@ -11,7 +11,9 @@ const addCart = async (req, res) => {
     if (!user.cartData) user.cartData = [];
 
     // Cek apakah item sudah ada dengan id dan size yang sama
-    const existingItem = user.cartData.find((item) => item.productId.toString() === productId && item.size === size);
+    const existingItem = user.cartData.find(
+      (item) => item.productId.toString() === productId && item.size === size,
+    );
 
     if (existingItem) {
       existingItem.quantity += quantity;
@@ -21,10 +23,12 @@ const addCart = async (req, res) => {
 
     await user.save();
 
-    res.status(200).json({ msg: 'Item added to cart', cartData: user.cartData });
+    res
+      .status(200)
+      .json({ msg: "Item added to cart", cartData: user.cartData });
   } catch (error) {
     console.error(error.message);
-    res.status(500).json({ msg: 'Server error' });
+    res.status(500).json({ msg: "Server error" });
   }
 };
 
@@ -39,7 +43,9 @@ const getCart = async (req, res) => {
     const products = await ProductModel.find({ _id: { $in: productIds } });
 
     const cartItems = cart.map((item) => {
-      const product = products.find((prod) => prod._id.toString() === item.productId.toString());
+      const product = products.find(
+        (prod) => prod._id.toString() === item.productId.toString(),
+      );
 
       return {
         ...product.toObject(),
@@ -52,7 +58,7 @@ const getCart = async (req, res) => {
     res.status(200).json({ cartItems });
   } catch (error) {
     console.error(error.message);
-    res.status(500).json({ msg: 'Server error' });
+    res.status(500).json({ msg: "Server error" });
   }
 };
 
@@ -64,10 +70,12 @@ const updateCart = async (req, res) => {
   try {
     const user = await UserModel.findById(userId);
 
-    const cartItem = user.cartData.find((item) => item.productId.toString() === productId && item.size === size);
+    const cartItem = user.cartData.find(
+      (item) => item.productId.toString() === productId && item.size === size,
+    );
 
     if (!cartItem) {
-      return res.status(404).json({ message: 'Item not found in cart' });
+      return res.status(404).json({ message: "Item not found in cart" });
     }
 
     if (quantity !== undefined) cartItem.quantity = quantity;
@@ -75,10 +83,13 @@ const updateCart = async (req, res) => {
 
     await user.save();
 
-    res.json({ message: 'Cart item updated successfully', cartData: user.cartData });
+    res.json({
+      message: "Cart item updated successfully",
+      cartData: user.cartData,
+    });
   } catch (error) {
     console.error(error.message);
-    res.status(500).json({ msg: 'Server error' });
+    res.status(500).json({ msg: "Server error" });
   }
 };
 
@@ -89,17 +100,23 @@ const deleteCart = async (req, res) => {
   try {
     const user = await UserModel.findById(req.user.id);
 
-    user.cartData = user.cartData.filter((item) => !(item.productId.toString() === productId && (!size || item.size === size)));
+    user.cartData = user.cartData.filter(
+      (item) =>
+        !(
+          item.productId.toString() === productId &&
+          (!size || item.size === size)
+        ),
+    );
 
     await user.save();
 
     res.status(200).json({
-      message: 'Cart item deleted successfully',
+      message: "Cart item deleted successfully",
       cartData: user.cartData,
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Internal Server Error' });
+    res.status(500).json({ message: "Internal Server Error" });
   }
 };
 

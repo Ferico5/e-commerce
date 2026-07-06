@@ -1,19 +1,19 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { createContext, useContext, useState, useEffect } from 'react';
-import axios from '../utils/axiosInstance';
+import { createContext, useContext, useState, useEffect } from "react";
+import axios from "../utils/axiosInstance";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(localStorage.getItem('token') || null);
+  const [token, setToken] = useState(localStorage.getItem("token") || null);
   const [user, setUser] = useState(() => {
-    const storedUser = localStorage.getItem('user');
+    const storedUser = localStorage.getItem("user");
     return storedUser ? JSON.parse(storedUser) : null;
   });
 
   const isTokenExpired = (token) => {
     try {
-      const payload = JSON.parse(atob(token.split('.')[1]));
+      const payload = JSON.parse(atob(token.split(".")[1]));
       return payload.exp * 1000 < Date.now();
     } catch (error) {
       return true;
@@ -24,20 +24,20 @@ export const AuthProvider = ({ children }) => {
     if (token && isTokenExpired(token)) {
       setToken(null);
       setUser(null);
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
     } else if (token && user) {
-      localStorage.setItem('token', token);
-      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
     } else {
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
     }
   }, [token, user]);
 
   const login = async (email, password) => {
     try {
-      const response = await axios.post('/auth', { email, password });
+      const response = await axios.post("/auth", { email, password });
 
       if (response.data.token) {
         setToken(response.data.token);
@@ -48,7 +48,7 @@ export const AuthProvider = ({ children }) => {
       if (error.response) {
         return error.response;
       }
-      return { data: { msg: 'Server error' } };
+      return { data: { msg: "Server error" } };
     }
   };
 
@@ -57,16 +57,20 @@ export const AuthProvider = ({ children }) => {
 
     setToken(null);
     setUser(null);
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    if (role === 'admin') {
-      navigate('/admin/login');
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    if (role === "admin") {
+      navigate("/admin/login");
     } else {
-      navigate('/login');
+      navigate("/login");
     }
   };
 
-  return <AuthContext.Provider value={{ token, user, login, logout }}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ token, user, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 export const useAuth = () => useContext(AuthContext);

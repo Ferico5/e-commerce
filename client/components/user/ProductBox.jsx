@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const ProductBox = ({ image, name, price, id }) => {
   return (
@@ -6,11 +6,18 @@ const ProductBox = ({ image, name, price, id }) => {
       <Link to={`/product/${id}`} aria-label={`View details for ${name}`}>
         {/* Product Image */}
         <div className="bg-gray-100 overflow-hidden">
-          <img src={image} alt={name} loading="lazy" className="w-full h-full object-cover hover:scale-110 transition ease-in-out" />
+          <img
+            src={image}
+            alt={name}
+            loading="lazy"
+            className="w-full h-full object-cover hover:scale-110 transition ease-in-out"
+          />
         </div>
 
         {/* Product Name */}
-        <p className="mt-3 text-sm text-[#374151] break-words leading-tight">{name}</p>
+        <p className="mt-3 text-sm text-[#374151] break-words leading-tight">
+          {name}
+        </p>
 
         {/* Product Price */}
         <p className="mt-2 text-sm text-[#374151] font-medium">Rp. {price}</p>

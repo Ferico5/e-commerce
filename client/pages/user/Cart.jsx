@@ -1,10 +1,10 @@
-import { useEffect, useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import TitleBox from '../../components/user/TitleBox.jsx';
-import ResponsiveContainer from '../../components/user/ResponsiveContainer.jsx';
-import bin_icon from '../../assets/frontend_assets/bin_icon.png';
-import { useCart } from '../../auth/CartContext.jsx';
-import axios from '../../utils/axiosInstance.js';
+import { useEffect, useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import TitleBox from "../../components/user/TitleBox.jsx";
+import ResponsiveContainer from "../../components/user/ResponsiveContainer.jsx";
+import bin_icon from "../../assets/frontend_assets/bin_icon.png";
+import { useCart } from "../../auth/CartContext.jsx";
+import axios from "../../utils/axiosInstance.js";
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
@@ -35,7 +35,7 @@ const Cart = () => {
 
   const fetchCart = () => {
     axios
-      .get('/get-cart')
+      .get("/get-cart")
       .then((response) => {
         const cartArray = response.data.cartItems || [];
         setCart(cartArray);
@@ -49,7 +49,7 @@ const Cart = () => {
         calculateTotals(cartArray, newQuantityMap);
       })
       .catch((error) => {
-        console.error('Error fetching cart:', error);
+        console.error("Error fetching cart:", error);
       });
   };
 
@@ -81,7 +81,7 @@ const Cart = () => {
           fetchCart();
           fetchCartCount();
         })
-        .catch((err) => console.error('Error updating cart:', err));
+        .catch((err) => console.error("Error updating cart:", err));
     }, 600);
   };
 
@@ -92,7 +92,7 @@ const Cart = () => {
         fetchCart();
         fetchCartCount();
       })
-      .catch((err) => console.error('Error deleting cart item:', err));
+      .catch((err) => console.error("Error deleting cart item:", err));
   };
 
   return (
@@ -105,13 +105,23 @@ const Cart = () => {
         <p className="text-gray-500 text-center">Cart is empty</p>
       ) : (
         cart.map((item) => (
-          <div key={item._id} className="flex border-b border-t border-[#E5E7EB] py-4 font-outfit">
-            <img src={item.image[0]} alt="Item" loading="lazy" className="w-30 h-30 sm:w-20 sm:h-25 object-cover" />
+          <div
+            key={item._id}
+            className="flex border-b border-t border-[#E5E7EB] py-4 font-outfit"
+          >
+            <img
+              src={item.image[0]}
+              alt="Item"
+              loading="lazy"
+              className="w-30 h-30 sm:w-20 sm:h-25 object-cover"
+            />
             <div className="flex flex-col ml-5 w-6/7 sm:w-3/7">
               <p className="font-semibold sm:text-lg">{item.name}</p>
               <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-5 mt-1">
                 <p>Rp {item.price}</p>
-                <p className="border border-[#E5E7EB] px-3 py-1 bg-[#F8FAFC] w-fit">{item.size}</p>
+                <p className="border border-[#E5E7EB] px-3 py-1 bg-[#F8FAFC] w-fit">
+                  {item.size}
+                </p>
               </div>
             </div>
             <div className="w-full sm:w-2/7 flex items-center justify-center">
@@ -127,7 +137,13 @@ const Cart = () => {
               />
             </div>
             <div className="w-2/7 flex items-center justify-center">
-              <img src={bin_icon} alt="Bin Icon" loading="lazy" className="w-5 hover:cursor-pointer" onClick={() => handleDelete(item.productId, item.size)} />
+              <img
+                src={bin_icon}
+                alt="Bin Icon"
+                loading="lazy"
+                className="w-5 hover:cursor-pointer"
+                onClick={() => handleDelete(item.productId, item.size)}
+              />
             </div>
           </div>
         ))
@@ -139,17 +155,20 @@ const Cart = () => {
         </div>
         <div className="w-full sm:w-3/7 flex justify-between pb-2 mt-3 border-b border-[#E5E7EB]">
           <p>Subtotal</p>
-          <p>Rp {subtotal.toLocaleString('id-ID')}</p>
+          <p>Rp {subtotal.toLocaleString("id-ID")}</p>
         </div>
         <div className="w-full sm:w-3/7 flex justify-between pb-2 mt-3 border-b border-[#E5E7EB]">
           <p>Shipping Fee</p>
-          <p>Rp {shippingFee.toLocaleString('id-ID')}</p>
+          <p>Rp {shippingFee.toLocaleString("id-ID")}</p>
         </div>
         <div className="w-full sm:w-3/7 flex justify-between pb-2 mt-3 font-bold">
           <p>Total</p>
-          <p>Rp {total.toLocaleString('id-ID')}</p>
+          <p>Rp {total.toLocaleString("id-ID")}</p>
         </div>
-        <button onClick={() => navigate('/place-order')} className="bg-black text-white px-6 py-3 mt-5 hover:cursor-pointer">
+        <button
+          onClick={() => navigate("/place-order")}
+          className="bg-black text-white px-6 py-3 mt-5 hover:cursor-pointer"
+        >
           PROCEED TO CHECKOUT
         </button>
       </div>

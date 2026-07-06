@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
-import { useAuth } from '../../auth/AuthContext.jsx';
-import { useParams, useNavigate } from 'react-router-dom';
-import TitleBox from '../../components/user/TitleBox.jsx';
-import ResponsiveContainer from '../../components/user/ResponsiveContainer.jsx';
-import axios from '../../utils/axiosInstance';
+import { useState, useEffect } from "react";
+import { useAuth } from "../../auth/AuthContext.jsx";
+import { useParams, useNavigate } from "react-router-dom";
+import TitleBox from "../../components/user/TitleBox.jsx";
+import ResponsiveContainer from "../../components/user/ResponsiveContainer.jsx";
+import axios from "../../utils/axiosInstance";
 
 const OrderDetail = () => {
   const { id } = useParams();
@@ -19,15 +19,17 @@ const OrderDetail = () => {
         });
         setDetail(res.data.order);
       } catch (error) {
-        console.error('Failed to fetch order:', error);
-        navigate('/', { replace: true });
+        console.error("Failed to fetch order:", error);
+        navigate("/", { replace: true });
       }
     };
     fetchOrder();
   }, [id, token, navigate]);
 
   if (!detail) {
-    return <div className="content-mobile sm:content-tablet pt-12">Loading...</div>;
+    return (
+      <div className="content-mobile sm:content-tablet pt-12">Loading...</div>
+    );
   }
 
   const item = detail.items[0];
@@ -41,10 +43,17 @@ const OrderDetail = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           {detail.items.map((item, index) => (
             <div key={index} className="flex gap-6 items-start py-4">
-              <img src={item.image[0]} alt="Product Image" loading="lazy" className="w-40 object-cover rounded-lg" />
+              <img
+                src={item.image[0]}
+                alt="Product Image"
+                loading="lazy"
+                className="w-40 object-cover rounded-lg"
+              />
               <div>
                 <p className="text-xl font-medium mb-2">{item.name}</p>
-                <p className="text-gray-800 font-medium mb-3">Rp {item.price.toLocaleString()}</p>
+                <p className="text-gray-800 font-medium mb-3">
+                  Rp {item.price.toLocaleString()}
+                </p>
                 <p className="mb-1">
                   <span className="text-[#A2A9B4]">Size: </span>
                   {item.size}
@@ -87,7 +96,9 @@ const OrderDetail = () => {
             <h3 className="font-medium text-lg mb-2">Price Breakdown</h3>
             <p>Subtotal: Rp {detail.amount.toLocaleString()}</p>
             <p>Shipping Fee: Rp {detail.shipping_fee.toLocaleString()}</p>
-            <p className="font-semibold mt-1">Total: Rp {detail.total_fee.toLocaleString()}</p>
+            <p className="font-semibold mt-1">
+              Total: Rp {detail.total_fee.toLocaleString()}
+            </p>
           </div>
 
           <div>

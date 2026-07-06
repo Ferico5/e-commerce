@@ -1,7 +1,7 @@
-const midtransClient = require('midtrans-client');
-const OrderModel = require('../models/OrderModel.js');
-const UserModel = require('../models/UserModel.js');
-require('dotenv').config();
+const midtransClient = require("midtrans-client");
+const OrderModel = require("../models/OrderModel.js");
+const UserModel = require("../models/UserModel.js");
+require("dotenv").config();
 
 // Konfigurasi Midtrans
 let snap = new midtransClient.Snap({
@@ -11,26 +11,43 @@ let snap = new midtransClient.Snap({
 
 const createOrder = async (req, res) => {
   try {
-    const { userId, items, paymentMethod, street, city, state, zipcode, country, phone } = req.body;
+    const {
+      userId,
+      items,
+      paymentMethod,
+      street,
+      city,
+      state,
+      zipcode,
+      country,
+      phone,
+    } = req.body;
 
     if (!items || items.length === 0) {
-      return res.status(400).json({ success: false, message: 'Cart is empty' });
+      return res.status(400).json({ success: false, message: "Cart is empty" });
     }
 
-    const amount = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    const amount = items.reduce(
+      (acc, item) => acc + item.price * item.quantity,
+      0,
+    );
     const shipping_fee = parseFloat((amount * 0.1).toFixed(2));
     const total_fee = parseFloat((amount + shipping_fee).toFixed(2));
 
-    const allowedBanks = ['bca', 'bni', 'bri', 'permata', 'mandiri'];
+    const allowedBanks = ["bca", "bni", "bri", "permata", "mandiri"];
     const selectedBank = paymentMethod.toLowerCase();
 
     if (!allowedBanks.includes(selectedBank)) {
-      return res.status(400).json({ success: false, message: 'Bank tidak didukung' });
+      return res
+        .status(400)
+        .json({ success: false, message: "Bank tidak didukung" });
     }
 
     const user = await UserModel.findById(userId);
     if (!user) {
-      return res.status(404).json({ success: false, message: 'User not found' });
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
     }
     const userName = user.name;
 
@@ -42,7 +59,7 @@ const createOrder = async (req, res) => {
       amount,
       shipping_fee,
       total_fee,
-      status: 'Order Placed',
+      status: "Order Placed",
       paymentMethod,
       payment: false,
       street,
@@ -74,13 +91,13 @@ const createOrder = async (req, res) => {
           name: item.name,
         })),
         {
-          id: 'SHIPPING_FEE',
+          id: "SHIPPING_FEE",
           price: shipping_fee,
           quantity: 1,
-          name: 'Shipping Fee',
+          name: "Shipping Fee",
         },
       ],
-      enabled_payments: ['bank_transfer'],
+      enabled_payments: ["bank_transfer"],
       callbacks: {
         finish: `https://foreverclothes.vercel.app/orders`,
       },
@@ -92,14 +109,14 @@ const createOrder = async (req, res) => {
 
     return res.status(200).json({
       success: true,
-      message: 'Order created and payment initiated',
+      message: "Order created and payment initiated",
       transactionToken,
       orderId: savedOrder._id,
       redirect_url: transaction.redirect_url, // useful for frontend
     });
   } catch (error) {
-    console.error('Create Order Error:', error);
-    res.status(500).json({ success: false, message: 'Failed to create order' });
+    console.error("Create Order Error:", error);
+    res.status(500).json({ success: false, message: "Failed to create order" });
   }
 };
 
@@ -109,8 +126,8 @@ const allOrders = async (req, res) => {
     const orders = await OrderModel.find({});
     res.status(200).json({ orders });
   } catch (error) {
-    console.error('Failed to fetch data: ', error);
-    res.status(500).json({ success: false, message: 'Failed to fetch data' });
+    console.error("Failed to fetch data: ", error);
+    res.status(500).json({ success: false, message: "Failed to fetch data" });
   }
 };
 
@@ -120,8 +137,8 @@ const userOrders = async (req, res) => {
     const orders = await OrderModel.find({ userId });
     res.status(200).json({ success: true, orders });
   } catch (error) {
-    console.error('Failed to fetch data: ', error);
-    res.status(500).json({ success: false, message: 'Failed to fetch data' });
+    console.error("Failed to fetch data: ", error);
+    res.status(500).json({ success: false, message: "Failed to fetch data" });
   }
 };
 
@@ -131,13 +148,15 @@ const getOrderById = async (req, res) => {
     const order = await OrderModel.findById(id);
 
     if (!order) {
-      return res.status(404).json({ success: false, message: 'Order not found!' });
+      return res
+        .status(404)
+        .json({ success: false, message: "Order not found!" });
     }
 
     res.status(200).json({ success: true, order });
   } catch (error) {
-    console.error('Failed to fetch data: ', error);
-    res.status(500).json({ success: false, message: 'Failed to fetch data' });
+    console.error("Failed to fetch data: ", error);
+    res.status(500).json({ success: false, message: "Failed to fetch data" });
   }
 };
 
@@ -148,16 +167,16 @@ const updateOrderStatus = async (req, res) => {
 
     const order = await OrderModel.findById(id);
     if (!order) {
-      return res.status(404).json({ message: 'Order not found' });
+      return res.status(404).json({ message: "Order not found" });
     }
 
     order.status = status;
     await order.save();
 
-    res.status(200).json({ message: 'Order status updated', order });
+    res.status(200).json({ message: "Order status updated", order });
   } catch (error) {
-    console.error('Error updating status:', error);
-    res.status(500).json({ message: 'Internal server error' });
+    console.error("Error updating status:", error);
+    res.status(500).json({ message: "Internal server error" });
   }
 };
 
@@ -167,21 +186,24 @@ const midtransNotification = async (req, res) => {
 
     const { order_id, transaction_status, va_numbers } = notification;
 
-    if (!order_id.startsWith('ORDER-')) {
-      console.warn('Order ID dari Midtrans tidak valid:', order_id);
-      return res.status(200).json({ message: 'Ignored non-applicable notification' });
+    if (!order_id.startsWith("ORDER-")) {
+      console.warn("Order ID dari Midtrans tidak valid:", order_id);
+      return res
+        .status(200)
+        .json({ message: "Ignored non-applicable notification" });
     }
 
-    const orderId = order_id.replace('ORDER-', '');
+    const orderId = order_id.replace("ORDER-", "");
 
-    if (transaction_status === 'settlement') {
+    if (transaction_status === "settlement") {
       const order = await OrderModel.findById(orderId);
-      if (!order) return res.status(404).json({ message: 'Order not found' });
+      if (!order) return res.status(404).json({ message: "Order not found" });
 
-      const bankUsed = va_numbers && va_numbers.length > 0 ? va_numbers[0].bank : null;
+      const bankUsed =
+        va_numbers && va_numbers.length > 0 ? va_numbers[0].bank : null;
 
       const updateData = {
-        status: 'Packing',
+        status: "Packing",
         payment: true,
       };
 
@@ -191,17 +213,26 @@ const midtransNotification = async (req, res) => {
 
       try {
         await OrderModel.findByIdAndUpdate(orderId, updateData);
-        await UserModel.findByIdAndUpdate(order.userId, { $set: { cartData: [] } });
+        await UserModel.findByIdAndUpdate(order.userId, {
+          $set: { cartData: [] },
+        });
       } catch (err) {
-        console.error('Failed to update order:', err);
+        console.error("Failed to update order:", err);
       }
     }
 
-    return res.status(200).json({ message: 'OK' });
+    return res.status(200).json({ message: "OK" });
   } catch (error) {
-    console.error('Midtrans Webhook Error:', error);
-    res.status(500).json({ message: 'Internal server error' });
+    console.error("Midtrans Webhook Error:", error);
+    res.status(500).json({ message: "Internal server error" });
   }
 };
 
-module.exports = { createOrder, allOrders, userOrders, getOrderById, updateOrderStatus, midtransNotification };
+module.exports = {
+  createOrder,
+  allOrders,
+  userOrders,
+  getOrderById,
+  updateOrderStatus,
+  midtransNotification,
+};

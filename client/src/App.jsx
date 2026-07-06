@@ -1,59 +1,64 @@
 // import { useState } from 'react'
-import { createBrowserRouter, RouterProvider, Outlet, Navigate } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import ProtectedRoute from '../components/admin/ProtectedRoute';
-import ProtectedRouteUser from '../components/user/ProtectedRouteUser';
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Outlet,
+  Navigate,
+} from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import ProtectedRoute from "../components/admin/ProtectedRoute";
+import ProtectedRouteUser from "../components/user/ProtectedRouteUser";
 
 // import layout
-import Layout from '../layouts/Layout';
-import AdminLayout from '../layouts/AdminLayout';
+import Layout from "../layouts/Layout";
+import AdminLayout from "../layouts/AdminLayout";
 
 // import pages
-import Login from '../pages/user/Login';
-import Home from '../pages/user/Home';
-import About from '../pages/user/About';
-import Collection from '../pages/user/Collection';
-import Product from '../pages/user/Product';
-import Cart from '../pages/user/Cart';
-import PlaceOrder from '../pages/user/PlaceOrder';
-import Orders from '../pages/user/Orders';
-import OrderDetail from '../pages/user/OrderDetail';
-import Contact from '../pages/user/Contact';
-import AdminLogin from '../pages/admin/AdminLogin';
-import AdminAdd from '../pages/admin/AdminAdd';
-import AdminList from '../pages/admin/AdminList';
-import AdminOrders from '../pages/admin/AdminOrders';
+import Login from "../pages/user/Login";
+import Home from "../pages/user/Home";
+import About from "../pages/user/About";
+import Collection from "../pages/user/Collection";
+import Product from "../pages/user/Product";
+import Cart from "../pages/user/Cart";
+import PlaceOrder from "../pages/user/PlaceOrder";
+import Orders from "../pages/user/Orders";
+import OrderDetail from "../pages/user/OrderDetail";
+import Contact from "../pages/user/Contact";
+import AdminLogin from "../pages/admin/AdminLogin";
+import AdminAdd from "../pages/admin/AdminAdd";
+import AdminList from "../pages/admin/AdminList";
+import AdminOrders from "../pages/admin/AdminOrders";
 // import ServerError from '../pages/ServerError';
 // import PageNotFound from '../pages/PageNotFound';
 
 // Import context
-import { AuthProvider } from '../auth/AuthContext';
-import { CartProvider } from '../auth/CartContext';
+import { AuthProvider } from "../auth/AuthContext";
+import { CartProvider } from "../auth/CartContext";
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Layout />,
     children: [
       {
-        path: '/',
+        path: "/",
         element: <Home />,
       },
       {
-        path: '/login',
+        path: "/login",
         element: <Login />,
       },
       {
-        path: '/collection',
+        path: "/collection",
         element: <Collection />,
       },
       {
-        path: '/product/:id',
+        path: "/product/:id",
         element: <Product />,
       },
       {
-        path: '/cart',
+        path: "/cart",
         element: (
           <ProtectedRouteUser>
             <Cart />
@@ -61,7 +66,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/place-order',
+        path: "/place-order",
         element: (
           <ProtectedRouteUser>
             <PlaceOrder />
@@ -69,7 +74,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/orders',
+        path: "/orders",
         element: (
           <ProtectedRouteUser>
             <Orders />
@@ -77,7 +82,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/orders/:id',
+        path: "/orders/:id",
         element: (
           <ProtectedRouteUser>
             <OrderDetail />
@@ -85,11 +90,11 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/about',
+        path: "/about",
         element: <About />,
       },
       {
-        path: '/contact',
+        path: "/contact",
         element: <Contact />,
       },
       // {
@@ -107,11 +112,11 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: '/admin/login',
+    path: "/admin/login",
     element: <AdminLogin />,
   },
   {
-    path: '/admin',
+    path: "/admin",
     element: (
       <ProtectedRoute>
         <AdminLayout />
@@ -119,18 +124,18 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: '',
+        path: "",
       },
       {
-        path: 'add',
+        path: "add",
         element: <AdminAdd />,
       },
       {
-        path: 'list',
+        path: "list",
         element: <AdminList />,
       },
       {
-        path: 'orders',
+        path: "orders",
         element: <AdminOrders />,
       },
     ],
@@ -143,7 +148,11 @@ const App = () => {
       <AuthProvider>
         <CartProvider>
           <RouterProvider router={router} />
-          <ToastContainer position="top-right" autoClose={6000} hideProgressBar={false} />
+          <ToastContainer
+            position="top-right"
+            autoClose={6000}
+            hideProgressBar={false}
+          />
         </CartProvider>
       </AuthProvider>
     </div>

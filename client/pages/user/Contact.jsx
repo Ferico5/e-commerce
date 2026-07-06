@@ -1,7 +1,7 @@
-import ContactPic from '../../assets/frontend_assets/contact_img.png';
-import SubscribeBox from '../../components/user/SubscribeBox';
-import TitleBox from '../../components/user/TitleBox';
-import ResponsiveContainer from '../../components/user/ResponsiveContainer.jsx';
+import ContactPic from "../../assets/frontend_assets/contact_img.png";
+import SubscribeBox from "../../components/user/SubscribeBox";
+import TitleBox from "../../components/user/TitleBox";
+import ResponsiveContainer from "../../components/user/ResponsiveContainer.jsx";
 
 const Contact = () => {
   return (
@@ -12,11 +12,18 @@ const Contact = () => {
       </div>
       {/* Main Content */}
       <div className="flex flex-col md:flex-row justify-center mb-20">
-        <img src={ContactPic} alt="Contact" loading="lazy" className="w-full md:w-md md:h-md object-cover" />
+        <img
+          src={ContactPic}
+          alt="Contact"
+          loading="lazy"
+          className="w-full md:w-md md:h-md object-cover"
+        />
 
         {/* Paragraph */}
         <div className="flex flex-col justify-center gap-6 py-6 ml-10 text-[#5C6872] ">
-          <span className="text-gray-600 text-[20px] font-semibold">Our Store</span>
+          <span className="text-gray-600 text-[20px] font-semibold">
+            Our Store
+          </span>
           <p>
             54709 Willms Station
             <br />
@@ -27,9 +34,13 @@ const Contact = () => {
             <br />
             Email: admin@forever.com
           </p>
-          <span className="text-gray-600 text-[20px] font-semibold">Careers at Forever</span>
+          <span className="text-gray-600 text-[20px] font-semibold">
+            Careers at Forever
+          </span>
           <p>Learn more about our teams and job openings.</p>
-          <button className="border-1 w-36 text-black p-4 text-[14px] duration-300 ease-in hover:bg-black hover:text-white">Explore Jobs</button>
+          <button className="border-1 w-36 text-black p-4 text-[14px] duration-300 ease-in hover:bg-black hover:text-white">
+            Explore Jobs
+          </button>
         </div>
       </div>
       <SubscribeBox />
