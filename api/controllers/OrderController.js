@@ -123,7 +123,7 @@ const createOrder = async (req, res) => {
 // for admin
 const allOrders = async (req, res) => {
   try {
-    const orders = await OrderModel.find({});
+    const orders = await OrderModel.find({}).sort({ date: -1 });
     res.status(200).json({ orders });
   } catch (error) {
     console.error("Failed to fetch data: ", error);
@@ -134,7 +134,7 @@ const allOrders = async (req, res) => {
 const userOrders = async (req, res) => {
   try {
     const { userId } = req.params;
-    const orders = await OrderModel.find({ userId });
+    const orders = await OrderModel.find({ userId }).sort({ date: -1 });
     res.status(200).json({ success: true, orders });
   } catch (error) {
     console.error("Failed to fetch data: ", error);

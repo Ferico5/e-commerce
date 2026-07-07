@@ -48,7 +48,7 @@ const Footer = () => {
       {/* Bottom side content */}
       <div>
         <footer className="flex justify-center font-outfit border-t border-[#BDBDBD] mt-10 pt-4 mb-4 text-sm">
-          Idea design by greatstack.dev
+          © 2026 Forever Clothes. All rights reserved.
         </footer>
       </div>
     </ResponsiveContainer>
